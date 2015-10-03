@@ -2,12 +2,18 @@
 
 In this chapter, we will look at the fundamental concepts and background information needed to understand the the different infections model, problem with seed-selection for social graphs, and solving Breadth-first search using matrix multiplication.
 
-\section{Basic Diffusion Models}
-When we talk about information propagation, we can look at how medical and technological innovations is spread through a social network. We can simulate those kind of behaviour with diffusion models. There are two basic diffusion models used to simulate the propagation of informaiton through a network\cite{kempe}, the {\it linear threshold model} and the {\it independent cascade model}\cite{kempe}.
+\section{Data diffusion}
+Datta diffusion is looking at how information is propagated through a network or a graph. 
 
-This process can be simulated by looking at a social-graph and how information propagetes through the network. A social network is a graph of relationship and interactions within a group of individuals. 
+\section{Basic Diffusion Models}
+When we talk about information propagation, we can look at how medical and technological innovations is spread through a social network. We can simulate those kind of behaviour with different diffusion models. There are two basic diffusion models used to simulate the propagation of informaiton through a network\cite{kempe}, the {\it linear threshold model} and the {\it independent cascade model}\cite{kempe}.
+
+This process can be simulated by looking at a social network and how information propagetes through the network. A social network is a graph of relationship and interactions within a group of individuals. 
 We look at each node in the graph as a person, they can be either active, or inactive. The activation of a node depends on which diffusion model we choose.
 
 The linear threshold model uses a threshold $\theta_v$ bewteen the interval [0,1], which represent the faction of {\it v}'s neighbors that need to be active to activate node{\it v}. The Linear Threshold Model activates the current node {\it v} when the weight{\it b_{v,w}} $> \theta$ from its neighbour {\it w} outweights the $\theta_v$. 
 
-The independent cascade model changes states with a probability $p_{\it v, w}$, where {\it v }is current node, and {\it w} is it's neighbor. During each propagation, the node {\it v} have a  $p_{\it v, w}$ chance to change state if the neighbour {\it w} changed state. If during timestep {\it t} a node {\it v} changed state, its neighbour {\it w} would have a  $p_{\it v, w}$ chance to change state in the next time stepp.
+The independent cascade model changes states with a probability $p_{\it v, w}$, where {\it v }is current node, and {\it w} is it's neighbor. During each propagation, the node {\it v} have a  $p_{\it v, w}$ chance to change state if the neighbour {\it w} changed state. If during timestep {\it t} a node {\it v} changed state, its neighbour {\it w} would have a  $p_{\it v, w}$ chance to change state in the next time stepp. 
+
+\sefction{Breadth First Search as a matrix multiplication.}
+By looking at the 	connectivity matrix, we can se that a connectivity matrix is a graph represented in a matrix format. we can
