@@ -3,7 +3,7 @@
 In this chapter, we will look at the fundamental concepts and background information needed to understand the the different infections model, problem with seed-selection for social graphs, and solving Breadth-first search using matrix multiplication.
 
 \section{Network}
-Network is a collection of nodes with edges connecting them together\cite{TheStrucandcomplex}. A social network is a network containing people . 
+Network is a collection of nodes with edges connecting them together\cite{TheStrucandcomplex}. There are different types of network or " {\it graph}. These include from {\it social graph}, {\it small-world graph} et al. 
 
 \section{Data diffusion}
 Datta diffusion is looking at how information is propagated through a network or a graph. An example would be how a new internett meme, a new trend or how a new disease is spread through a community. The process consist of a set of starter nodes that are \"infected\", during each timestep, there are a chance that the \"infected\" node would \"infect\" its neighbour. To start such a simulation, we would need to first pick out a set of inital \"starter node\". These {\it k} starter node is a set of node that in the initial time-stepp is infected. They will pass on the informatin/infection during each timestep and the information/infection will propagate through the network.
@@ -24,4 +24,4 @@ By looking at the 	connectivity matrix, we can se that a connectivity matrix is 
 \section{SIR/SIS}
 There are two different epidemic model that we will be looking at, the {\it SIR} ( susceptible, infected, removed,) and the SIS mode(susceotible, infected, susceptible). The SIR model stands for susceptible, infected and removed. The node would have three different states, the susceptible state mean that the node is susceptible to the disease, or in this example, change state. The infected state is the state were the node {\it v} is infected. The state Removed/Recovered, is the state were the node {\it v} have the diseas removed, or have recover from the infection. In this model, the Removed/Recovered state is not susvveptible to the infection again. 
 
-The SIS stands for susceptible, infecded and susceptible again, this model works if the infected node is susceptible to the infection again. 
+The SIS stands for susceptible, infecded and susceptible again, this model works if the infected node is susceptible to the infection again. \
