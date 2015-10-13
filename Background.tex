@@ -1,9 +1,9 @@
 \chapter{Background} \lable{chap_background}
 
-In this chapter, we will look at the fundamental concepts and background information needed to understand the the different infections model, problem with seed-selection for social graphs, and solving Breadth-first search using matrix multiplication.
+In this chapter, we will look at the fundamental concepts and background information needed to understand the the different infections model, problem with seed-selection for social networks, and solving Breadth-first search using matrix multiplication. This chapter will contain notations that we would use throoughout the report and used in the field. 
 
 \section{Network}
-Network is a collection of nodes with edges connecting them together\cite{TheStrucandcomplex}. There are different types of network or " {\it graph}. These include from {\it social graph}, {\it small-world graph} et al. Each of them have a different property 
+Network is a collection of nodes with edges connecting them together\cite{TheStrucandcomplex}. Each node can reprecent something, or containing information. There are different types of network or " {\it graphs}. These include from {\it social graph/social network}, {\it small-world graph} or just simple binary tree. Each of them have a different properties.
 
 A social network is a set of people connected to each other via some form of contact or interactions. A social network often display information regarding connection, interaction or location of a set of people\citeP{Tdt22Paper5}. The social network forms patterns regarding friendships, buissness interactions between companies and familie history/ ancestral tree. One properties that is common in social networks is clusters of communities inside the network, or {\it undergroups}. {\it Undergroups} are clusters of people that creates a closed hub of people thats connected to each other. Different hubs are connected to each other via small nuber of \" Bridges\" \cite{MaxSpread}.  
 
@@ -14,8 +14,7 @@ Datta diffusion is looking at how information is propagated through a network or
 \section{Basic Diffusion Models}
 When we talk about information propagation, we can look at how medical and technological innovations is spread through a social network. We can simulate those kind of behaviour with different diffusion models. There are two basic diffusion models used to simulate the propagation of informaiton through a network\cite{kempe}, the {\it linear threshold model} and the {\it independent cascade model}\cite{kempe}.
 
-This process can be simulated by looking at a social network and how information propagetes through the network. A social network is a graph of relationship and interactions within a group of individuals. 
-We look at each node in the graph as a person, they can be either active, or inactive. The activation of a node depends on which diffusion model we choose.
+This process can be simulated by looking at a social network and how information propagetes through the network. We look at each node in the graph as a person, they can be either active, or inactive. The activation of a node depends on which diffusion model we choose. A active node is \"infected\", while the unactive is the \"healthy\" ones. The activation of each nodes is dependent on which model we pick.
 
 The linear threshold model uses a threshold $\theta_v$ bewteen the interval [0,1], which represent the faction of {\it v}'s neighbors that need to be active to activate node{\it v}. The Linear Threshold Model activates the current node {\it v} when the weight{\it b_{v,w}} $> \theta$ from its neighbour {\it w} outweights the $\theta_v$. This is more in line with the situation were each person have a chance to adopt to a new trend if exposed to the trend enough time by his close friends. An examlpe would be a product promoted on social network like twitter and facebook. The user will adopt the new trend if he is exposed to it from eough friends or idols. 
 
@@ -25,6 +24,8 @@ The independent cascade model changes states with a probability $p_{\it v, w}$, 
 By looking at the 	connectivity matrix, we can se that a connectivity matrix is a graph represented in a matrix format. The BFS can be achived by looking at the BFS operations as a matrix multiplication \cite{algoToMath}. If we look at the graph as a connectivity matrix, we can apply matrixe multiplication to generate the breadth first search. 
 
 \section{SIR/SIS}
-There are two different epidemic model that we will be looking at, the {\it SIR} ( susceptible, infected, removed,) and the SIS mode(susceotible, infected, susceptible). The SIR model stands for susceptible, infected and removed. The node would have three different states, the susceptible state mean that the node is susceptible to the disease, or in this example, change state. The infected state is the state were the node {\it v} is infected. The state Removed/Recovered, is the state were the node {\it v} have the diseas removed, or have recover from the infection. In this model, the Removed/Recovered state is not susvveptible to the infection again. 
+There are two different epidemic model that we will be looking at, the {\it SIR} ( susceptible, infected, removed,) and the SIS mode(susceptible, infected, susceptible).Both is used to simulate how a disease or an epidemic can spread through the general population, in this case, we can use this 
 
-The SIS stands for susceptible, infecded and susceptible again, this model works if the infected node is susceptible to the infection again. 
+The SIR model stands for susceptible, infected and removed. The node would have three different states, the susceptible state mean that the node is susceptible to the disease, or in this example, change state. The infected state is the state were the node {\it v} is infected. The state Removed/Recovered, is the state were the node {\it v} have the diseas removed, or have recover from the infection. In this model, the Removed/Recovered state is not susvveptible to the infection again. 
+
+The SIS stands for susceptible, infecded and susceptible. Unlike the SIR this model can reinfect the recovered nodes. This model is used for simulation of outbreak of disease. 
