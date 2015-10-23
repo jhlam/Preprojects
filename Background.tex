@@ -3,16 +3,28 @@
 In this chapter, we will look at the fundamental concepts and background information needed to understand the the different infections model, problem with seed-selection for social networks, and solving Breadth-first search using matrix multiplication. This chapter will contain notations that we would use throughout the report and used in the field. 
 
 \section{Network}
-Network is a collection of nodes with edges connecting them together\cite{TheStrucandcomplex}. Each node can reprecent something, or containing information. There are different types of network or " {\it graphs}. These include from {\it social graph/social network}, {\it small-world graph} or just simple binary tree. Each of them have a different properties.
+A {\it network} is a collection of {\it Vertices}, commonly known as nodes with \{it edges} connecting them together\cite{ComplexNetwork2003}. The edges serves as a connection, or a \"bridge\" between the nodes, while the nodes can reprecent something, or containing information. In the real world, multiple systems takes the form of networks around the world, examples are the internettt, the World Wide Web, social media like Facebook, twitter etc.  There are different types of network or " {\it graphs}. These include from {\it social network}, {\it sinformation networks}, {\it technological networks} ,and {\it biological network}.  Each of them have a different properties, but we will focus more about social network.
 
-A social network is a set of people connected to each other via some form of contact or interactions. A social network often display information regarding connection, interaction or location of a set of people\citeP{Tdt22Paper5}. The social network forms patterns regarding friendships, business interactions between companies and families history/ ancestral tree. One properties that is common in social networks is clusters of communities inside the network, or {\it undergroups}. {\it Undergroups} are clusters of people that creates a closed hub of people that connected to each other. Different hubs are connected to each other via small number of \" Bridges\" \cite{MaxSpread}.  
+A social network is a set of people connected to each other via some form of contact or interactions\cite{ComplexNetwork2003}. The nodes are people while the edges are the connections between peoples. The social network display information regarding connection, interaction or location of a set of people.It forms patterns regarding friendships, business interactions between companies and families history/ ancestral tree. The social network is often used in social science\cite{ComplexNetwork2003}. Some noteable experiments are \cite{smallWorldExperiment}, which looks at the small world problem. The small world problem can be summarized as: \"what is the probability that any two people, selected arbitrarily from a large population, such as that of the United States, will know each other?\"\cite{SmallworldExperiment1969}. This in itselfe is not that interesting, the \cite{SmallworldExperiment1969} takes that altho person {\it a} and {\it z} does not know each other, do they have a set of individuals \{{\it b_1, b_2, ... b_n}\} who are mutual friend or even a \"chain\" of such individual({\it a-b-c-...-y.z}).
+
+Some properties that networks often exhibits are the small world effect, Transitivity or clustering, Degree correlations, and Community structure\cite{ComplexNetwork2003}.
+
+\subsection{The small world effect}
+The small world effect shows that in most graph, most pair of verices seems to be connected to each other with a short(no more than 6) path. The small effect tells us that the geodesic distance from node {\it a} to {\it b} is no more than 6. a graph including the small world effect is called a {\it small-world graph}. A small-world graph have a diameter no more than 6. 
+
+\subsection{Transistivity/clustering}
+
+\subsection{Degree correlation}
+
+\subsection{community structure}
+
 
 
 \section{Data diffusion}
 Data diffusion is looking at how information is propagated through a network or a graph. An example would be how a new Internet meme, a new trend or how a new disease is spread through a community. The process consist of a set of starter nodes that are \"infected\", during each time-step, there are a chance that the \"infected\" node would \"infect\" its neighbor. To start such a simulation, we would need to first pick out a set of initial \"starter node\". These {\it k} starter node is a set of node that in the initial time-step is infected. They will pass on the information/infection during each time-step and the information/infection will propagate through the network.
 
 \section{Basic Diffusion Models}
-When we talk about information propagation, we can look at how medical and technological innovations is spread through a social network. We can simulate those kind of behavior with different diffusion models. There are two basic diffusion models used to simulate the propagation of information through a network\cite{kempe}, the {\it linear threshold model} and the {\it independent cascade model}\cite{kempe}.
+When we talk about information propagation, we can look at how medical and technological innovations is spread through a social network. We can simulate those kind of behavior with different diffusion models. There are two basic diffusion models used to simulate the propagation of information through a network\cite{MaximizeSpread2003}, the {\it linear threshold model} and the {\it independent cascade model}\cite{MaximizeSpread2003}.
 
 This process can be simulated by looking at a social network and how information propagates through the network. We look at each node in the graph as a person, they can be either active, or inactive. The activation of a node depends on which diffusion model we choose. A active node is \"infected\", while the inactive is the \"healthy\" ones. The activation of each nodes is dependent on which model we pick.
 
