@@ -2,6 +2,23 @@
 
 In this chapter, we will look at the fundamental concepts and background information needed to understand the the different infections model, problem with seed-selection for social networks, and solving Breadth-first search using matrix multiplication. This chapter will contain notations that we would use throughout the report and used in the field. 
 
+\section{Glossary of terms}
+\begin{center}
+    \begin{tabular}{| l |}
+    	\hline
+    	\it{Vertex} (pl. vertices): The fundamental unit of a network, also called a site(physics), a node (computer science), or an actor (sociology).
+		\it{Edge}: The line connecting two vertices. Also called a bond (physics), a link(computer science), or a tie (sociology).
+		\it{Directed/undirected}: An edge is directed if it runs in only one direction (such as a one-way road between two points), and undirected if it runs in both directions. Directed edges, which are sometimes called arcs, can be thought of as sporting arrows indicating their orientation. A graph is directed if all of its edges are directed. An undirected graph can be represented by a directed one having two edges between each pair of connected vertices, one in each direction.
+		\it{Degree}: The number of edges connected to a vertex. Note that the degree is not necessarily equal to the number of vertices adjacent to a vertex, since there may be more than one edge between any two vertices. In a few recent articles, the degree is referred to as the “connectivity” of a vertex, but we avoid this usage because the word connectivity already has another meaning in graph theory. A directed graph has both an in-degree and an out-degree for each vertex, which are the numbers of in-coming and out-going edges respectively.
+		\it{Component}: The component to which a vertex belongs is that set of vertices that can be reached from it by paths running along edges of the graph. In a directed graph a vertex has both an in-component and an out-component, which are the sets of vertices from which the vertex can be reached and which can be reached from it.
+		\it{Geodesic path}: A geodesic path is the shortest path through the network from one vertex to another. Note that there may be and often is more than one geodesic path between two vertices.
+		\it{Diameter}: The diameter of a network is the length (in number of edges) of the longest geodesic path between any two vertices. A few authors have also used this term to mean the average geodesic distance in a graph, although strictly the two quantities are quite distinct.
+    
+    \hline
+    \end{tabular}
+\end{center}
+
+
 \section{Network}
 A {\it network} is a collection of {\it Vertices}, commonly known as nodes with \{it edges} connecting them together\cite{ComplexNetwork2003}. The edges serves as a connection, or a \"bridge\" between the nodes, while the nodes can reprecent something, or containing information. In the real world, multiple systems takes the form of networks around the world, examples are the internettt, the World Wide Web, social media like Facebook, twitter etc.  There are different types of network or " {\it graphs}. These include from {\it social network}, {\it sinformation networks}, {\it technological networks} ,and {\it biological network}.  Each of them have a different properties, but we will focus more about social network.
 
@@ -10,12 +27,13 @@ A social network is a set of people connected to each other via some form of con
 Some properties that networks often exhibits are the small world effect, transitivity or clustering, degree correlations, and community structure\cite{ComplexNetwork2003}.
 
 \subsection{The small world effect}
-The small world effect shows that in most graph, most pair of verices seems to be connected to each other with a short(no more than 6) path\cite{ComplexNetwork2003}. The small effect shows us that the geodesic distance from node {\it a} to {\it b} is no more than 6. a graph including the small world effect is called a {\it small-world graph}. A small-world graph have a diameter no more than 6.\citeP{HybridBFS2015}. 
+The small world effect was first demonstrated by Stanley Milgra in the 1960s during his famous letter passing experiment\cite{SmallWorldProblemSmilgram1960}. The experiment was about passing letters from person to person to reach a designated target with only small steps. For the published case, the chain was around six \cite{Experiment1969}. This shows us that for most pair of vertices can reach each other with a short parth. A more precise wording is that Networks are said to show the small world effect if the value of \it{l} scales logarithmically or slower with the network size for a fixed mean degree. We have defined \it{l} to be the mean geodesic distance between vertex pairs in a network. 
 
 \subsection{Transistivity/clustering}
-Transistivity, also sometimes called clustering is the propertie that there are a 
+Transistivity, also sometimes called clustering is the properties that shows that there is a high number of triangles in the network. A triangle in a network is if node A is connected to node B and node C, and node B and C is also connected to each other, thus creating a triangle. In social network, we say that a friend of your friend is likely to be your friend too\cite{ComplexNetwork2003}. The transistivity is often used to show \it{network density}
 
 \subsection{Degree correlation}
+
 
 \subsection{community structure}
 
@@ -42,6 +60,14 @@ There are two different epidemic model that we will be looking at, the {\it SIR}
 The SIR model stands for susceptible, infected and removed. The node would have three different states, the susceptible state mean that the node is susceptible to the disease, or in this example, change state. The infected state is the state were the node {\it v} is infected. The state Removed/Recovered, is the state were the node {\it v} have the disease removed, or have recover from the infection. In this model, the Removed/Recovered state is not susceptible to the infection again. 
 
 The SIS stands for susceptible, infected and susceptible. Unlike the SIR this model can reinfect the recovered nodes. This model is used for simulation of outbreak of disease. 
+
+\section{greedy algorithm}
+The greedy algorithm was proposed by [KEMPE]. The algorithm is a greedy hillclimbing algorithm, the algorithm iteratess thr
+
+\section{R-mat}
+One problem during graph analysation is finding suiteble graphs to analyse. to generate graphs with desirede properties is not easdy to do. One solution proposed på \cite{RMat2004} is to use the /"recursive matrix /" or R-mat model. The R-mat model generates graph with only a few parameters, the graph will naturally have the small world propertie and follows the laws of normal graphs, and have a quick generation speed.
+
+
 
 \section{Cache oblivious model}
 The cache oblivious model 
