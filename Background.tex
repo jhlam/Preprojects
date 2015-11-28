@@ -27,12 +27,20 @@ A social network is a set of people connected to each other via some form of con
 Some properties that networks often exhibits are the small world effect, transitivity or clustering, degree correlations, and community structure\cite{ComplexNetwork2003}.
 
 \subsection{The small world effect}
-The small world effect was first demonstrated by Stanley Milgra in the 1960s during his famous letter passing experiment\cite{SmallWorldProblemSmilgram1960}. The experiment was about passing letters from person to person to reach a designated target with only small steps. For the published case, the chain was around six \cite{Experiment1969}. This shows us that for most pair of vertices can reach each other with a short parth. A more precise wording is that Networks are said to show the small world effect if the value of \it{l} scales logarithmically or slower with the network size for a fixed mean degree. We have defined \it{l} to be the mean geodesic distance between vertex pairs in a network. 
+The small world effect was first demonstrated by Stanley Milgra in the 1960s during his famous letter passing experiment\cite{SmallWorldProblemSmilgram1960}. The experiment was about passing letters from person to person to reach a designated target with only small steps. For the published case, the chain was around six \cite{Experiment1969}. This shows us that for most pair of vertices can reach each other with a short parth. A more precise wording is that \"Networks are said to show the small world effect if the value of \it{l} scales logarithmically or slower with the network size for a fixed mean degree.\"\cite{ComplexNetwork2003}We have defined \it{l} to be the mean geodesic distance between vertex pairs in a network. 
 
 \subsection{Transistivity/clustering}
 Transistivity, also sometimes called clustering is the properties that shows that there is a high number of triangles in the network. A triangle in a network is if node A is connected to node B and node C, and node B and C is also connected to each other, thus creating a triangle. In social network, we say that a friend of your friend is likely to be your friend too\cite{ComplexNetwork2003}. The transistivity is often used to show \it{network density}
 
+\subsection{Network resilience}
+For most network model, there is the need to remove nodes from the network. Removal of a node can have no effect on the network as a whole, or it can be devastating. Network resilience looks at how the network can ressist to such a removal. There are two different removal scheme, the random removal where nodes are randomly picked and removed, or the targeted removal where specific nodes are removed depending on the critteria. 
+
+The experiment mentioned in \cite{complexNetwork} by Albert \it{et al} showed that for a subset of network representing the internett and the world wide web, targeted removal had a larger impact then random removal. The targeted removal removed the highest degree nodes from the network, and the random removal removed nodes randomly. The random removal had a minimal effect on the network, while the targeted removal had a much larger impact, the mean vertex-vertex distance increased. They proposed that the internett was highly resilient to random removal, while much more vuarneble to targeted removal. 
+
+There are other studies that proposed a different interpetation about the data found.	
+
 \subsection{Degree correlation}
+
 
 
 \subsection{community structure}
@@ -62,12 +70,19 @@ The SIR model stands for susceptible, infected and removed. The node would have 
 The SIS stands for susceptible, infected and susceptible. Unlike the SIR this model can reinfect the recovered nodes. This model is used for simulation of outbreak of disease. 
 
 \section{greedy algorithm}
-The greedy algorithm was proposed by [KEMPE]. The algorithm is a greedy hillclimbing algorithm, the algorithm iteratess thr
+The greedy algorithm was proposed by [KEMPE]. The algorithm is a greedy hillclimbing algorithm, the algorithm fins the starter set of nodes \it{S} by iterating through all the vertex in \it{V} and calculate the total amount of spread. The spread is saved and the \it{k} most influential nodes would be choosen. @@@INSERT PSAUDOCODE HERE@@@@@@ 
+
+
 
 \section{R-mat}
-One problem during graph analysation is finding suiteble graphs to analyse. to generate graphs with desirede properties is not easdy to do. One solution proposed på \cite{RMat2004} is to use the /"recursive matrix /" or R-mat model. The R-mat model generates graph with only a few parameters, the graph will naturally have the small world propertie and follows the laws of normal graphs, and have a quick generation speed.
+One problem during graph analysation is finding suiteble graphs to analyse. to generate graphs with desirede properties is not easdy to do. One solution proposed på \cite{RMat2004} is to use the /"recursive matrix /" or R-mat model. The R-mat model generates graph with only a few parameters, the graph will naturally have the small world propertie and follows the laws of normal graphs, and have a quick generation speed. The R-mat models goal is to generate graphs that matches the degree distribution, exhibits a \" community \" structure and have a small diameter and mathces other criteria.\cite{Rmat2004}.
 
+The algorithm to generate such a recursive matrix is as follow: The idea is to partition the adjacency matrix into four equally sized part branded A,B,C,D. Each new edge is \"Droped\" onto the adjacency matrix. Wich section the edge would be placed on is choosen randomly. Each section have a `probability of \it{a, b, c, d}, and $a + b + c + d = 1$. After a section is choosen, the partion that was choosen is partitioned again. This continoues until the choosen section is a 1x1 square and the edge is dropped there. 
 
+@@
+INSET PICTURE OF PARTITION HERE!
+
+From the algorithm, we can see that the R-mat generator is capable to generate graphs with total numbers of node \it{V} = \power{2,x}. Since the algorithm partitioned the matrix into four part. 
 
 \section{Cache oblivious model}
 The cache oblivious model 

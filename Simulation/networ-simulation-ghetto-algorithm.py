@@ -4,8 +4,9 @@ from pylab import *
 import networkx as nx
 import random as rd
 import numpy as ny
+import sys
 
-p_i = 0.05 # infection probability
+p_i = 0.15 # infection probability
 results = []
 n = 128.0						#numbers of nodes in the network
 k = 10 
@@ -13,6 +14,7 @@ round_num = 0
 init_seed =[]
 
 def spread(g,n):
+	global p_i
 	coverage=0
 	boarder =[]
 	infected =set()
@@ -138,4 +140,4 @@ def update():
 
 import pycxsimulator
 pycxsimulator.GUI().start(func=[initialize, observe, update])
-	
+		
