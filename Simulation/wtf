@@ -7,9 +7,9 @@ import random as rd
 import numpy as ny
 
 
-p_i = 0.05 # infection probability
+p_i = 0.15 # infection probability
 results = []
-n = 1024			#numbers of nodes in the network
+n = 128.0					#numbers of nodes in the network
 k	= 1 
 k_end 	= 20
 round_num = 0
@@ -21,26 +21,12 @@ def setRound_num(num):
 
 def spread(g,n):
 	global p_i, S
-	mean_coverage =0
-	
 	temp_boarder=[]
-	temp_infected=[]
-		#p_i=0.05
-		#dummy_g = g.copy()
-	#for i in range(50):
+	temp_infected=0
+	#p_i=0.05
 	for node in S:
 		temp_boarder.append(node)
-		#dummy_g.node[node]['state']=1
-		#print("spread doing %d" %len(S))
-	# while (len(temp_boarder)!=0):
-	# 	current_vertex = temp_boarder.pop(0)
-	# 	for i in g.neighbors(current_vertex):		#iterate over the current node's neighbour
-	# 		#if(dummy_g.node[i]['state'] == 0 ):
-	# 		if(i not in temp_boarder):
-	# 			if(rd.random() < p_i):	
-	# #				print("adding to boarder")		#check if the testing node is infected or not and #The coin flip to se if infected
-	#				temp_boarder.append(i)
-	
+
 	temp_boarder.append(n)
 	#for i in dummy_g.neighbors(n):
 	#	if(dummy_g.node[i]['state'] == 0 ):			#check if the testing node is infected or not
@@ -48,25 +34,17 @@ def spread(g,n):
 	#			dummy_g.node[i]['state'] = 1
 	#			temp_boarder.append(i)
 	#			temp_infected.append(i)
-	
 	while (len(temp_boarder)!=0):
 		current_vertex = temp_boarder.pop(0)
-		temp_infected.append(current_vertex)
-		mean_coverage+=1
 		for i in g.neighbors(current_vertex):		#iterate over the current node's neighbour
-			#if(dummy_g.node[i]['state'] == 0 ):
-			if(i not in temp_boarder and i not in temp_infected):
-				if(rd.random() < p_i):
-					#check if the testing node is infected or not and The coin flip to se if infected
-					temp_boarder.append(i)
-#		del temp_boarder[:]
-#		del temp_infected[:]		
-#		print(len(temp_boarder))	
+			if(i not in S and rd.random() < p_i):			#check if the testing node is infected or not and #The coin flip to se if infected
+				temp_boarder.append(i)
+		temp_infected+=1	
 #	print("temp boarder: %d" %len(temp_boarder))
-	#print("temp infected: %d" %len(temp_infected))
+#	print("temp infected: %d" %len(temp_infected))
 #	coverage = ((len(temp_infected)+len(temp_boarder))/128.0)
-#	return len(temp_infected)
-	return(mean_coverage)
+	return temp_infected
+
 #This is the seed selection algorithm,
 def seed_selection(G, k):
 	global nextg, S
@@ -76,12 +54,11 @@ def seed_selection(G, k):
 	for n in G.nodes_iter():
 		if(n not in S):
 			coverage = spread(G, n)
-#			print(coverage)
 			optimal_set =[coverage, n]
 			temp_result.append(optimal_set)
 #			print("current coverage: %d" %coverage)
 	temp_result.sort()
-	#print("done sort")
+
 	best_result = temp_result.pop()
 #	print("best Results: %d" %best_result[0])
 	G.node[best_result[1]]['state'] = 1
@@ -105,25 +82,25 @@ def seed_selection(G, k):
 
 
 def initialize():#initialize the simulation
-	global g, init_seed, nextg, n, k, infected, boarder, coverage, results, round_num, S, k_counter, round_results, position
+	global g, init_seed, nextg, n, k, infected, boarder, coverage, results, round_num, S, k_counter, round_results
 
-	infected, boarder = [], []
+	infected, boarder = set(), []
 	k_counter =0	
 	#g = nx.karate_club_graph()		#can't use karate club graph, there are only 34 nodes there. Need to manually add the nodes.
 	#------------------------------Create the graph, 128nodes. not sure how many edges.-----------------------------------
 	total_edge = 0
 	g = nx.Graph()
-	
-	for i in range(n):
+	for i in range(128):
 		g.add_node(i)
 	with open("adjacency.txt") as f:
 		content = f.readlines()		
-		for i in range(n):
-			for j in range(i+1, node):
+		for i in range(128):
+			for j in range(i+1, 128):
 				if(content[i][j] ==	 '1'):
 					g.add_edge(i,j)
 					total_edge+=1
 	
+	g.pos = nx.spring_layout(g)
 	#print("total starting seed")
 	#print(len(S))
 	#print("Total edge:")
@@ -144,14 +121,12 @@ def initialize():#initialize the simulation
 	#part A: Seed selectio.
 	
 	if(len(S) < k):
-		position=nx.spring_layout(g)
 		seed_selection(g, k)
 		boarder.append(S[k-1])
 		g.node[S[k-1]]['state'] =1
 		nextg.node[S[k-1]]['state'] =1
 	#nextg = g.copy()
-	g.pos = position
-
+	
 	# if(len(init_seed)==0):
 	# 	proxy_g = g.copy()
 	# 	init_seed = seed_selection(proxy_g, k)
@@ -171,12 +146,13 @@ def observe():
 	global g, nextg, n, k, coverage, round_num
 	cla()
 	#nx.draw_random(g)
-	#nx.draw(g, cmap = cm.binary,vmin = 0, vmax = 2,
-    #   	node_color = [g.node[i]['state'] for i in g.nodes_iter()],
-     #  	pos = g.pos,with_lables = True)
+	nx.draw(g, cmap = cm.binary,vmin = 0, vmax = 2,
+       	node_color = [g.node[i]['state'] for i in g.nodes_iter()],
+       	pos = g.pos,with_lables = True)
 	#nx.draw(g, g.pos, with_labels = True)
 	
-	nx.draw_circular(g, cmap = cm.binary,vmin = 0, vmax = 1, node_color = [g.node[i]['state'] for i in g.nodes_iter()],with_lables = True)
+	#nx.draw_circular(g, cmap = cm.binary,vmin = 0, vmax = 1,
+	#		node_color = [g.node[i]['state'] for i in g.nodes_iter()],with_lables = True)
 	
 	title(round_num)
 
@@ -196,10 +172,9 @@ def update():
 			counter=0
 			for item in round_results:
 				counter+=item
-			#print(len(round_results))
 			spread_p =counter/len(round_results)
 			results.append(spread_p)
-	#		print(results)
+			print(results)
 			text_file = open("greedy_result_multi_run.txt", "w")
 			for lines in results:
 				text_file.write("%s\n" % lines )
@@ -219,8 +194,8 @@ def update():
 	 				g.node[i]['state'] = 1
 	 				nextg.node[i]['state']=1
 	 				boarder.append(i)
-	 	infected.append(current_vertex)
-			
+	 	infected.add(current_vertex)
+		
 	 	coverage = ((len(infected)+len(boarder))/128.0)
  	
  	if(k==k_end+1):

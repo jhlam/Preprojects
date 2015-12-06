@@ -1,13 +1,19 @@
 \documentclass[]{report}
 \usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 \usepackage{graphicx}
 \usepackage[numbers,sort]{natbib}
 \usepackage{array}
+\usepackage{amssymb}
+\usepackage{tabularx}
 %\usepackage{todonotes}
 % Title Page
 \title{[Placeholder title]}
 \author{Julian Ho-yin Lam}
 
+\let\oldemptyset\emptyset
+\let\emtyset\varnothing
 
 \begin{document}
 %\maketitle
@@ -23,6 +29,7 @@
 \listoftables
 \setcounter{page}{0}
 \pagenumbering{arabic}
+
 \include{introduction}
 \include{background}
 \include{related_work}
@@ -35,4 +42,4 @@
 \bibliography{myreferences.bib}
 
 
-\end{document}      
+\end{document}       	

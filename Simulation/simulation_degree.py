@@ -67,45 +67,28 @@ def spread(g,n):
 #	coverage = ((len(temp_infected)+len(temp_boarder))/128.0)
 #	return len(temp_infected)
 	return(mean_coverage)
+
 #This is the seed selection algorithm,
 def seed_selection(G, k):
-	global nextg, S
+	global S
+	#Finding the degree distribution.
+	#sort the graph in respect of degree
+	temp_s = []
+	for node in g.nodes_iter():
+		degree=G.degree(G.node[node]).values()
+		T_seed = [degree, node]
+		temp_s.append(T_seed)
 
-	temp_result =[]
+	temp_s.sort()
 
-	for n in G.nodes_iter():
-		if(n not in S):
-			coverage = spread(G, n)
-#			print(coverage)
-			optimal_set =[coverage, n]
-			temp_result.append(optimal_set)
-#			print("current coverage: %d" %coverage)
-	temp_result.sort()
-	#print("done sort")
-	best_result = temp_result.pop()
-#	print("best Results: %d" %best_result[0])
-	G.node[best_result[1]]['state'] = 1
-	#nextg.node[best_result[1]]['state'] = 1
-	S.append(best_result[1])
-	print("current seed count: %d" %len(S))
-	nextg = G.copy()
-	# for i in range(k):	#should find total of k nodes.
-	# 	for n in G.nodes_iter():
-	# 		if(g.node[i] not in S):
-	# 			coverage = spread(G, n, infected, boarder)
-	# 			optimal_set = [coverage, n ]
+	for i in range(k):
+		S.append(temp_s[i][1])
 
 
-	# 			if(len(S)<10):
-	# 				S.append(optimal_set)
-	# 			elif(S[9][0]>coverage):
-	# 				S[9] = optimal_set
-	# 				S.sort()
-	# 	S.append()
 
 
 def initialize():#initialize the simulation
-	global g, init_seed, nextg, n, k, infected, boarder, coverage, results, round_num, S, k_counter, round_results, position
+	global g, init_seed, nextg, n, k, infected, boarder, coverage, results, round_num, S, k_counter, round_results,position
 
 	infected, boarder = [], []
 	k_counter =0	
@@ -119,11 +102,12 @@ def initialize():#initialize the simulation
 	with open("adjacency.txt") as f:
 		content = f.readlines()		
 		for i in range(n):
-			for j in range(i+1, node):
+			for j in range(i+1, n):
 				if(content[i][j] ==	 '1'):
 					g.add_edge(i,j)
 					total_edge+=1
 	
+
 	#print("total starting seed")
 	#print(len(S))
 	#print("Total edge:")
@@ -134,32 +118,40 @@ def initialize():#initialize the simulation
 	coverage = 0
 	#----------------------Seed selection algorithm----------------------------------------------
 	
-	for i in g.nodes_iter():
-		if(i in S):
-			#print(len(S))
-			g.node[i]['state']=1
-			boarder.append(i)
-		else:
-			g.node[i]['state'] = 0
+#	for i in g.nodes_iter():
+#		if(i in S):
+#			#print(len(S))
+#			g.node[i]['state']=1
+#			boarder.append(i)
+#		else:
+#			g.node[i]['state'] = 0
 	#part A: Seed selectio.
 	
-	if(len(S) < k):
+	if(len(S)<k):
 		position=nx.spring_layout(g)
-		seed_selection(g, k)
-		boarder.append(S[k-1])
-		g.node[S[k-1]]['state'] =1
-		nextg.node[S[k-1]]['state'] =1
-	#nextg = g.copy()
-	g.pos = position
+		proxy_g = g.copy()
+		seed_selection(proxy_g, k)
 
+		for node in S:
+			g.node[node]['state'] = 1
+			boarder.append(node)
+	#	nextg.node[S[k-1]]['state'] =1
+	#nextg = g.copy()
+	
+	for i in g.nodes_iter():	#here we jsut select the 10 first nodes as seed
+		if(i not in S):
+			g.node[i]['state'] = 0
+		else:
+			g.node[i]['state'] = 1
+			boarder.append(i)
 	# if(len(init_seed)==0):
 	# 	proxy_g = g.copy()
 	# 	init_seed = seed_selection(proxy_g, k)
-	
+	g.pos = position
 	#if(len(S)==k):
 	#	for x in range(k):
 	#	 	i = S[x]
-#		 	g.node[i]['state'] = 1
+#		 	g.nodes[i]['state'] = 1
 	#	 	boarder.append(i)
 	nextg = g.copy()
 
@@ -171,12 +163,13 @@ def observe():
 	global g, nextg, n, k, coverage, round_num
 	cla()
 	#nx.draw_random(g)
-	#nx.draw(g, cmap = cm.binary,vmin = 0, vmax = 2,
-    #   	node_color = [g.node[i]['state'] for i in g.nodes_iter()],
-     #  	pos = g.pos,with_lables = True)
+	nx.draw(g, cmap = cm.binary,vmin = 0, vmax = 2,
+		node_color = [g.node[i]['state'] for i in g.nodes_iter()],
+		pos = g.pos,with_lables = True)
 	#nx.draw(g, g.pos, with_labels = True)
 	
-	nx.draw_circular(g, cmap = cm.binary,vmin = 0, vmax = 1, node_color = [g.node[i]['state'] for i in g.nodes_iter()],with_lables = True)
+	#nx.draw_circular(g, cmap = cm.binary,vmin = 0, vmax = 1,
+	#		node_color = [g.node[i]['state'] for i in g.nodes_iter()],with_lables = True)
 	
 	title(round_num)
 
@@ -200,13 +193,14 @@ def update():
 			spread_p =counter/len(round_results)
 			results.append(spread_p)
 	#		print(results)
-			text_file = open("greedy_result_multi_run.txt", "w")
+			text_file = open("degree_result_multi_run.txt", "w")
 			for lines in results:
 				text_file.write("%s\n" % lines )
 	 		text_file.close()
 
 	 		k+=1
-	 		del round_results[:]	
+	 		del round_results[:]
+	 		del S[:]	
 			setRound_num(0)
 	#np.savetxt('Output.txt', results, delimiter=",")   # X is an array
 
@@ -221,7 +215,7 @@ def update():
 	 				boarder.append(i)
 	 	infected.append(current_vertex)
 			
-	 	coverage = ((len(infected)+len(boarder))/128.0)
+	 	coverage = ((len(infected)+len(boarder))/n)
  	
  	if(k==k_end+1):
  		sys.exit("Simulation complete")

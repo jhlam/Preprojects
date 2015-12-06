@@ -6,8 +6,9 @@ import networkx as nx
 import random as rd
 import numpy as ny
 import sys
+from random import choice
 
-p_i = 0.05					# infection probability
+p_i = 0.05 					# infection probability
 results = []
 n = 1024				#numbers of nodes in the network
 k = 1
@@ -52,25 +53,13 @@ def spread(g,n):
 
 def seed_selection(G, k):
 	global S
-	temp_S=[]
+	
 	for i in range(k):
-		for n in G.nodes_iter():
-			coverage = spread(G, n)
-	#		print(coverage)
-			optimal_set = [coverage, n ]
-			
-			if(len(temp_S)<k):
-				temp_S.append(optimal_set)
-			
-			elif(temp_S[0][0] > coverage):
-				temp_S[0] = optimal_set
-			
-			temp_S.sort()
-	
-	
+		random_node = choice(G.nodes())
+		S.append(random_node)
+	#	print("Finding random seed")
 
-	print("current amount of seed:%i" %len(temp_S))
-	return temp_S
+	print("current amount of seed:%i" %len(S))
 
 
 def initialize():#initialize the simulation
@@ -106,15 +95,15 @@ def initialize():#initialize the simulation
 
 
 	if(len(S)<k):
-		position = nx.spring_layout(g)
+		position= nx.spring_layout(g)
 		proxy_g = g.copy()
-		temp_S = seed_selection(proxy_g, k)
+		seed_selection(proxy_g, k)
 
-		for node in temp_S:
-			i = node[1]
-			g.node[i]['state'] = 1
-			boarder.append(i)
-			S.append(i)
+		for node in S:
+			g.node[node]['state'] = 1
+			boarder.append(node)
+			#S.append(node)
+			#print("Painting the seed")
 
 	g.pos =position
 
@@ -152,7 +141,7 @@ def update():
 			spread_p = counter/len(round_results)
 			results.append(spread_p)
 
-			text_file = open("indi_result_multi_run.txt", "w")
+			text_file = open("random_result_multi_run.txt", "w")
 			for lines in results:
 				text_file.write("%s\n" % lines )
 			text_file.close()
