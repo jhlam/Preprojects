@@ -1,0 +1,44 @@
+\begin{thebibliography}{1}
+
+\bibitem{HybridBFS2015}
+Magnus~Jahre Yaman~Umuroglu, Donn~Morrison.
+\newblock Hybrid breadth-first search on a single-chip fpga-cpuheterogeneous
+  platform.
+\newblock 2015.
+
+\bibitem{MaximizeSpread2003}
+\'Eva~Tardos David~Kampe, Jon~Klein.
+\newblock Maximizing the spread of influence through a social network.
+\newblock 2003.
+
+\bibitem{ComplexNetwork2003}
+M.~E.~J. Newman.
+\newblock {\em The structure and function of complex networks}.
+\newblock 2003.
+
+\bibitem{smallworldExperiment1969}
+Stanley~Milgram Jeffrey~Travers.
+\newblock An experimental study of the small world problem.
+\newblock 1969.
+
+\bibitem{SmallWorldProblemSmilgram1960}
+Stanley Milgram.
+\newblock The small-world problem.
+\newblock 1967.
+
+\bibitem{Experiment1969}
+Stanley~Milgram Fjeffrey~Travers.
+\newblock An experimental study of the small world problem.
+\newblock 1969.
+
+\bibitem{algoToMath}
+John~Gilbert Jeremy~Kepner.
+\newblock Graph algorithms in the language of linear algebra.
+\newblock 2011.
+
+\bibitem{RMat2004}
+Christos~Faloutsosx Deepayan~Chakrabartiy, Yiping~Zhanz.
+\newblock R-mat: A recursive model for graph mining.
+\newblock 2004.
+
+\end{thebibliography}

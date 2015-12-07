@@ -1,0 +1,79 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/W32TeX)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: template_report.aux
+A level-1 auxiliary file: front.aux
+A level-1 auxiliary file: assignment.aux
+A level-1 auxiliary file: introduction.aux
+A level-1 auxiliary file: background.aux
+Case mismatch error between cite keys SmallworldExperiment1969 and smallworldExperiment1969
+---line 7 of file background.aux
+ : \citation{SmallworldExperiment1969
+ :                                   }
+I'm skipping whatever remains of this command
+Case mismatch error between cite keys Rmat2004 and RMat2004
+---line 35 of file background.aux
+ : \citation{Rmat2004
+ :                   }
+I'm skipping whatever remains of this command
+A level-1 auxiliary file: related_work.aux
+A level-1 auxiliary file: method.aux
+A level-1 auxiliary file: result.aux
+A level-1 auxiliary file: discussion.aux
+A level-1 auxiliary file: future_work.aux
+A level-1 auxiliary file: conclusion.aux
+The style file: unsrt.bst
+Database file #1: my_references.bib
+Warning--I didn't find a database entry for "smallWorldExperiment"
+Warning--I didn't find a database entry for "complexNetwork"
+Warning--I didn't find a database entry for "RaceSchool2001"
+Warning--I didn't find a database entry for "YamanPOaper"
+Warning--empty journal in HybridBFS2015
+Warning--empty journal in MaximizeSpread2003
+Warning--empty publisher in ComplexNetwork2003
+Warning--empty journal in smallworldExperiment1969
+Warning--empty journal in SmallWorldProblemSmilgram1960
+Warning--empty journal in Experiment1969
+Warning--empty journal in algoToMath
+Warning--empty journal in RMat2004
+You've used 8 entries,
+            1791 wiz_defined-function locations,
+            500 strings with 4682 characters,
+and the built_in function-call counts, 1063 in all, are:
+= -- 81
+> -- 32
+< -- 0
++ -- 16
+- -- 8
+* -- 28
+:= -- 192
+add.period$ -- 24
+call.type$ -- 8
+change.case$ -- 7
+chr.to.int$ -- 0
+cite$ -- 16
+duplicate$ -- 66
+empty$ -- 118
+format.name$ -- 8
+if$ -- 224
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 9
+newline$ -- 43
+num.names$ -- 8
+pop$ -- 43
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 23
+stack$ -- 0
+substring$ -- 0
+swap$ -- 1
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 8
+while$ -- 8
+width$ -- 9
+write$ -- 74
+(There were 2 error messages)

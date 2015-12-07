@@ -1,0 +1,11 @@
+\chapter{Methode}
+For this report, we created a python simulation to simulate the data diffusion and the seed selection. We utilized the Pycx libraries to create the GUI, and applied the R-mat generator to create the different network.
+
+\section{R-mat}
+The R-mat generater generates sociall network with the community structure. The different probability for the four partition is :$A=0.57$,$B=0.19$,$C=0.19$,$D = 1-A-B-C = 0.05$. These different probability was used by GRAPH500[CITATION NEEDED]. The R-mat generated three different adjacency matrices.
+
+\section{Adjacency matrices}
+For this report, four different sized adjacency matrix was created. One of the restriction to the R-mat generator is that the size of the adjacency matrix have to be $2^n$. This resulted in that our adjacency matrix was of the size, $128 \times 128, 512 \times 512 and 1024 \times 1024$.  
+
+\section{The algorithm}
+The simulation creates an social network by reading from the adjacency matrix. 
