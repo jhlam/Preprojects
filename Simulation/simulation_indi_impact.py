@@ -9,7 +9,7 @@ import sys
 
 p_i = 0.05					# infection probability
 results = []
-n = 1024				#numbers of nodes in the network
+n = 1024		#numbers of nodes in the network
 k = 1
 k_end= 20
 round_num = 0
@@ -26,13 +26,7 @@ def spread(g,n):
 	temp_boarder =[]
 	temp_infected =[]
 	mean_coverage=0
-#	for i in range(50):
-#	dummy_g = g.copy()
-#	for i in neighbors(n):
-#		if( g.node[i]['state'] == 0 ):			#check if the testing node is infected or not
-#				if(rd.random() < p_i):					#The coin flip to se if infected	
-#					dummy_g.node[i]['state'] = 1
-	#					temp_boarder.append(i)
+
 	temp_boarder.append(n)
 
 	while (len(temp_boarder)!=0):
@@ -42,11 +36,8 @@ def spread(g,n):
 		for i in g.neighbors(current_vertex):		#iterate over the current node's neighbour
 			if(i not in temp_boarder and i not in temp_infected ):			#check if the testing node is infected or not
 				if(rd.random() < p_i):					#The coin flip to se if infected
-#					dummy_g.node[i]['state'] = 1
 					temp_boarder.append(i)
-#	del temp_infected[:]
-	#coverage = ((len(temp_infected)+len(temp_boarder))/128.0)
-		
+	
 	return mean_coverage
 
 
@@ -82,17 +73,20 @@ def initialize():#initialize the simulation
 	g = nx.Graph()
 	for i in range(n):
 		g.add_node(i)
-	with open("adjacency.txt") as f:
+	with open("adjacency_large.txt") as f:
 		content = f.readlines()		
 		for i in range(n):
 			for j in range(i+1, n):
 				if(content[i][j] ==	 '1'):
 					g.add_edge(i,j)
 					total_edge+=1
-	#print("Total edge:")
-	#print(total_edge)
+	
 	#--------------------------------------------------------------------------------------
 
+	for nodes in range(n):
+		if(nx.degree(g, nodes)==0):
+			g.remove_node(nodes)
+		
 	round_num +=1
 	counter = 0
 	coverage = 0
@@ -106,6 +100,7 @@ def initialize():#initialize the simulation
 
 
 	if(len(S)<k):
+		
 		position = nx.spring_layout(g)
 		proxy_g = g.copy()
 		temp_S = seed_selection(proxy_g, k)
@@ -127,14 +122,9 @@ def initialize():#initialize the simulation
 def observe():
 	global g, nextg, n, k, coverage, round_num
 	cla()
-	#nx.draw_random(g)
 	nx.draw(g, cmap = cm.binary,vmin = 0, vmax = 2,
        	node_color = [g.node[i]['state'] for i in g.nodes_iter()],
        	pos = g.pos,with_lables = True)
-	#nx.draw(g, g.pos, with_labels = True)
-	
-	#nx.draw_circular(g, cmap = cm.binary,vmin = 0, vmax = 1,
-	#		node_color = [g.node[i]['state'] for i in g.nodes_iter()],with_lables = True)
 	
 	title(round_num)
 
@@ -142,6 +132,31 @@ def observe():
 def update():
 	global g, nextg, infected, boarder, coverage, n, k_counter,S, k, results, round_num, round_results
 
+	if(k==k_end+1):
+		print("total node was: %s" %nx.number_of_nodes(g))
+		print("total edge was: %s" %nx.number_of_edges(g))
+
+		histogram= nx.degree_histogram(g)
+		text_file = open("large_indi_result_multi_run.txt", "w")
+	
+		text_file.write("total node was: %s" %nx.number_of_nodes(g))
+		text_file.write("total edge was: %s" %nx.number_of_edges(g))
+
+		for lines in results:
+			text_file.write("%s\n" % lines )
+	
+		text_file.write("Seednode was: ")	
+		for seed in S:
+			text_file.write("node_%s, " % seed )
+	
+		text_file.write("Histogram: ")	
+		for i in histogram:
+			text_file.write("%s ," % i )
+
+		text_file.close()
+
+		sys.exit("simulation complete")
+	
 	if (len(boarder)==0):
 		round_results.append(coverage)
 		#print(results)
@@ -151,12 +166,6 @@ def update():
 				counter+=item
 			spread_p = counter/len(round_results)
 			results.append(spread_p)
-
-			text_file = open("indi_result_multi_run.txt", "w")
-			for lines in results:
-				text_file.write("%s\n" % lines )
-			text_file.close()
-
 
 			k+=1
 			del round_results[:]
@@ -176,10 +185,9 @@ def update():
 					boarder.append(i)
 		infected.append(current_vertex)
 		
-		coverage = ((len(infected)+len(boarder))/n)
+		coverage = ((len(infected)+len(boarder))/len(g.nodes()))
 
-	if(k==k_end+1):
-		sys.exit("simulation complete")
+	
 
 	g, nextg = nextg, g
 

@@ -41,4 +41,9 @@ Christos~Faloutsosx Deepayan~Chakrabartiy, Yiping~Zhanz.
 \newblock R-mat: A recursive model for graph mining.
 \newblock 2004.
 
+\bibitem{ParallelBFS2011}
+Kamesh~Madduri Aydib~Buluc.
+\newblock Parallel breadth-first search on distributed memory systems.
+\newblock 2011.
+
 \end{thebibliography}

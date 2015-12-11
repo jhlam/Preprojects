@@ -9,7 +9,7 @@ import numpy as ny
 
 p_i = 0.05 # infection probability
 results = []
-n = 1024			#numbers of nodes in the network
+n = 512			#numbers of nodes in the network
 k	= 1 
 k_end 	= 20
 round_num = 0
@@ -25,29 +25,11 @@ def spread(g,n):
 	
 	temp_boarder=[]
 	temp_infected=[]
-		#p_i=0.05
-		#dummy_g = g.copy()
-	#for i in range(50):
+	
 	for node in S:
 		temp_boarder.append(node)
-		#dummy_g.node[node]['state']=1
-		#print("spread doing %d" %len(S))
-	# while (len(temp_boarder)!=0):
-	# 	current_vertex = temp_boarder.pop(0)
-	# 	for i in g.neighbors(current_vertex):		#iterate over the current node's neighbour
-	# 		#if(dummy_g.node[i]['state'] == 0 ):
-	# 		if(i not in temp_boarder):
-	# 			if(rd.random() < p_i):	
-	# #				print("adding to boarder")		#check if the testing node is infected or not and #The coin flip to se if infected
-	#				temp_boarder.append(i)
-	
+		
 	temp_boarder.append(n)
-	#for i in dummy_g.neighbors(n):
-	#	if(dummy_g.node[i]['state'] == 0 ):			#check if the testing node is infected or not
-	#		if(rd.random() < p_i):					#The coin flip to se if infected	
-	#			dummy_g.node[i]['state'] = 1
-	#			temp_boarder.append(i)
-	#			temp_infected.append(i)
 	
 	while (len(temp_boarder)!=0):
 		current_vertex = temp_boarder.pop(0)
@@ -59,33 +41,27 @@ def spread(g,n):
 				if(rd.random() < p_i):
 					#check if the testing node is infected or not and The coin flip to se if infected
 					temp_boarder.append(i)
-#		del temp_boarder[:]
-#		del temp_infected[:]		
-#		print(len(temp_boarder))	
-#	print("temp boarder: %d" %len(temp_boarder))
-	#print("temp infected: %d" %len(temp_infected))
-#	coverage = ((len(temp_infected)+len(temp_boarder))/128.0)
-#	return len(temp_infected)
+
 	return(mean_coverage)
 
 #This is the seed selection algorithm,
 def seed_selection(G, k):
 	global S
-	#Finding the degree distribution.
-	#sort the graph in respect of degree
+	
 	temp_s = []
 	for node in g.nodes_iter():
-		degree=G.degree(G.node[node]).values()
+		degree=nx.degree(G, node)
 		T_seed = [degree, node]
 		temp_s.append(T_seed)
 
+
+#	print(temp_s)
 	temp_s.sort()
+#	print(temp_s)
 
 	for i in range(k):
-		S.append(temp_s[i][1])
-
-
-
+		new_seed=temp_s.pop()
+		S.append(new_seed[1])
 
 def initialize():#initialize the simulation
 	global g, init_seed, nextg, n, k, infected, boarder, coverage, results, round_num, S, k_counter, round_results,position
@@ -99,7 +75,7 @@ def initialize():#initialize the simulation
 	
 	for i in range(n):
 		g.add_node(i)
-	with open("adjacency.txt") as f:
+	with open("adjacency_medium.txt") as f:
 		content = f.readlines()		
 		for i in range(n):
 			for j in range(i+1, n):
@@ -108,26 +84,23 @@ def initialize():#initialize the simulation
 					total_edge+=1
 	
 
-	#print("total starting seed")
-	#print(len(S))
-	#print("Total edge:")
-	#print(total_edge)
+	for nodes in range(n):
+		if(nx.degree(g, nodes)==0):
+			g.remove_node(nodes)
 	#--------------------------------------------------------------------------------------
 	round_num +=1
 	counter = 0
 	coverage = 0
 	#----------------------Seed selection algorithm----------------------------------------------
-	
-#	for i in g.nodes_iter():
-#		if(i in S):
-#			#print(len(S))
-#			g.node[i]['state']=1
-#			boarder.append(i)
-#		else:
-#			g.node[i]['state'] = 0
-	#part A: Seed selectio.
+	for i in g.nodes_iter():	#here we jsut select the 10 first nodes as seed
+		if(i not in S):
+			g.node[i]['state'] = 0
+		else:
+			g.node[i]['state'] = 1
+			boarder.append(i)
 	
 	if(len(S)<k):
+		
 		position=nx.spring_layout(g)
 		proxy_g = g.copy()
 		seed_selection(proxy_g, k)
@@ -135,28 +108,9 @@ def initialize():#initialize the simulation
 		for node in S:
 			g.node[node]['state'] = 1
 			boarder.append(node)
-	#	nextg.node[S[k-1]]['state'] =1
-	#nextg = g.copy()
-	
-	for i in g.nodes_iter():	#here we jsut select the 10 first nodes as seed
-		if(i not in S):
-			g.node[i]['state'] = 0
-		else:
-			g.node[i]['state'] = 1
-			boarder.append(i)
-	# if(len(init_seed)==0):
-	# 	proxy_g = g.copy()
-	# 	init_seed = seed_selection(proxy_g, k)
+		print(len(S))
 	g.pos = position
-	#if(len(S)==k):
-	#	for x in range(k):
-	#	 	i = S[x]
-#		 	g.nodes[i]['state'] = 1
-	#	 	boarder.append(i)
 	nextg = g.copy()
-
-	# print("total seed:")
-	# print(len(init_seed))
 
 
 def observe():
@@ -180,7 +134,31 @@ def update():
 	global g, nextg, infected, boarder, coverage, n, k_counter, S, k, results, round_num, round_results
 	
 	#part b
+	if(k==k_end+1):
+		print("total node was: %s" %nx.number_of_nodes(g))
+		print("total edge was: %s" %nx.number_of_edges(g))
+
+		histogram= nx.degree_histogram(g)
+		text_file = open("medium_degree_result_multi_run.txt", "w")
 	
+		text_file.write("total node was: %s\n" %nx.number_of_nodes(g))
+		text_file.write("total edge was: %s\n" %nx.number_of_edges(g))
+
+		for lines in results:
+			text_file.write("%s\n" % lines )
+	
+		text_file.write("Seednode was: ")	
+		for seed in S:
+			text_file.write("node_%s, " % seed )
+	
+		text_file.write("\n Histogram: ")	
+		for i in histogram:
+			text_file.write("%s ," % i )
+
+		text_file.close()
+
+		sys.exit("simulation complete")
+
 	if (len(boarder)==0):
 		round_results.append(coverage)
 		#print(round_results)
@@ -193,11 +171,7 @@ def update():
 			spread_p =counter/len(round_results)
 			results.append(spread_p)
 	#		print(results)
-			text_file = open("degree_result_multi_run.txt", "w")
-			for lines in results:
-				text_file.write("%s\n" % lines )
-	 		text_file.close()
-
+			
 	 		k+=1
 	 		del round_results[:]
 	 		del S[:]	
@@ -215,10 +189,7 @@ def update():
 	 				boarder.append(i)
 	 	infected.append(current_vertex)
 			
-	 	coverage = ((len(infected)+len(boarder))/n)
- 	
- 	if(k==k_end+1):
- 		sys.exit("Simulation complete")
+	 	coverage = ((len(infected)+len(boarder))/len(g.nodes()))
 
 	g, nextg = nextg, g
 

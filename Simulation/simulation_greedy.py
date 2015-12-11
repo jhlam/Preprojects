@@ -9,7 +9,7 @@ import numpy as ny
 
 p_i = 0.05 # infection probability
 results = []
-n = 1024			#numbers of nodes in the network
+n = 128			#numbers of nodes in the network
 k	= 1 
 k_end 	= 20
 round_num = 0
@@ -116,7 +116,7 @@ def initialize():#initialize the simulation
 	
 	for i in range(n):
 		g.add_node(i)
-	with open("adjacency.txt") as f:
+	with open("small_adjacency.txt") as f:
 		content = f.readlines()		
 		for i in range(n):
 			for j in range(i+1, node):
@@ -188,6 +188,15 @@ def update():
 	
 	#part b
 	
+ 	if(k==k_end+1):
+ 		text_file = open("greedy_result_multi_run.txt", "w")
+			for node in S:
+				text_file.write("seed nodes are: %s\t" % node )
+	 		text_file.close()
+
+ 		sys.exit("Simulation complete")
+
+
 	if (len(boarder)==0):
 		round_results.append(coverage)
 		#print(round_results)
@@ -200,7 +209,7 @@ def update():
 			spread_p =counter/len(round_results)
 			results.append(spread_p)
 	#		print(results)
-			text_file = open("greedy_result_multi_run.txt", "w")
+			text_file = open("small_greedy_result_multi_run.txt", "w")
 			for lines in results:
 				text_file.write("%s\n" % lines )
 	 		text_file.close()
@@ -221,11 +230,8 @@ def update():
 	 				boarder.append(i)
 	 	infected.append(current_vertex)
 			
-	 	coverage = ((len(infected)+len(boarder))/128.0)
+	 	coverage = ((len(infected)+len(boarder))/len(g.nodes()))
  	
- 	if(k==k_end+1):
- 		sys.exit("Simulation complete")
-
 	g, nextg = nextg, g
 
 import pycxsimulator

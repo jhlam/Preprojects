@@ -1,6 +1,10 @@
 \chapter{Methode}
 For this report, we created a python simulation to simulate the data diffusion and the seed selection. We utilized the Pycx libraries to create the GUI, and applied the R-mat generator to create the different network.
 
+\section{PyCx}
+Pycx an librarie that help python to generate an GUI.
+
+
 \section{R-mat}
 The R-mat generater generates sociall network with the community structure. The different probability for the four partition is :$A=0.57$,$B=0.19$,$C=0.19$,$D = 1-A-B-C = 0.05$. These different probability was used by GRAPH500[CITATION NEEDED]. The R-mat generated three different adjacency matrices.
 
@@ -8,4 +12,8 @@ The R-mat generater generates sociall network with the community structure. The 
 For this report, four different sized adjacency matrix was created. One of the restriction to the R-mat generator is that the size of the adjacency matrix have to be $2^n$. This resulted in that our adjacency matrix was of the size, $128 \times 128, 512 \times 512 and 1024 \times 1024$.  
 
 \section{The algorithm}
-The simulation creates an social network by reading from the adjacency matrix. 
+The simulation creates an social network by reading from the adjacency matrix. We implemented 4 different algorithm. The greedy algorith, the degree algorithm, random algorithm, and a independent greedy algorithm. The algorithm implemented, finds the $\it{k}$ vertecies to be the starter nodes. $\it{k}$ is [1,2,  $\dot$ 20]. This is to be able to see how teh size of the starting nodes affect the coverage. For each $\it{k}$, the simulation applies the diffusion for 50 times. This is to finde the mean coverage to remove the randomness 
+
+The greedy algorithms finds the most influential nodes in relation with the other previous picked seeds. The algorithm starts by finding the most influential nodes $s_1$ from the entire graph $\it{G}$, in this instance, k=1. The most influential node is found by just choosing a node and see how much spread it will result in, the value is stored with the node, and after the entire G is itterated over, the node with the highest value is choosen. Then the algorithm stores the node in $\it{S}$ and applies data diffusion and stores the effect this runs had. The next run, k=2 and the greedy algorithm finds the most influential node $s_2$ where $s_2 \neq s_1$ and $s_2 +s_1 = maxCoverage$. This is repeated until k=20. The new run, the seed selection will keep the previous selected seed and during the finding maximum coverage phase, the previous choosen seed will have impact on the run.
+
+The degree algorithm chooses the vertex with the highest degree. Unlike the greedy algorithm. The degree algorithm just finds the vertices with the highest degree. The algorithm chooses $s_1, s_2 \dot 2_k$ from $\it{G}$. One of the problem would be that hihger degree nodes would often be connected to each other, the community struckture that was mentioned in previous section.

@@ -47,6 +47,11 @@ A social network is a set of people connected to each other via some form of con
 
 Some properties that networks often exhibits are the small world effect, transitivity or clustering, degree correlations, and community structure\cite{ComplexNetwork2003}.
 
+-social network
+-information network
+
+
+
 \subsection{The small world effect}
 The small world effect was first demonstrated by Stanley Milgra in the 1960s during his famous letter passing experiment\cite{SmallWorldProblemSmilgram1960}. The experiment was about passing letters from person to person to reach a designated target with only small steps. For the published case, the chain was around six \cite{Experiment1969}. This shows us that for most pair of vertices can reach each other with a short parth. A more precise wording is that "Networks are said to show the small world effect if the value of $\it{l}$ scales logarithmically or slower with the network size for a fixed mean degree.". \cite{ComplexNetwork2003}. We have defined $\it{l} $ to be the mean geodesic distance between vertex pairs in a network. 
 
@@ -67,10 +72,17 @@ There are other studies that proposed a different interpetation about the data f
 \subsection{community structure}
 One properties that is often observed in a social network, is the community structure. The community structure is where a group of vertecies having high density of edges with each other, while having lowe density of edges to other "community". We can see an example of the community structure clearly displayed from \cite{RaceSchool2001}
 
-\section{Sparce Matrix}
-A sparce matrix is an matrix with few elements in them. The social network can often be reprecented with a sparce matrixs
+\section{Matrix notations}
+By using a linear algebraic approach to solve graph algorithms often gives us a variety of benefit include easier implementation, higher preformance and syntactic simplicity. \cite{MathToAlgo}. There are multiple reasons to do graph algorithms as linear algebra. This can show potentially improvement, potentially optimization and be more visually clear how the algorithm is. 
 
-\section{Small-world model}
+
+
+\subsection{Semiring}
+A $semiring$ is a set of elements with two binary operations. The two operations are often known as "addition" and "multiplication". By this definition, [SYMBOL FOR BOOLEAN] and [SYMBOL FOR INTEGER]. are both semirings.  One way to performe graph algorithm, is apply matrix multiplication over such semirings. One of the common notation in writing the semiring, is $a+b$ and $a \ast b$. This can be confusin, so often there will be some special semiring operator.
+
+\subsection{Sparce Matrix}
+A sparce matrix is an matrix with few elements in them. The social network can often be reprecented with a sparce matrix. An sparce matrix have its majority of element as zero, as shown in \fig{INSERT FIGURE OF SPARCE MATRIX}. We can represent a social graph in the form of a sparse matrix. In an adjacency matrix, a cell containing 1 means a connection is presence, while a 0 is lack no connection. So, as we can see in the [INSERT FIGURE OF SPARCE MATRIX AND GRAPH], as we can see at (1,5)=1. This tells us that there is a edge between vertex 1 and vertex 5.
+
 
 
 \section{Data diffusion}
@@ -113,7 +125,7 @@ Breadth first search is an tree traversal algorithm. BFS start at the root node 
 \end{algorithmic}
 \end{algorithm}
 
-We can also look at how an breadth first seaerch can be executed by appllying  sparce matrix multiplication. We can see that teh adjacency matrix is an sparse matrix
+We can also look at how an breadth first seaerch can be executed by appllying  sparce matrix multiplication. We can see that teh adjacency matrix is an sparse matrix. 
 
 
 
@@ -125,10 +137,26 @@ The SIR model stands for susceptible, infected and removed. The node would have 
 The SIS stands for susceptible, infected and susceptible. Unlike the SIR this model can reinfect the recovered nodes. This model is used for simulation of outbreak of disease. 
 
 \section{greedy algorithm}
-The greedy algorithm was proposed by [KEMPE]. The algorithm is a greedy hillclimbing algorithm, the algorithm fins the starter set of nodes $\it{S}$ by iterating through all the vertex in $\it{V}$ and calculate the total amount of spread. The spread is saved and the $\it{k}$ most influential nodes would be choosen. @@@INSERT PSAUDOCODE HERE@@@@@@ 
+The  greedy algorithm was proposed by Kempe [KEMPE]. The algorithm is a greedy algorithm where it finds the starter set of nodes $\it{S}$ by iterating through all the vertex in $\it{V}$ and calculate the total amount of spread. The spread is saved and the $\it{k}$ most influential nodes would be choosen.
 
-Another popular algorithm is the degree algorithm. Unlike the greedy algorithm, the degree sort all the node acoring to their degree distribution. The algorithm picks the top $\it{k}$ nodes according to the degree distribution.
+ \begin{algorithm}
+\caption{Greedy Algorithm}
+\begin{algorithmic}[1]
+\State Start with $A = \oldemptyset$
+\While{$|A| \leq l$}
+\State For each node $x$, use repeated sampling to approximate $\sigma(A \cup {x}) $ to within ($1 \pm \varepsilon$) with probability
+$1 − \delta$
+\State Add the node with largest estimate for $\sigma(A \cup {x})$ to A.
+\EndWhile
+\State Outpu the set $A$ of nodes.
+\end{algorithmic}
+\end{algorithm}
 
+-degree algorithm
+
+Another popular algorithm is the degree algorithm. Unlike the greedy algorithm, the degree sort all the node acoring to their degree distribution. The algorithm picks the top $\it{k}$ nodes according to the degree distribution. 
+
+Random algorithm
 The last one is the random algorithm. The random algorithm just pick a random starter node. 
 
 \section{R-mat}
@@ -147,3 +175,4 @@ Chache oblivious
 have examples where cache oblivious is better for, sparse matrix multiplication.
 for a tree iteration algorithm, better. 
 
+\subsection{Cache oblivious sparse matrix multiplication}
