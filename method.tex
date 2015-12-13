@@ -6,7 +6,17 @@ Pycx an librarie that help python to generate an GUI. The pycx have a clear stru
 
 
 \section{R-mat}
+One problem during graph analysation and calculation is finding suiteble graphs to analyse. to generate graphs with desirede properties is not easdy to do. One solution proposed på \cite{RMat2004} is to use the /"recursive matrix /" or R-mat model. The R-mat model generates graph with only a few parameters, the graph will naturally have the small world propertie and follows the laws of normal graphs, and have a quick generation speed. The R-mat models goal is to generate graphs that matches the degree distribution, exhibits a " community " structure and have a small diameter and mathces other criteria.\cite{Rmat2004}.
+
 The R-mat generater generates sociall network with the community structure. The different probability for the four partition is :$A=0.57$,$B=0.19$,$C=0.19$,$D = 1-A-B-C = 0.05$. These different probability was used by GRAPH500[CITATION NEEDED]. The R-mat generated three different adjacency matrices.
+
+
+The algorithm to generate such a recursive matrix is as follow: The idea is to partition the adjacency matrix into four equally sized part branded A,B,C,D. Each new edge is "Droped" onto the adjacency matrix. Wich section the edge would be placed on is choosen randomly. Each section have a `probability of $\it{a, b, c, d}$, and $a + b + c + d = 1$. After a section is choosen, the partion that was choosen is partitioned again. This continoues until the choosen section is a 1x1 square and the edge is dropped there. 
+
+@@
+INSET PICTURE OF PARTITION HERE!
+
+From the algorithm, we can see that the R-mat generator is capable to generate graphs with total numbers of node $ \it{V} = 2^x$. Since the algorithm partitioned the matrix into four part. 
 
 \section{Adjacency matrices}
 For this report, four different sized adjacency matrix was created. One of the restriction to the R-mat generator is that the size of the adjacency matrix have to be $2^n$. This resulted in that our adjacency matrix was of the size, $128 \times 128, 512 \times 512 and 1024 \times 1024$.  

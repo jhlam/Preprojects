@@ -2,43 +2,13 @@
 
 In this chapter, we will look at the fundamental concepts and background information needed to understand the the different infections model, problem with seed-selection for social networks, and solving Breadth-first search using matrix multiplication. This chapter will contain notations that we would use throughout the report and used in the field. One aspect we will focus focus on, is how we can performe graph algorithm such as breathd irst search as matrix multiplication.
 
-\section{Glossary of terms}
-    	$\it{{Vertex}} (pl. vertices)$: The fundamental unit of a network, also called a site(physics), a node (computer science), or an actor 	(sociology).
-    	
-    	\\
 
-		$\it{{Edge}}$: The line connecting two vertices. Also called a bond (physics), a link(computer science), or a tie (sociology).
+\section{Network terminology and glossary}
+The fundamental unit in a network is $\it{{Vertex}} (pl. vertices)$ sometimes called a node (computer science). For this report, vertex and node would be used intergangably. The "bridge" or the line connectiong two vertices is called a $\it{{Edge}}$, wich serves as a connection between verices. Different network have different types of edge, some can be $\it{{Directed}$ or $\it{undirected}}$. Directed edge is where a edge  runs in only one direction (such as a one-way road between two points), and undirected if it runs in both directions. Directed edges, which are sometimes called arcs, can be thought of as sporting arrows indicating their orientation. A graph is directed if all of its edges are directed. An undirected graph can be represented by a directed one having two edges between each pair of connected vertices, one in each direction.
 
-\begin{table}
-	\caption{Table of usefull glossary}
-    \begin{tabularx}{\textwidth}{|X|}
+Each node have a value that is known as $\it{{Degree}}$. Degree for a node is the number of edges connected to a vertex. Note that the degree is not necessarily equal to the number of vertices adjacent to a vertex, since there may be more than one edge between any two vertices. In a few recent articles, the degree is referred to as the “connectivity” of a vertex, but we avoid this usage because the word connectivity already has another meaning in graph theory. A directed graph has both an in-degree and an out-degree for each vertex, which are the numbers of in-coming and out-going edges respectively. The $\it{{Component}}$ to which a vertex belongs is that set of vertices that can be reached from it by paths running along edges of the graph. In a directed graph a vertex has both an in-component and an out-component, which are the sets of vertices from which the vertex can be reached and which can be reached from it.
 
-    \hline
-    	
-		
-		\\
-
-		$\it{{Directed/undirected}}$: An edge is directed if it runs in only one direction (such as a one-way road between two points), and undirected if it runs in both directions. Directed edges, which are sometimes called arcs, can be thought of as sporting arrows indicating their orientation. A graph is directed if all of its edges are directed. An undirected graph can be represented by a directed one having two edges between each pair of connected vertices, one in each direction.
-	
-		\\
-
-		$\it{{Degree}}$: The number of edges connected to a vertex. Note that the degree is not necessarily equal to the number of vertices adjacent to a vertex, since there may be more than one edge between any two vertices. In a few recent articles, the degree is referred to as the “connectivity” of a vertex, but we avoid this usage because the word connectivity already has another meaning in graph theory. A directed graph has both an in-degree and an out-degree for each vertex, which are the numbers of in-coming and out-going edges respectively.
-	
-		\\
-
-		$\it{{Component}}$: The component to which a vertex belongs is that set of vertices that can be reached from it by paths running along edges of the graph. In a directed graph a vertex has both an in-component and an out-component, which are the sets of vertices from which the vertex can be reached and which can be reached from it.
-
-		\\
-
-		$\it{{Geodesic path}}$: A geodesic path is the shortest path through the network from one vertex to another. Note that there may be and often is more than one geodesic path between two vertices.
-
-		\\
-
-		$\it{{Diameter}}$: The diameter of a network is the length (in number of edges) of the longest geodesic path between any two vertices. A few authors have also used this term to mean the average geodesic distance in a graph, although strictly the two quantities are quite distinct.\\
-    \hline
-    \end{tabularx}
-\end{table}
-
+A $\it{{Geodesic path}}$ is the shortest path through the network from one vertex to another. Note that there may be and often is more than one geodesic path between two vertices. The $\it{{Diameter}}$ of a network, however,  is the length (in number of edges) of the longest geodesic path between any two vertices. A few authors have also used this term to mean the average geodesic distance in a graph, although strictly the two quantities are quite distinct
 
 \section{Network}
 A $\it{network}$ is a collection of $\it{Vertices}$, commonly known as nodes with $\it{edges}$ connecting them together\cite{ComplexNetwork2003}. The edges serves as a connection, or a "bridge" between the nodes, while the nodes can reprecent something, or containing information. In the real world, multiple systems takes the form of networks around the world, examples are the internettt, the World Wide Web, social media like Facebook, twitter etc.  There are different types of network or $\it{graphs}$. These include from $\it{social network}$, $\it {sinformation networks}$, $\it{technological networks}$ ,and $\it{biological network}$.  Each of them have a different properties, but we will focus more about social network.
@@ -147,14 +117,6 @@ We can draw an distinctive line between the breadth first search and data diffus
 We can in then draw teh conclution that Independent cascade model, is a modified version of the breadth first search, where each child note have a specific percent to be infected. The itteration is the same as a breadth first approach, but the result of the addition of node is dependent on a random "coin-toss".
 
 
-
-\section{SIR/SIS}
-There are two different epidemic model that we will be looking at, the $\it{SIR}$ ( susceptible, infected, removed,) and the SIS mode(susceptible, infected, susceptible).Both is used to simulate how a disease or an epidemic can spread through the general population, in this case, we can use this 
-
-The SIR model stands for susceptible, infected and removed. The node would have three different states, the susceptible state mean that the node is susceptible to the disease, or in this example, change state. The infected state is the state were the node $\it{v}$ is infected. The state Removed/Recovered, is the state were the node $\it{v}$ have the disease removed, or have recover from the infection. In this model, the Removed/Recovered state is not susceptible to the infection again. 
-
-The SIS stands for susceptible, infected and susceptible. Unlike the SIR this model can reinfect the recovered nodes. This model is used for simulation of outbreak of disease. 
-
 \section{greedy algorithm}
 The  greedy algorithm was proposed by Kempe [KEMPE]. The algorithm is a greedy algorithm where it finds the starter set of nodes $\it{S}$ by iterating through all the vertex in $\it{V}$ and calculate the total amount of spread. The spread is saved and the $\it{k}$ most influential nodes would be choosen.
 
@@ -178,15 +140,6 @@ Another popular algorithm is the degree algorithm. Unlike the greedy algorithm, 
 Random algorithm
 The last one is the random algorithm. The random algorithm just pick a random starter node. 
 
-\section{R-mat}
-One problem during graph analysation and calculation is finding suiteble graphs to analyse. to generate graphs with desirede properties is not easdy to do. One solution proposed på \cite{RMat2004} is to use the /"recursive matrix /" or R-mat model. The R-mat model generates graph with only a few parameters, the graph will naturally have the small world propertie and follows the laws of normal graphs, and have a quick generation speed. The R-mat models goal is to generate graphs that matches the degree distribution, exhibits a " community " structure and have a small diameter and mathces other criteria.\cite{Rmat2004}.
-
-The algorithm to generate such a recursive matrix is as follow: The idea is to partition the adjacency matrix into four equally sized part branded A,B,C,D. Each new edge is "Droped" onto the adjacency matrix. Wich section the edge would be placed on is choosen randomly. Each section have a `probability of $\it{a, b, c, d}$, and $a + b + c + d = 1$. After a section is choosen, the partion that was choosen is partitioned again. This continoues until the choosen section is a 1x1 square and the edge is dropped there. 
-
-@@
-INSET PICTURE OF PARTITION HERE!
-
-From the algorithm, we can see that the R-mat generator is capable to generate graphs with total numbers of node $ \it{V} = 2^x$. Since the algorithm partitioned the matrix into four part. 
 
 \section{Cache oblivious model} 
 [REWRITE THIS PART]
