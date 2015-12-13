@@ -2,7 +2,7 @@
 For this report, we created a python simulation to simulate the data diffusion and the seed selection. We utilized the Pycx libraries to create the GUI, and applied the R-mat generator to create the different network.
 
 \section{PyCx}
-Pycx an librarie that help python to generate an GUI.
+Pycx an librarie that help python to generate an GUI. The pycx have a clear structure, initialize, observe and update. The initialize part, the graph is generated, the starter seed is found and the position to the graph is generated. The observe part is where python generate graphic for our simulation. for each step, the observe is called to generate a new frame. the update section i called every step, for our program, the diffusion is calculated as each step we can see how the data is diffused.
 
 
 \section{R-mat}
@@ -16,4 +16,7 @@ The simulation creates an social network by reading from the adjacency matrix. W
 
 The greedy algorithms finds the most influential nodes in relation with the other previous picked seeds. The algorithm starts by finding the most influential nodes $s_1$ from the entire graph $\it{G}$, in this instance, k=1. The most influential node is found by just choosing a node and see how much spread it will result in, the value is stored with the node, and after the entire G is itterated over, the node with the highest value is choosen. Then the algorithm stores the node in $\it{S}$ and applies data diffusion and stores the effect this runs had. The next run, k=2 and the greedy algorithm finds the most influential node $s_2$ where $s_2 \neq s_1$ and $s_2 +s_1 = maxCoverage$. This is repeated until k=20. The new run, the seed selection will keep the previous selected seed and during the finding maximum coverage phase, the previous choosen seed will have impact on the run.
 
-The degree algorithm chooses the vertex with the highest degree. Unlike the greedy algorithm. The degree algorithm just finds the vertices with the highest degree. The algorithm chooses $s_1, s_2 \dot 2_k$ from $\it{G}$. One of the problem would be that hihger degree nodes would often be connected to each other, the community struckture that was mentioned in previous section.
+The degree algorithm chooses the vertex with the highest degree. Unlike the greedy algorithm. The degree algorithm just finds the vertices with the highest degree. The algorithm chooses $s_1, s_2 \dot 2_k$ from $\it{G}$ that have the highest degree. One of the problem would be that hihger degree nodes would often be connected to each other, the community struckture that was mentioned in previous section. The degree histogram shows us that there are very few high degree node, while having more low degree nodes.
+
+The random algorithm picks random vertices as the starter nodes. This is the simplest algorithm, where each runs, a new random node is added to the set $\it{S}$. Then the diffusion is applied. 
+

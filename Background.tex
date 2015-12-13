@@ -1,8 +1,13 @@
 \chapter{Background}
 
-In this chapter, we will look at the fundamental concepts and background information needed to understand the the different infections model, problem with seed-selection for social networks, and solving Breadth-first search using matrix multiplication. This chapter will contain notations that we would use throughout the report and used in the field. 
+In this chapter, we will look at the fundamental concepts and background information needed to understand the the different infections model, problem with seed-selection for social networks, and solving Breadth-first search using matrix multiplication. This chapter will contain notations that we would use throughout the report and used in the field. One aspect we will focus focus on, is how we can performe graph algorithm such as breathd irst search as matrix multiplication.
 
 \section{Glossary of terms}
+    	$\it{{Vertex}} (pl. vertices)$: The fundamental unit of a network, also called a site(physics), a node (computer science), or an actor 	(sociology).
+    	
+    	\\
+
+		$\it{{Edge}}$: The line connecting two vertices. Also called a bond (physics), a link(computer science), or a tie (sociology).
 
 \begin{table}
 	\caption{Table of usefull glossary}
@@ -10,11 +15,6 @@ In this chapter, we will look at the fundamental concepts and background informa
 
     \hline
     	
-    	$\it{{Vertex}} (pl. vertices)$: The fundamental unit of a network, also called a site(physics), a node (computer science), or an actor 	(sociology).
-    	
-    	\\
-
-		$\it{{Edge}}$: The line connecting two vertices. Also called a bond (physics), a link(computer science), or a tie (sociology).
 		
 		\\
 
@@ -45,7 +45,7 @@ A $\it{network}$ is a collection of $\it{Vertices}$, commonly known as nodes wit
 
 A social network is a set of people connected to each other via some form of contact or interactions\cite{ComplexNetwork2003}. The nodes are people while the edges are the connections between peoples. The social network display information regarding connection, interaction or location of a set of people.It forms patterns regarding friendships, business interactions between companies and families history/ ancestral tree. The social network is often used in social science\cite{ComplexNetwork2003}. Some noteable experiments are \cite{smallWorldExperiment}, which looks at the small world problem. The small world problem can be summarized as: "what is the probability that any two people, selected arbitrarily from a large population, such as that of the United States, will know each other?". \cite{smallworldExperiment1969}. This in itselfe is not that interesting, the \cite{SmallworldExperiment1969} takes that altho person $\it{a}$ and $\it{z}$ does not know each other, do they have a set of individuals \{ $\it {b_1, b_2, ... b_n} $\} who are mutual friend or even a "chain" of such individual($\it {a-b-c-...-y.z}$).
 
-Some properties that networks often exhibits are the small world effect, transitivity or clustering, degree correlations, and community structure\cite{ComplexNetwork2003}.
+Some properties that networks often exhibits are the small world effect, transitivity or clustering, degree correlations, and community structure\cite{ComplexNetwork2003}. Different networks would have some of the specific properties and values. Social network would have a small world effect of around 6 degree, with high transitivity and have a community structure, while a information network, such as a citation network, would most likely have high transitivity since citation and publication have different publication date. Paper A refers to Paper B, which refers to paper C, but paper C can not possibly refer to papaer A since C is clearly published before paper A. [INSErt fIGUre.]
 
 -social network
 -information network
@@ -53,13 +53,25 @@ Some properties that networks often exhibits are the small world effect, transit
 
 
 \subsection{The small world effect}
-The small world effect was first demonstrated by Stanley Milgra in the 1960s during his famous letter passing experiment\cite{SmallWorldProblemSmilgram1960}. The experiment was about passing letters from person to person to reach a designated target with only small steps. For the published case, the chain was around six \cite{Experiment1969}. This shows us that for most pair of vertices can reach each other with a short parth. A more precise wording is that "Networks are said to show the small world effect if the value of $\it{l}$ scales logarithmically or slower with the network size for a fixed mean degree.". \cite{ComplexNetwork2003}. We have defined $\it{l} $ to be the mean geodesic distance between vertex pairs in a network. 
+The small world effect was first demonstrated by Stanley Milgra in the 1960s during his famous letter passing experiment\cite{SmallWorldProblemSmilgram1960}. The experiment was about passing letters from person to person to reach a designated target with only small steps. For the published case, the chain was around six \cite{Experiment1969}. This shows us that for most pair of vertices in a network can reach each other with a short parth. A more precise wording is that "Networks are said to show the small world effect if the value of $\it{l}$ scales logarithmically or slower with the network size for a fixed mean degree.". \cite{ComplexNetwork2003}. We have defined $\it{l} $ to be the mean geodesic distance between vertex pairs in a network.
+
+Having such a small world effect shows us that for a social graph.
 
 \subsection{Transistivity/clustering}
 Transistivity, also sometimes called clustering is the properties that shows that there is a high number of triangles in the network. A triangle in a network is if node A is connected to node B and node C, and node B and C is also connected to each other, thus creating a triangle. In social network, we say that a friend of your friend is likely to be your friend too\cite{ComplexNetwork2003}. The transistivity is often used to show $\it{network density}$.
 
+For information diffusion and seed selection, this would mean that picking nodes that are geographically close/neighbour to each other, would have a smaller impact/spread then picking two not neighbouring vertecies. By picking two nodes that are connected to each other, they would likely share a common neighbour thus having a limited reach.  
+
 \subsection{Degree distribution}
 Degree distribution is the histogram of degrees of vertex. For random graphs, the distribution would most likely be a poiison distribution or binomial. For real world network, the distribution would often have a highly rightskewed distribution. Resulting in that the distribution has a long right tail of values. The probability $P_k$ is the probability that the new vertex $\it{v}$ have the degree k. 
+
+The degree distribution shows us how the degree to the graph is distributed. For social graph, the degree distribution is often in the shap of [INSERT FOIGURE of degree distribution histogram]. For the information diffusion, this distributon shows us how many high degree nodes there are in the network, those node would likely be high prioritized node and have a large impact. 
+
+\subsection{Degree corrrelations}
+As [REFER TO FIGURE OF DEGREE DISTRIBUTION] show, the network have a degree distribution with few high degree nodes and multiple low degree nodes. One interesting properties is the degree correlations. Degree correlations is how the high degree and low degree nodes connects to each other. One question is if high degree nodes tends to connect to other high degree nodes, or do they prefer to connect to low degree nodes. It turns out that both incidents is found in networks\cite{complexNetwork}. We can see that for all social network measured in \cite{complexNetwork}, the social networks are assortative, meaning vertices have a selective linking, where high degree vertex connects to other high degree vertex\cite{AssortativeMixing2002} 
+
+For data diffusion, this kind of behaviour would result in wasting a seed by picking majority of high degree node for starting seed, since most of them would be connected to each other. One solution is by mixing the selection, choose some percentage to be high degree, and some with lower degree.
+
 
 \subsection{Network resilience}
 For most network model, there is the need to remove nodes from the network. Removal of a node can have no effect on the network as a whole, or it can be devastating. Network resilience looks at how the network can ressist to such a removal. There are two different removal scheme, the random removal where nodes are randomly picked and removed, or the targeted removal where specific nodes are removed depending on the critteria. 
@@ -70,7 +82,9 @@ There are other studies that proposed a different interpetation about the data f
 
 
 \subsection{community structure}
-One properties that is often observed in a social network, is the community structure. The community structure is where a group of vertecies having high density of edges with each other, while having lowe density of edges to other "community". We can see an example of the community structure clearly displayed from \cite{RaceSchool2001}
+One properties that is often observed in a social network, is the community structure. The community structure is where a group of vertecies having high density of edges with each other, while having lowe density of edges to other "community". We can see an example of the community structure clearly displayed from \cite{RaceSchool2001}. Where we can see the playground was divided into different community.
+
+This type of community structure would have a lagre impact on how the algorithm would select a seed for information diffusion. If all the seed would be selected in one community, the probability of spreading over to other community would be smaller, them having a seed be in the other community.
 
 \section{Matrix notations}
 By using a linear algebraic approach to solve graph algorithms often gives us a variety of benefit include easier implementation, higher preformance and syntactic simplicity. \cite{MathToAlgo}. There are multiple reasons to do graph algorithms as linear algebra. This can show potentially improvement, potentially optimization and be more visually clear how the algorithm is. 
@@ -81,8 +95,7 @@ By using a linear algebraic approach to solve graph algorithms often gives us a 
 A $semiring$ is a set of elements with two binary operations. The two operations are often known as "addition" and "multiplication". By this definition, [SYMBOL FOR BOOLEAN] and [SYMBOL FOR INTEGER]. are both semirings.  One way to performe graph algorithm, is apply matrix multiplication over such semirings. One of the common notation in writing the semiring, is $a+b$ and $a \ast b$. This can be confusin, so often there will be some special semiring operator.
 
 \subsection{Sparce Matrix}
-A sparce matrix is an matrix with few elements in them. The social network can often be reprecented with a sparce matrix. An sparce matrix have its majority of element as zero, as shown in \fig{INSERT FIGURE OF SPARCE MATRIX}. We can represent a social graph in the form of a sparse matrix. In an adjacency matrix, a cell containing 1 means a connection is presence, while a 0 is lack no connection. So, as we can see in the [INSERT FIGURE OF SPARCE MATRIX AND GRAPH], as we can see at (1,5)=1. This tells us that there is a edge between vertex 1 and vertex 5.
-
+A sparce matrix is an matrix with few elements in them. The social network can often be reprecented with a sparce matrix. An sparce matrix have its majority of element as zero, as shown in \fig{INSERT FIGURE OF SPARCE MATRIX}. We can represent a social graph in the form of a sparse matrix. In an adjacency matrix, a cell containing 1 means a connection is presence, while a 0 is lack no connection. So, as we can see in the [INSERT FIGURE OF SPARCE MATRIX AND GRAPH], as we can see at (1,5)=1. This tells us that there is a edge between vertex 1 and vertex 5. The adjacency matrix is commonly used to represent an graph[CITATION NEEDED].
 
 
 \section{Data diffusion}
@@ -125,7 +138,13 @@ Breadth first search is an tree traversal algorithm. BFS start at the root node 
 \end{algorithmic}
 \end{algorithm}
 
-We can also look at how an breadth first seaerch can be executed by appllying  sparce matrix multiplication. We can see that teh adjacency matrix is an sparse matrix. 
+We can also look at how an breadth first seaerch can be executed by appllying  sparce matrix multiplication. We can see that teh adjacency matrix is an sparse matrix. We can use sparce matrix umltiplpication to do graph algorithm, one example is the BFS. 
+
+
+\sectuion{BFS to data diffuison}
+We can draw an distinctive line between the breadth first search and data diffusion. The breadth first search adds all the childe node from the parent node to a queue, then change the current node to the first node in the queue and repeats until the entire graph is iterated over, or the queue is empty. This is in teorie the same as data diffusion, where information is passed to the connected vertex. The new "infected node" can then pass on the information along to the other nodes that are connected to the new node and so on. This is in practice, the same as breadth first search, minus the searching part. 
+
+We can in then draw teh conclution that Independent cascade model, is a modified version of the breadth first search, where each child note have a specific percent to be infected. The itteration is the same as a breadth first approach, but the result of the addition of node is dependent on a random "coin-toss".
 
 
 
