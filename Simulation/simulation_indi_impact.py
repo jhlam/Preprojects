@@ -9,6 +9,8 @@ import sys
 
 p_i = 0.05					# infection probability
 results = []
+#n=128
+#n=512
 n = 1024		#numbers of nodes in the network
 k = 1
 k_end= 20
@@ -177,15 +179,16 @@ def update():
 		initialize()
 	else:
 		current_vertex = boarder.pop(0)
-		for i in g.neighbors(current_vertex):		#iterate over the current node's neighbour
-			if(g.node[i]['state'] == 0 ):			#check if the testing node is infected or not
-				if(rd.random() < p_i):					#The coin flip to se if infected
-					nextg.node[i]['state'] = 1 
-					g.node[i]['state'] = 1
-					boarder.append(i)
-		infected.append(current_vertex)
+		if(current_vertex not in infected):
+			for i in g.neighbors(current_vertex):		#iterate over the current node's neighbour
+				if(g.node[i]['state'] == 0 ):			#check if the testing node is infected or not
+					if(rd.random() < p_i):					#The coin flip to se if infected
+						nextg.node[i]['state'] = 1 
+						g.node[i]['state'] = 1
+						boarder.append(i)
+			infected.append(current_vertex)
 		
-		coverage = ((len(infected)+len(boarder))/len(g.nodes()))
+		coverage = ((len(infected))/len(g.nodes()))
 
 	
 
