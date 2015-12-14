@@ -12,23 +12,25 @@ The R-mat generater generates sociall network with the community structure. The 
 
 
 The algorithm to generate such a recursive matrix is as follow: The idea is to partition the adjacency matrix into four equally sized part branded A,B,C,D, like shown in Figure\ref{fig:flipDiagonal}. The adjacency matrix starts by having all element set to 0. Each new edge is "droped" onto the adjacency matrix. Which section the edge would be placed in, is choosen randomly. Each section have a probability of $\it{a, b, c, d}$, and $a + b + c + d = 1$. After a section is choosen, the partion that was choosen is partitioned again. This continoues until the choosen section is a 1x1 square and the edge is dropped there. 
+
+From the algorithm, we can see that the R-mat generator is capable to generate graphs with total numbers of node $ \it{V} = 2^x$. Since the algorithm partitioned the matrix into four part. This is approach would only generate a directed graph. To generate undirected graph, $b = c$ and the adjacenmcy matrix must make a "copy flip" on the diagonal elements, like FIgure \ref{fig:flipDiagonal}. 
+
 \begin{figure}
 \includegraphics{Rmat}
 \caption{The R-mat model}
 \label{fig:Rmat}
 \end{figure}
 
-From the algorithm, we can see that the R-mat generator is capable to generate graphs with total numbers of node $ \it{V} = 2^x$. Since the algorithm partitioned the matrix into four part. This is approach would only generate a directed graph. To generate undirected graph, $b = c$ and the adjacenmcy matrix must make a "copy flip" on the diagonal elements, like FIgure \ref{fig:flipDiagonal}. 
-
-\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}
 \includegraphics{flip_matrix}
 \caption{How the adacency matrix is fliped on the diagonal}
 \label{fig:flipDiagonal}
-\end{wrapfigure}
+
+\end{figure}
 
 
 \section{Adjacency matrices to graphs}
-For this report, four different sized adjacency matrix was created. One of the restriction to the R-mat generator is that the size of the adjacency matrix have to be $2^n$. This resulted in that our adjacency matrix was originaly of the size, $128 \times 128, 512 \times 512 and 1024 \times 1024$. The resulted graphs had multiple singletons and unconnected nodes, for the sake of the simulation, those nodes were discarded and resultede in a graph with 75 nodes and 307 edges, 287 nodes with 2415 edges and 617 nodes and 8374 edges. This was not supprising considere that for a larger graph, those singletons would most likely result in the outer perifier and small community.
+For this report, three different sized adjacency matrix was created. One of the restriction to the R-mat generator is that the size of the adjacency matrix have to be $2^n$. This resulted in that our adjacency matrix was originaly of the size, $128 \times 128, 512 \times 512 and 1024 \times 1024$. The resulted graphs had multiple singletons and unconnected nodes, for the sake of the simulation, those nodes were discarded and resultede in a graph with 75 nodes and 307 edges, 287 nodes with 2415 edges and 617 nodes and 8374 edges. This was not supprising considere that for a larger graph, those singletons would most likely result in the outer perifier and small community.
 
 \section{The algorithm}
 The simulation creates an social network by reading from the adjacency matrix. We implemented 4 different algorithm. The greedy algorith, the degree algorithm, random algorithm, and a independent greedy algorithm. The algorithm implemented, finds the $\it{k}$ vertecies to be the starter nodes. $\it{k}$ is [1,2,  $\dots$ 20]. This is to be able to see how teh size of the starting nodes affect the coverage. For each $\it{k}$, the simulation applies the diffusion for 50 times. This is to finde the mean coverage to remove the randomness 
@@ -39,3 +41,4 @@ The degree algorithm chooses the vertex with the highest degree. Unlike the gree
 
 The random algorithm picks random vertices as the starter nodes. This is the simplest algorithm, where each runs, a new random node is added to the set $\it{S}$. Then the diffusion is applied. 
 
+One experimental algorithm we tested was the independent greedy algorithm, where the algorithm choose the largest impact node as a seed node. This algorithm is like the greedy algorithm, with one major difference, the algorithm chooses a new seed node for each run. The algorithm picks the $\it{k}$ seed nodes each independently to the previous picked node. This results in that the choosen nodes would often result in  

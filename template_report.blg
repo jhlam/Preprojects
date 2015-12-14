@@ -12,11 +12,6 @@ Case mismatch error between cite keys SmallworldExperiment1969 and smallworldExp
 I'm skipping whatever remains of this command
 A level-1 auxiliary file: related_work.aux
 A level-1 auxiliary file: method.aux
-Case mismatch error between cite keys Rmat2004 and RMat2004
----line 3 of file method.aux
- : \citation{Rmat2004
- :                   }
-I'm skipping whatever remains of this command
 A level-1 auxiliary file: result.aux
 A level-1 auxiliary file: discussion.aux
 A level-1 auxiliary file: future_work.aux
@@ -28,7 +23,10 @@ Warning--I didn't find a database entry for "complexNetwork"
 Warning--I didn't find a database entry for "AssortativeMixing2002"
 Warning--I didn't find a database entry for "RaceSchool2001"
 Warning--I didn't find a database entry for "MathToAlgo"
+Warning--I didn't find a database entry for "CacheObli1999"
+Warning--I didn't find a database entry for "COmultiplic2009"
 Warning--I didn't find a database entry for "YamanPOaper"
+Warning--I didn't find a database entry for "Pycx"
 Warning--empty journal in HybridBFS2015
 Warning--empty journal in MaximizeSpread2003
 Warning--empty journal in MaximizeSpread2015
@@ -37,11 +35,11 @@ Warning--empty journal in smallworldExperiment1969
 Warning--empty journal in SmallWorldProblemSmilgram1960
 Warning--empty journal in Experiment1969
 Warning--empty journal in algoToMath
-Warning--empty journal in RMat2004
+Warning--empty journal in Rmat2004
 Warning--empty journal in ParallelBFS2011
 You've used 10 entries,
             1791 wiz_defined-function locations,
-            510 strings with 4896 characters,
+            516 strings with 4960 characters,
 and the built_in function-call counts, 1321 in all, are:
 = -- 101
 > -- 40
@@ -80,4 +78,4 @@ warning$ -- 10
 while$ -- 10
 width$ -- 12
 write$ -- 92
-(There were 2 error messages)
+(There was 1 error message)

@@ -71,19 +71,19 @@ A sparce matrix is an matrix with few non-zero elements in them. The social netw
 
 \begin{figure}
 	\begin{subfigure}{0.5\textwidth}
-	\includegraphics[width=\textwidth]{AdjacencyM}
+	\includegraphics{AdjacencyM}
 	\caption{The ajacency matrix}
 	\label{fig:AdjacencyM}
 	\end{subfigure}
 
 
 	\begin{subfigure}{0.5\textwidth}
-	\includegraphics[width=\textwitdth]{simpleGraph}
+	\includegraphics{simpleGraph}
 	\caption{The graph corresponding to the adjacency matrix}
 	\label{fig:matrix}
 	\end{subfigure}
 	 	
-
+\end{figure}
 
 \section{Data diffusion}
 Data diffusion is looking at how information is propagated through a network or a graph. An example would be how a new Internet meme, a new trend or how a new disease is spread through a community. The process consist of a set of starter nodes that are "infected", during each time-step, there are a chance that the "infected" node would "infect" its neighbor. To start such a simulation, we would need to first pick out a set of initial "starter node". These {\it k} seed nodes is a set of node that in the initial time-step is infected. They will pass on the information/infection during each time-step and the information/infection will propagate through the network.
@@ -97,7 +97,7 @@ The linear threshold model uses a threshold $\theta_v$ between the interval [0,1
 
 The independent cascade model changes states with a probability $\it{p_{v, w}}$, where $\it{ v }$ is current node, and $\it{w}$ is it's neighbor. During each propagation, the node $\it{v}$ have a  $\it{p_{v, w}}$ chance to change state if the neighbor $\it{w}$ changed state. If during time-step $\it{t}$ a node $\it{v}$ changed state, its neighbor $\it{w}$ would have a $\it{p_{v, w}}$ chance to change state in the next time step. An example here would be spread of a disease. The current node$\it{v}$ have a chance($\theta_v$) to infect its neighbor
 
-We can se the similarity between the breadth first search and information diffusion. Breath first search, as mentioned before, starts at the root node and add the root nodes children in a queue, then tales the first childe node in the queue and adds all its childen to the queue. Each new child node is added to the back of the queue, while finished node is placed in a $\it{finished_queue}$. The sequences of nodes tested is the same as during an information diffusion, where the diffusions neighbour is placed in the $\it{boarder_queue}$ and having a probability to be infected. If the node is infected, then that nodes neighbour would be added to the boarder_queue, while if the node is not infected, the neighbour to the node would be safe. The information diffusion can therefore be looked at as an breadth first search, with an probability to add the child to the queue. 
+We can se the similarity between the breadth first search and information diffusion. Breath first search, as mentioned before, starts at the root node and add the root nodes children in a queue, then tales the first childe node in the queue and adds all its childen to the queue. Each new child node is added to the back of the queue, while finished node is placed in a $\it{finished_queue}$. The sequences of nodes tested is the same as during an information diffusion, where the diffusions neighbour is placed in the $ \it{boarder_queue} $ and having a probability to be infected. If the node is infected, then that nodes neighbour would be added to the $boarder_queue$, while if the node is not infected, the neighbour to the node would be safe. The information diffusion can therefore be looked at as an breadth first search, with an probability to add the child to the queue. 
 
 \section{Breadth First Search as a matrix multiplication.}
 By looking at the connectivity matrix, we can see that a connectivity matrix is a graph represented in a matrix format. The BFS can be achieved by looking at the BFS operations as a matrix multiplication \cite{algoToMath}. If we look at the graph as a connectivity matrix, we can apply matrix multiplication to generate the breadth first search. 
@@ -156,14 +156,11 @@ $1 − \delta$
 
 Another popular algorithm is the degree algorithm\cite{MaximizeSpread2015}. Unlike the greedy algorithm, the degree sort all the node acoring to their degree distribution. The algorithm picks the top $\it{k}$ nodes according to the degree distribution. 
 
+
+
 Random algorithm
 The last one is the random algorithm. The random algorithm just pick a random starter node. 
 
 
 \section{Cache oblivious model} 
-[REWRITE THIS PART]
-Chache oblivious
-have examples where cache oblivious is better for, sparse matrix multiplication.
-for a tree iteration algorithm, better. 
-
-\subsection{Cache oblivious sparse matrix multiplication}
+A cache oblivious model ignores the cache size and line and designs the algorithm to be cross platform and optimized. An algorithm is $\it{cache aware}$ if it contains parameter that can be tuned to optimize the cache complexiity for the cache size\cite{CacheObli1999}. Such algorithm have the disadvantage where a adaptation is neede for a new architecture\cite{COmultiplic2009}. The cache oblivious model is designed for two level of memory, and assumes that tsuch an optimization is optimized for multiple levels as well. There are multiple algorithm designed that shows that such a model actually improves the algorithm. One of such is an cache oblivious sparce matrix multiplication. Sparse matrix multiplication is notorious to be inefficeint use of the cache system, it forces the user to jump throgh data in main memory\cite{COmuliplic2009}. The sparce matrix approach proposed \cite{COmultiplic2009} focus on reordering the matrix and row in an cache oblivious maner. There are results that shows that a cache oblivious approach have given improvement to computation time for some matrices during sparse matrixc multiplication, but for cache-friendly structure, this is shown to be a minor imporvement and even small loss. 
