@@ -8,9 +8,12 @@ import numpy as ny
 import sys
 from random import choice
 
-p_i = 0.05 					# infection probability
+p_i =0.05					# infection probability
 results = []
-n = 1024			#numbers of nodes in the network
+#n = 128			#numbers of nodes in the network
+#n=512
+n=1024
+
 k = 1
 k_end= 20
 round_num = 0
@@ -44,12 +47,11 @@ def spread(g,n):
 	return mean_coverage
 
 
-def seed_selection(G, k):
+def seed_selection(G):
 	global S
 	
-	for i in range(k):
-		random_node = choice(G.nodes())
-		S.append(random_node)
+	random_node = choice(G.nodes())
+	S.append(random_node)
 	#	print("Finding random seed")
 
 	print("current amount of seed:%i" %len(S))
@@ -99,8 +101,7 @@ def initialize():#initialize the simulation
 		print("total edge was: %s" %nx.number_of_edges(g))
 
 		position= nx.spring_layout(g)
-		proxy_g = g.copy()
-		seed_selection(proxy_g, k)
+		seed_selection(g )
 
 		for node in S:
 			g.node[node]['state'] = 1
@@ -159,22 +160,24 @@ def update():
 		
 			k+=1
 			del round_results[:]
-			del S[:]
+			#del S[:]
 			setRound_num(0)
 
 
 		initialize()
 	else:
 		current_vertex = boarder.pop(0)
-		for i in g.neighbors(current_vertex):		#iterate over the current node's neighbour
-			if(g.node[i]['state'] == 0 ):			#check if the testing node is infected or not
-				if(rd.random() < p_i):					#The coin flip to se if infected
-					nextg.node[i]['state'] = 1 
-					g.node[i]['state'] = 1
-					boarder.append(i)
-		infected.append(current_vertex)
-		
-		coverage = ((len(infected)+len(boarder))/len(g.nodes()))
+		if(current_vertex not in infected):
+			for i in g.neighbors(current_vertex):		#iterate over the current node's neighbour
+				if(g.node[i]['state'] == 0 ):			#check if the testing node is infected or not
+					if(rd.random() < p_i):					#The coin flip to se if infected
+						nextg.node[i]['state'] = 1 
+						g.node[i]['state'] = 1
+						boarder.append(i)
+			
+			infected.append(current_vertex)
+			
+			coverage = ((len(infected))/len(g.nodes()))
 
 
 	g, nextg = nextg, g

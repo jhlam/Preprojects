@@ -9,7 +9,9 @@ import numpy as ny
 
 p_i = 0.05 # infection probability
 results = []
+#n=128
 n = 512			#numbers of nodes in the network
+#n=1024
 k	= 1 
 k_end 	= 20
 round_num = 0
