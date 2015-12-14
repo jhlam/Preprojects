@@ -93,7 +93,13 @@ When we talk about information propagation, we can look at how diseas or technol
 
 This process can be simulated by looking at a social network and how information propagates through the network. We look at each node in the graph as a person, they can be either active, or inactive. The activation of a node depends on which diffusion model we choose. A active node is "infected", while the inactive is the "healthy" ones. The activation of each nodes is dependent on which model we pick.
 
-The linear threshold model uses a threshold $\theta_v$ between the interval [0,1], which represent the faction of $\it{v}'s$ neighbors that need to be active to activate node $\it{v}$. The Linear Threshold Model activates the current node {\it v} when the weight ${\it b_{v,w}} > \theta$ from its neighbor $\it{w}$ outweighs the $\theta_v$. This is more in line with the situation were each person have a chance to adopt to a new trend if exposed to the trend enough time by his close friends. An example would be a product promoted on social network like twitter and Facebook. The user will adopt the new trend if he is exposed to it from enough friends or idols. 
+The linear threshold model uses a threshold $\theta_v$ between the interval [0,1], which represent the faction of $\it{v}'s$ neighbors that need to be active to activate node $\it{v}$. The Linear Threshold Model activates the current node {\it v} when the weight ${\it b_{v,w}} > \theta$ from its neighbor $\it{w}$ outweighs the $\theta_v$. This is more in line with the situation were each person have a chance to adopt to a new trend if exposed to the trend enough time by his close friends. An example would be a product promoted on social network like twitter and Facebook. The user will adopt the new trend if he is exposed to it from enough friends or idols. As show in Figure \ref{fig:linearThresh}, the threshold for vertex $\it{v}$ to be activated is $\theta_v$, a percentage of the total neighbour, in this instance, three.
+
+\begin{figure}[!ht]
+	\includegraphics{linearThreshold}
+	\caption{Linear Threshold model} 
+	\label{fig:linearThresh}
+\end{figure
 
 The independent cascade model changes states with a probability $\it{p_{v, w}}$, where $\it{ v }$ is current node, and $\it{w}$ is it's neighbor. During each propagation, the node $\it{v}$ have a  $\it{p_{v, w}}$ chance to change state if the neighbor $\it{w}$ changed state. If during time-step $\it{t}$ a node $\it{v}$ changed state, its neighbor $\it{w}$ would have a $\it{p_{v, w}}$ chance to change state in the next time step. An example here would be spread of a disease. The current node$\it{v}$ have a chance($\theta_v$) to infect its neighbor
 
