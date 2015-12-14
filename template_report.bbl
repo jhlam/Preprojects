@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{HybridBFS2015}
 Magnus~Jahre Yaman~Umuroglu, Donn~Morrison.
@@ -7,6 +7,11 @@ Magnus~Jahre Yaman~Umuroglu, Donn~Morrison.
 \newblock 2015.
 
 \bibitem{MaximizeSpread2003}
+\'Eva~Tardos David~Kampe, Jon~Klein.
+\newblock Maximizing the spread of influence through a social network.
+\newblock 2003.
+
+\bibitem{MaximizeSpread2015}
 \'Eva~Tardos David~Kampe, Jon~Klein.
 \newblock Maximizing the spread of influence through a social network.
 \newblock 2003.

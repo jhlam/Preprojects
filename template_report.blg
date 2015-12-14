@@ -6,17 +6,17 @@ A level-1 auxiliary file: assignment.aux
 A level-1 auxiliary file: introduction.aux
 A level-1 auxiliary file: background.aux
 Case mismatch error between cite keys SmallworldExperiment1969 and smallworldExperiment1969
----line 7 of file background.aux
+---line 11 of file background.aux
  : \citation{SmallworldExperiment1969
  :                                   }
 I'm skipping whatever remains of this command
+A level-1 auxiliary file: related_work.aux
+A level-1 auxiliary file: method.aux
 Case mismatch error between cite keys Rmat2004 and RMat2004
----line 36 of file background.aux
+---line 3 of file method.aux
  : \citation{Rmat2004
  :                   }
 I'm skipping whatever remains of this command
-A level-1 auxiliary file: related_work.aux
-A level-1 auxiliary file: method.aux
 A level-1 auxiliary file: result.aux
 A level-1 auxiliary file: discussion.aux
 A level-1 auxiliary file: future_work.aux
@@ -25,10 +25,13 @@ The style file: unsrt.bst
 Database file #1: my_references.bib
 Warning--I didn't find a database entry for "smallWorldExperiment"
 Warning--I didn't find a database entry for "complexNetwork"
+Warning--I didn't find a database entry for "AssortativeMixing2002"
 Warning--I didn't find a database entry for "RaceSchool2001"
+Warning--I didn't find a database entry for "MathToAlgo"
 Warning--I didn't find a database entry for "YamanPOaper"
 Warning--empty journal in HybridBFS2015
 Warning--empty journal in MaximizeSpread2003
+Warning--empty journal in MaximizeSpread2015
 Warning--empty publisher in ComplexNetwork2003
 Warning--empty journal in smallworldExperiment1969
 Warning--empty journal in SmallWorldProblemSmilgram1960
@@ -36,36 +39,36 @@ Warning--empty journal in Experiment1969
 Warning--empty journal in algoToMath
 Warning--empty journal in RMat2004
 Warning--empty journal in ParallelBFS2011
-You've used 9 entries,
+You've used 10 entries,
             1791 wiz_defined-function locations,
-            504 strings with 4798 characters,
-and the built_in function-call counts, 1191 in all, are:
-= -- 91
-> -- 36
+            510 strings with 4896 characters,
+and the built_in function-call counts, 1321 in all, are:
+= -- 101
+> -- 40
 < -- 0
-+ -- 18
-- -- 9
-* -- 31
-:= -- 215
-add.period$ -- 27
-call.type$ -- 9
-change.case$ -- 8
++ -- 20
+- -- 10
+* -- 34
+:= -- 240
+add.period$ -- 30
+call.type$ -- 10
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 74
-empty$ -- 132
-format.name$ -- 9
-if$ -- 251
+cite$ -- 20
+duplicate$ -- 82
+empty$ -- 146
+format.name$ -- 10
+if$ -- 278
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 10
-newline$ -- 48
-num.names$ -- 9
-pop$ -- 48
+int.to.str$ -- 10
+missing$ -- 11
+newline$ -- 53
+num.names$ -- 10
+pop$ -- 53
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 26
+skip$ -- 28
 stack$ -- 0
 substring$ -- 0
 swap$ -- 1
@@ -73,8 +76,8 @@ text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 9
-while$ -- 9
-width$ -- 10
-write$ -- 83
+warning$ -- 10
+while$ -- 10
+width$ -- 12
+write$ -- 92
 (There were 2 error messages)
