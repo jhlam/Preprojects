@@ -22,7 +22,13 @@ A $\it{network}$ is a collection of $\it{Vertices}$, commonly known as nodes wit
 
 A social network is a set of people connected to each other via some form of contact or interactions\cite{ComplexNetwork2003}. The nodes are people while the edges are the connections between peoples. The social network display information regarding connection, interaction or location of a set of people.It forms patterns regarding friendships, business interactions between companies and families history/ ancestral tree. The social network is often used in social science\cite{ComplexNetwork2003}. Some noteable experiments are \cite{smallWorldExperiment}, which looks at the small world problem. The small world problem can be summarized as: "what is the probability that any two people, selected arbitrarily from a large population, such as that of the United States, will know each other?". \cite{smallworldExperiment1969}. This in itselfe is not that interesting, the \cite{SmallworldExperiment1969} takes that altho person $\it{a}$ and $\it{z}$ does not know each other, do they have a set of individuals \{ $\it {b_1, b_2, ... b_n} $\} who are mutual friend or even a "chain" of such individual($\it {a-b-c-...-y.z}$).
 
-Some properties that networks often exhibits are the small world effect, transitivity or clustering, degree correlations, and community structure\cite{ComplexNetwork2003}. Different networks would have some of the specific properties and values. Social network would have a small world effect of around 6 degree, with high transitivity and have a community structure, while a information network, such as a citation network, would most likely have high transitivity since citation and publication have different publication date. Paper A refers to Paper B, which refers to paper C, but paper C can not possibly refer to papaer A since C is clearly published before paper A. [INSErt fIGUre.]
+Some properties that networks often exhibits are the small world effect, transitivity or clustering, degree correlations, and community structure\cite{ComplexNetwork2003}. Different networks would have some of the specific properties and values. Social network would have a small world effect of around 6 degree, with high transitivity and have a community structure, while a information network, such as a citation network, would most likely have high transitivity since citation and publication have different publication date. Paper A refers to Paper B, which refers to paper C, but paper C can not possibly refer to papaer A since C is clearly published before paper A. As the Figure \ref{fig:CitationN} shows, citation network is directed network.
+
+\begin{figure}[!ht]
+	\includegraphics{citation_network}
+	\caption{Citation network} 
+	\label{fig:CitationN}
+\end{figure}
 
 \subsection{The small world effect}
 The small world effect was first demonstrated by Stanley Milgra in the 1960s during his famous letter passing experiment\cite{SmallWorldProblemSmilgram1960}. The experiment was about passing letters from person to person to reach a designated target with only small steps. For the published case, the chain was around six \cite{Experiment1969}. This shows us that for most pair of vertices in a network can reach each other with a short parth. A more precise wording is that "Networks are said to show the small world effect if the value of $\it{l}$ scales logarithmically or slower with the network size for a fixed mean degree.". \cite{ComplexNetwork2003}. We have defined $\it{l} $ to be the mean geodesic distance between vertex pairs in a network.
@@ -71,18 +77,17 @@ A sparce matrix is an matrix with few non-zero elements in them. The social netw
 
 \begin{figure}
 	\begin{subfigure}{0.5\textwidth}
-	\includegraphics{AdjacencyM}
+	\includegraphics[width=\textwidth]{AdjacencyM}
 	\caption{The ajacency matrix}
 	\label{fig:AdjacencyM}
 	\end{subfigure}
-
-
+	~
 	\begin{subfigure}{0.5\textwidth}
-	\includegraphics{simpleGraph}
+	\includegraphics[width=\textwidth]{simpleGraph}
 	\caption{The graph corresponding to the adjacency matrix}
 	\label{fig:matrix}
 	\end{subfigure}
-	 	
+ 	\caption{Sparce matrix to graph}
 \end{figure}
 
 \section{Data diffusion}
@@ -99,7 +104,7 @@ The linear threshold model uses a threshold $\theta_v$ between the interval [0,1
 	\includegraphics{linearThreshold}
 	\caption{Linear Threshold model} 
 	\label{fig:linearThresh}
-\end{figure
+\end{figure}
 
 The independent cascade model changes states with a probability $\it{p_{v, w}}$, where $\it{ v }$ is current node, and $\it{w}$ is it's neighbor. During each propagation, the node $\it{v}$ have a  $\it{p_{v, w}}$ chance to change state if the neighbor $\it{w}$ changed state. If during time-step $\it{t}$ a node $\it{v}$ changed state, its neighbor $\it{w}$ would have a $\it{p_{v, w}}$ chance to change state in the next time step. An example here would be spread of a disease. The current node$\it{v}$ have a chance($\theta_v$) to activate its neighbor. As shown in Figure \ref{fig:ICM}, there is an probability of $p_v$ to infect the neighbours to vertex v, in this figure, the probability is the same, bit that is not nessesary true. the probability can be independent, each vertex can have different probability to activate neighbour, or we can have a global probability.
 
@@ -107,7 +112,7 @@ The independent cascade model changes states with a probability $\it{p_{v, w}}$,
 	\includegraphics{ICM}
 	\caption{Independent cascate model} 
 	\label{fig:ICM}
-\end{figure
+\end{figure}
 
 We can se the similarity between the breadth first search and information diffusion. Breath first search, as mentioned before, starts at the root node and add the root nodes children in a queue, then tales the first childe node in the queue and adds all its childen to the queue. Each new child node is added to the back of the queue, while finished node is placed in a $\it{finished_queue}$. The sequences of nodes tested is the same as during an information diffusion, where the diffusions neighbour is placed in the $ \it{boarder_queue} $ and having a probability to be infected. If the node is infected, then that nodes neighbour would be added to the $boarder_queue$, while if the node is not infected, the neighbour to the node would be safe. The information diffusion can therefore be looked at as an breadth first search, with an probability to add the child to the queue. 
 
