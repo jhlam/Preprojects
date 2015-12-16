@@ -7,9 +7,9 @@ In this chapter, we will look at the fundamental concepts and background informa
 The fundamental unit in a network is $\it{{Vertex}} (pl. vertices)$ sometimes called a node (computer science). For this report, vertex and node would be used interchangeably. The "bridge" or the line connecting two vertices is called a $\it{{Edge}}$, which serves as a connection between vertices as shown in Figure \ref{fig:SimpleGraph}.  Different network have different types of edge, some can be $\it{Directed}$ or $\it{undirected}$. Directed edge is where a edge  runs in only one direction (such as a one-way road between two points), and undirected if it runs in both directions. Directed edges, which are sometimes called arcs, can be thought of as sporting arrows indicating their orientation. A graph is directed if all of its edges are directed. An undirected graph can be represented by a directed one having two edges between each pair of connected vertices, one in each direction.
 
 \begin{figure}[!ht]
+	\includegraphics{smallExampleNetwork}
 	\caption{Simple network} 
 	\label{fig:SimpleGraph}
-	\includegraphics{smallExampleNetwork}
 \end{figure}
 
 
@@ -18,7 +18,7 @@ Each node have a value that is known as $\it{{Degree}}$. Degree for a node is th
 A $\it{{Geodesic path}}$ is the shortest path through the network from one vertex to another. Note that there may be and often is more than one geodesic path between two vertices. The $\it{{Diameter}}$ of a network, however,  is the length (in number of edges) of the longest geodesic path between any two vertices. A few authors have also used this term to mean the average geodesic distance in a graph, although strictly the two quantities are quite distinct
 
 \section{Network}
-A $\it{network}$ is a collection of $\it{Vertices}$, commonly known as nodes with $\it{edges}$ connecting them together\cite{ComplexNetwork2003}. The edges serves as a connection, or a "bridge" between the nodes, while the nodes can represent something, or containing information. In the real world, multiple systems takes the form of networks around the world, examples are the internet, the World Wide Web, social media like Facebook, twitter etc.  There are different types of network or $\it{graphs}$. These include from $\it{social network}$, $\it {sinformation networks}$, $\it{technological networks}$ ,and $\it{biological network}$.  Each of them have a different properties, but we will focus more about social network.
+A $\it{network}$ is a collection of $\it{Vertices}$, commonly known as nodes with $\it{edges}$ connecting them together\cite{ComplexNetwork2003}. The edges serves as a connection, or a "bridge" between the nodes, while the nodes can represent something, or containing information. In the real world, multiple systems takes the form of networks around the world, examples are the internet, the World Wide Web, social media like Facebook, twitter etc.  There are different types of network or $\it{graphs}$. These include from $social$ $network$, ${information}$ ${networks}$, $technological$ $networks$ ,and $biological$ $network$.  Each of them have a different properties, but we will focus more about social network.
 
 A social network is a set of people connected to each other via some form of contact or interactions\cite{ComplexNetwork2003}. The nodes are people while the edges are the connections between peoples. The social network display information regarding connection, interaction or location of a set of people.It forms patterns regarding friendships, business interactions between companies and families history/ ancestral tree. The social network is often used in social science\cite{ComplexNetwork2003}. Some notable experiments are \cite{smallWorldExperiment}, which looks at the small world problem. The small world problem can be summarized as: "what is the probability that any two people, selected arbitrarily from a large population, such as that of the United States, will know each other?". \cite{smallworldExperiment1969}. This in itself is not that interesting, the \cite{SmallworldExperiment1969} asked even tho  person $\it{a}$ and $\it{z}$ does not know each other, do they have a set of individuals \{ $\it {b_1, b_2, ... b_n} $\} who are mutual friend or even a "chain" of such individual($\it {a-b-c-...-y.z}$).
 
@@ -41,7 +41,14 @@ Transistivity, also sometimes called clustering is the properties that shows tha
 For information diffusion and seed selection, this would mean that picking nodes that are geographically close/neighbor to each other, would have a smaller impact/spread then picking two not neighboring vertices. By picking two nodes that are connected to each other, they would likely share a common neighbor thus having a limited reach.  
 
 \subsection{Degree distribution}
-Degree distribution is the histogram of degrees of vertex. For random graphs, the distribution would most likely be a poiison distribution or binomial. For real world network, the distribution would often have a highly right skewed distribution.[INSER FIGURE OF HISTOGRAM] Resulting in that the distribution has a long right tail of values. The probability $P_k$ is the probability that the new vertex $\it{v}$ have the degree k. 
+Degree distribution is the histogram of degrees of vertex. For random graphs, the distribution would most likely be a poiison distribution or binomial. For real world network, the distribution would often have a highly right skewed distribution.[INSER FIGURE OF HISTOGRAM] Resulting in that the distribution has a long right tail of values. The probability $P_k$ is the probability that the new vertex $\it{v}$ have the degree k. The shape have often as the figure \ref{fig:exampleHistogram}
+
+
+\begin{figure}
+	\includegraphics{exampleHistogram}
+	\caption{A example of a typical degree distribution} 
+	\label{fig:exampleHistogram}
+\end{figure}
 
 The degree distribution shows us how the degree to the graph is distributed. For social graph, the degree distribution is often in the shape of [INSERT FOIGURE of degree distribution histogram]. For the information diffusion, this distributon shows us how many high degree nodes there are in the network, those node would likely be high prioritized node and have a large impact. 
 
@@ -54,7 +61,7 @@ For data diffusion, this kind of behavior would result in wasting a seed by pick
 \subsection{Network resilience}
 For most network model, there is the need to remove nodes from the network. Removal of a node can have no effect on the network as a whole, or it can be devastating. Network resilience looks at how the network can ressist to such a removal. There are two different removal scheme, the random removal where nodes are randomly picked and removed, or the targeted removal where specific nodes are removed depending on the criteria. 
 
-The experiment mentioned in \cite{complexNetwork} by Albert $\it{et al}$ showed that for a subset of network representing the internet and the world wide web, targeted removal had a larger impact then random removal. The targeted removal removed the highest degree nodes from the network, and the random removal removed nodes randomly. The random removal had a minimal effect on the network, while the targeted removal had a much larger impact, the mean vertex-vertex distance increased. They proposed that the internet was highly resilient to random removal, while much more vulnerable to targeted removal. 
+The experiment mentioned in \cite{complexNetwork} by Albert $\it{et. al}$ showed that for a subset of network representing the internet and the world wide web, targeted removal had a larger impact then random removal. The targeted removal removed the highest degree nodes from the network, and the random removal removed nodes randomly. The random removal had a minimal effect on the network, while the targeted removal had a much larger impact, the mean vertex-vertex distance increased. They proposed that the internet was highly resilient to random removal, while much more vulnerable to targeted removal. 
 
 There are other studies that proposed a different interpretation about the data found.	
 
@@ -94,7 +101,7 @@ A sparse matrix is an matrix with few non-zero elements in them. The social netw
 Data diffusion is looking at how information is propagated through a network or a graph. An example would be how a new Internet meme, a new trend or how a new disease is spread through a community. The process consist of a set of starter nodes that are "infected", during each time-step, there are a chance that the "infected" node would "infect" its neighbor. To start such a simulation, we would need to first pick out a set of initial "starter node". These {\it k} seed nodes is a set of node that in the initial time-step is infected. They will pass on the information/infection during each time-step and the information/infection will propagate through the network.
 
 \section{Basic Diffusion Models}
-When we talk about information propagation, we can look at how disease or technological innovations is spread through a social network. We can simulate those kind of behavior with different diffusion models. There are two basic diffusion models used to simulate the propagation of information through a network\cite{MaximizeSpread2003}, the {$\it linear threshold model$} and the $\it{ independent cascade model}$\cite{MaximizeSpread2003}.
+When we talk about information propagation, we can look at how disease or technological innovations is spread through a social network. We can simulate those kind of behavior with different diffusion models. There are two basic diffusion models used to simulate the propagation of information through a network\cite{MaximizeSpread2003}, the {$linear$ $threshold$ $model$ and the $ independent$ $cascade$ $model$\cite{MaximizeSpread2003}.
 
 This process can be simulated by looking at a social network and how information propagates through the network. We look at each node in the graph as a person, they can be either active, or inactive. The activation of a node depends on which diffusion model we choose. A active node is "infected", while the inactive is the "healthy" ones. The activation of each nodes is dependent on which model we pick.
 
@@ -169,13 +176,41 @@ $1 − \delta$
 \end{algorithmic}
 \end{algorithm}
 
--degree algorithm
 
 Another popular algorithm is the degree algorithm\cite{MaximizeSpread2015}. Unlike the greedy algorithm, the degree sort all the node according to their degree distribution. The algorithm picks the top $\it{k}$ nodes according to the degree distribution. This approach does not take the degree correlation into account, by picking only high degree node, there would be multiple overlapping activated node.
+
+\begin{algorithm}
+\caption{Degree Algorithm}
+\begin{algorithmic}[1]
+\State Start with $A = \oldemptyset$
+\While{$|A| \leq l$}
+\State For each node $x$, use repeated sampling to compute DegreeMax($x$).
+\State Add the node with largest degree to A.
+\EndWhile
+\State Output the set $A$ of nodes.
+\end{algorithmic}
+\end{algorithm}
+
+
+Another algorithm is the independent greedy algorithm. The algorithm itterates through the network, computing the spread of each node. The algotihm then chooses the vertex with the largest coverage independent of the other previous choosen nodes.
+
+\begin{algorithm}
+\caption{Indeependent Algorithm}
+\begin{algorithmic}[1]
+\State Start with $A = \oldemptyset$
+\While{$|A| \leq l$}
+\State For each node $x$, use repeated sampling to approximate $\sigma(A \cup {x}) $ to within ($1 \pm \varepsilon$) with probability
+$1 − \delta$
+\State Add the node with largest estimate for $\sigma({x})$ to A.
+\EndWhile
+\State Output the set $A$ of nodes.
+\end{algorithmic}
+\end{algorithm}
 
 
 Random algorithm
 The last one is the random algorithm. The random algorithm just pick a random seed node. This approach is the simplest to implement and easiest. The downside is that this is random and there are no strategical choosing of seed node. 
+
 
 
 \section{Cache oblivious model} 
