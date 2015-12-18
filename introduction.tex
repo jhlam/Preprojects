@@ -3,6 +3,14 @@
 Using graphs as representation and algorithms that traverse graphs are common through many scientific domains\cite{HybridBFS2015}. We can use graphs to simulate how a disease would spread through a social network, we can predict how efficient viral marketing is and we can see how a new trend would spread through a community\cite{MaximizeSpread2003}.To select the most influential nodes for a information diffusion through a social network is an NP-hard problem\cite{MaximizeSpread2003}. One of the common ways to select them, is by brute forcing through the network with algorithms like BFS. One of the solution is the greedy algorithm\cite{MaximizeSpread2015}. The greedy algorithm, proposed by\cite{MaximizeSpread2003} goes through all the nodes and computes the effect on the network that nodes had. The greedy algorithm takes the $\it{k}$ top most influential nodes as the starter node. When a new seed node is to be added to the starter set $\it{S}$, the algorithm itterate over all the node in the network that is not in $\it{S}$ and compute the spread.
 
 
-The problem that we will explore with this report, is if there is a way to optimize the seed-selection of the most influential nodes in a graph. The report will focus on how to use hardware to achieve an optimization to this problem. One idea is to try to use the irregular memory access that is requested during a BFS search. 
+The task assigned was:
+
+The problem that we will explore with this report, is if there is a way to optimize the seed-selection of the most influential nodes in a graph.
+
+
+
+We can look at information diffusion as a new trend or a new product they are trying to promote. Each node is a person in the social network and they can either pick up the new trend, or ignore it. The seed selection algorithm can be seen as the company trying to promote the product by giving some individual free sample in hope that the product will catch on. The seed selection algorithm would be the algorithm that pick out the key individuals that will recive the free sample.
+
+I have in this report reproduced the experiment done in \cite{Maximizespread2003} with the greedy algorithm, the hihg degree algorithm, the random algorithm and a modified version of the greedy algorithm we are calling independent greedy algorithm in [METHODE]. We will go through some of the notation commonly used in graph theory in[Background] and we will look at how we can performe standard graph algorithm such as BFS as matrix-vector multiplication. We will propose some idea that chould potentially improve the seed selection algorithm, the independent cascade model or the diffusion of information. 
 
 MORE OF WHAT YOU HAVE DONE HERE<NEED TO SEE HOW YOU HAVE DONE TO HELP THE PROBLEM
