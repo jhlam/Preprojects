@@ -1,8 +1,10 @@
 \chapter{Future work}
-One interesting aspect that does not have huge previous work on is a hardware approach to speed up the seed selection and the inforamtion diffusion. We have seen different algorithms to select the most appropiate seed, the problem is that for larger graph, the seed selection algorithm is very taxing for the system. For this report, the graphs generated is still small, yet the largest of the used graph proved to be quite slow for the system. 
+One interesting aspect that does not have huge previous work on is a hardware approach to speed up the seed selection and the information diffusion. We have seen different algorithms to select the most appropriate seed, the problem is that for larger graph, the seed selection algorithm is very taxing for the system. For this report, the graphs generated is still small, yet the largest of the used graph proved to be quite slow for the system. It would be interesting to see how an CPU-FPGA heterogeneous platform like \cite{HybridBFS2015} would improve the information diffusion. 
 
-Another interesting branch to explore would be to see how a paralleixed independent cascade model would meassure against the non-parallel verison. 
+Another interesting branch to explore would be to see how a paralyzed independent cascade model would measure against the non-parallel version. There are studies exploring the paralyzed BFS\cite{ParallelBFS2011}
 
-For this report, we created the simulation by storing arrays and "pointer chasing", as mentioned in \ref{background}, by applying sparce matrix-vector multiplication, we could have explored other potentially benefitial optimization. 
+For this report, we created the simulation by storing arrays and "pointer chasing", as mentioned in \ref{background}, by applying sparse matrix-vector multiplication, we could have explored other potentially beneficial optimization. 
 
-The cache oblivious sparce matrix-vector multiplication is one aspec we have yet to touch uppon. It would be interesting to furthur investigate how much of an improvement this would potentially give compare to a standard sparce matrix multiplication.
+The cache oblivious sparse matrix-vector multiplication is one aspect we have yet to touch upon. It would be interesting to further investigate how much of an improvement this would potentially give compare to a standard sparse matrix multiplication.
+
+------------------------still lacking a lot of information, would add more detail of how each point mentioned can be expanded.

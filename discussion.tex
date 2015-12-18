@@ -1,7 +1,9 @@
 \chapter{Discussion}
-One paper showed how implementing a parallalized bfs algorithm on a distributed system reduced the communication times by a factor of 3.5, compared to a common vertex based approach\cite{ParallelBFS2011}.  In scientific application, ,graph based computation is pervasived and often data-intensive, this especially for distributed systems. 
+The result was somewhat surprising, the greedy algorithm that I thought would be the best algorithm in this simulation was not a huge improvement over the other algorithm. The random algorithm performed better then i expected and the degree algorithm was in some stages better then the greedy algorithm. The independent coverage algorithm performed better or equally good as most of the other algorithm. Toward the end where we choose twenty seed nodes, most of the algorithm performed somewhat the same.
 
-ISNERT INFORMATION 
+These results can be explained by looking at our simulated social networks. The networks we ran the simulation over was a small graph compared to real world graphs, by choosing at most 20 seed nodes, a large percentage of the graph would be covered. Since the graphs was all connected in a network, the small world effect would result in that every vertex would be subjected to activation. Our global percentage was 0.05. 
 
+One paper showed how implementing a palatalized BFS algorithm on a distributed system reduced the communication times by a factor of 3.5, compared to a common vertex based approach\cite{ParallelBFS2011}.  In scientific application, ,graph based computation is pervasive and often data-intensive, this especially for distributed systems. 
 
-It would be interesting to see how the parallelized BFS would improve the computation time for our simulation.
+Our simulation runs until there are no more nodes too test. This can explain some of the result we got. Since the simulation runs until no more nodes can be activated, the coverage after 50 runs would most likely activate most of the node. This can result in no distinctive better algorithm. 
+
