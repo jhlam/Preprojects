@@ -6,6 +6,12 @@ Magnus~Jahre Yaman~Umuroglu, Donn~Morrison.
   platform.
 \newblock 2015.
 
+\bibitem{DiseasOutbreak}
+V.~S. Anil Kumar Madhav V. Marath Aravind Srinivasan Zoltán Toroczkai
+  Nan~Wang5 Stephen~Eubank, Hasan~Guclu.
+\newblock Modelling disease outbreaks in realistic urban social networks.
+\newblock 2003.
+
 \bibitem{MaximizeSpread2003}
 \'Eva~Tardos David~Kampe, Jon~Klein.
 \newblock Maximizing the spread of influence through a social network.
@@ -16,15 +22,15 @@ Magnus~Jahre Yaman~Umuroglu, Donn~Morrison.
 \newblock Maximizing the spread of influence through a social network.
 \newblock 2003.
 
+\bibitem{AlgoToMath}
+John~Gilbert Jeremy~Kepner.
+\newblock Graph algorithms in the language of linear algebra.
+\newblock 2011.
+
 \bibitem{ComplexNetwork2003}
 M.~E.~J. Newman.
 \newblock {\em The structure and function of complex networks}.
 \newblock 2003.
-
-\bibitem{smallworldExperiment1969}
-Stanley~Milgram Jeffrey~Travers.
-\newblock An experimental study of the small world problem.
-\newblock 1969.
 
 \bibitem{SmallWorldProblemSmilgram1960}
 Stanley Milgram.
@@ -36,10 +42,10 @@ Stanley~Milgram Fjeffrey~Travers.
 \newblock An experimental study of the small world problem.
 \newblock 1969.
 
-\bibitem{algoToMath}
-John~Gilbert Jeremy~Kepner.
-\newblock Graph algorithms in the language of linear algebra.
-\newblock 2011.
+\bibitem{smallworldExperiment1969}
+Stanley~Milgram Jeffrey~Travers.
+\newblock An experimental study of the small world problem.
+\newblock 1969.
 
 \bibitem{Rmat2004}
 Christos~Faloutsosx Deepayan~Chakrabartiy, Yiping~Zhanz.

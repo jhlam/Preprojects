@@ -1,10 +1,10 @@
 \chapter{Background}
 
-In this chapter, we will look at the fundamental concepts and background information needed to understand the the different infections model, problem with seed-selection for social networks, and solving Breadth-first search using matrix multiplication. This chapter will contain notations that we would use throughout the report and used in the field. One aspect we will focus focus on, is how we can perform graph algorithm such as breadth first search as matrix multiplication. The motivation for transforming breadth first search as matrix-vector multiplication is that displaing the graph algorithm as a matrix multiplication can display the data access pattern for the algorithm and can be readily optimized\cite{AlgoToMath}. The indipendent cascade model is a special case to the Breadth first search\cite{HybridBFS2015}. By looking at how to improve BFS, we can apply such optimization to ICM. 
+In this chapter, we will look at the fundamental concepts and background information for the different diffusion model, the seed selection problem and perfoming breadth-first search using matrix multiplication. This chapter will contain notations that we would use throughout the report. One aspect we will focus on, is how we can perform graph algorithm such as breadth first search as matrix multiplication. The motivation for transforming breadth first search as matrix-vector multiplication is that displaing the graph algorithm as a matrix multiplication can display the data access pattern for the algorithm and can be readily optimized\cite{AlgoToMath}. We will look at the indipendent cascade model, which is a special case of breadth first search\cite{HybridBFS2015}. By looking at how to improve BFS, we can apply such optimization to ICM and the seed selection algorithm. 
 
 
 \section{Network terminology and glossary}
-The fundamental unit in a network is $\it{{Vertex}} (pl. vertices)$ sometimes called a node (computer science). For this report, vertex and node would be used interchangeably. The "bridge" or the line connecting two vertices is called a $\it{{Edge}}$, which serves as a connection between vertices as shown in Figure \ref{fig:SimpleGraph}.  Different network have different types of edge, some can be $\it{Directed}$ or $\it{undirected}$. Directed edge is where a edge  runs in only one direction (such as a one-way road between two points), and undirected if it runs in both directions. Directed edges can be thought of as sporting arrows indicating their orientation. A graph is directed if all of its edges are directed. An undirected graph can be represented by a directed one having two edges between each pair of connected vertices, one in each direction.
+The fundamental unit in a network is $\it{{Vertex}} (pl. vertices)$, sometimes called a node. For this report, both vertex and node will be used. The "bridge" or the line connecting two vertices is called a $\it{{Edge}}$, which serves as a connection between vertices as shown in Figure \ref{fig:SimpleGraph}.  Different network have different types of edge, some is $\it{Directed}$, while others is $\it{undirected}$. Directed edge is an edge that runs in only one direction (such as a one-way road between two points), and undirected runs in both directions. Directed edges can be thought of as sporting arrows indicating their orientation, while undirected edges have no such orientation. A graph is directed if all of its edges are directed.
 
 \begin{figure}[!ht]
 	\includegraphics{smallExampleNetwork}
@@ -13,15 +13,15 @@ The fundamental unit in a network is $\it{{Vertex}} (pl. vertices)$ sometimes ca
 \end{figure}
 
 
-Each node have a value that is known as $\it{{Degree}}$. Degree for a node is the number of edges connected to a vertex. Note that the degree is not necessarily equal to the number of vertices adjacent to a vertex, since there may be more than one edge between any two vertices. In a few recent articles, the degree is referred to as the “connectivity” of a vertex, but we avoid this usage because the word connectivity already has another meaning in graph theory. A directed graph has both an in-degree and an out-degree for each vertex, which are the numbers of in-coming and out-going edges respectively. The $\it{{Component}}$ to which a vertex belongs is that set of vertices that can be reached from it by paths running along edges of the graph. In a directed graph a vertex has both an in-component and an out-component, which are the sets of vertices from which the vertex can be reached and which can be reached from it.
+Each node have a value that is called $\it{{Degree}}$. Degree for a vertex $v_1$ is the amount of edges connected to $v_1$. Note that the degree is not necessarily equal to the number of vertices adjacent to a vertex, since there may be more than one edge between any two vertices. A directed graph has both an in-degree and an out-degree for each vertex, which are the numbers of in-coming and out-going edges respectively. The $\it{{Component}}$ to which a vertex belongs is that set of vertices that can be reached from it by paths running along edges of the graph. In a directed graph a vertex has both an in-component and an out-component, which are the sets of vertices from which the vertex can be reached and which can be reached from it.
 
 A $\it{{Geodesic path}}$ is the shortest path through the network from one vertex to another. Note that there may be and often is more than one geodesic path between two vertices. The $\it{{Diameter}}$ of a network, however,  is the length (in number of edges) of the longest geodesic path between any two vertices. A few authors have also used this term to mean the average geodesic distance in a graph, although strictly the two quantities are quite distinct
 
 \section{Network}
-A $\it{network}$ is a collection of vertices and edges\cite{ComplexNetwork2003}. The edges serves as a connection, or a "bridge" between the nodes, while the nodes can represent something, or containing information. In the real world, multiple systems takes the form of networks around the world, examples are the internet, the World Wide Web, social media like Facebook, twitter etc.  There are different types of network or $\it{graphs}$. These include from $social$ $network$, ${information}$ ${networks}$, $technological$ $networks$ ,and $biological$ $network$.Different network have different properties. 
+A $\it{network}$ is a collection of vertices and edges\cite{ComplexNetwork2003}. The edges serves as a connection, or a "bridge" between the nodes, while the nodes can represent something, or containing information. In the real world, multiple systems takes the form of networks around the world, examples are the internet, the World Wide Web, social media like Facebook, twitter etc.  There are different types of network. These include from $social$ $network$, ${information}$ ${networks}$, $technological$ $networks$ ,and $biological$ $network$.Different network have different properties, we will look at those most relevent to social networks.
 
 \subsection{Social network}
-A social network is a set of people connected to each other via some form of contact or interactions\cite{ComplexNetwork2003}. The nodes are people while the edges are the connections between peoples. The social network display information regarding connection, interaction or location of a set of people.It forms patterns regarding friendships, business interactions between companies and families history/ ancestral tree. The social network is often used in social science\cite{ComplexNetwork2003}. Some notable experiments are \cite{smallWorldExperiment}, which we will discuss more in \ref{sec:SmallWorldeffect} 
+A social network is a set of individuals connected to each other via some form of contact or interactions\cite{ComplexNetwork2003}. The nodes are people while the edges are the connections between peoples. The social network display information regarding connection, interaction or location of a set of people.It forms patterns regarding friendships, business interactions between companies and families history. The social network is often used in social science\cite{ComplexNetwork2003}. Some notable experiments are \cite{smallWorldExperiment}, which we will discuss more in \ref{sec:SmallWorldeffect} 
 
 \begin{figure}[!ht]
 \centering
@@ -33,22 +33,30 @@ A social network is a set of people connected to each other via some form of con
 \section{Network properties}
 Network properties are different characteristic properties that network displays. We will focus on those that are more relevent to social network and how it is relevent to the ICM, data diffusion and seed selection.
 
-
 \subsection{The small world effect}\label{sec:SmallWorldEffect}
 
-The small world effect was first demonstrated by Stanley Milgram in the 1960s during his famous letter passing experiment\cite{SmallWorldProblemSmilgram1960}. The experiment was about passing letters from person to person to reach a designated target with only small steps. For the published case, the chain was around six \cite{Experiment1969}. This shows us that for most pair of vertices in a network can reach each other with a short path. A more precise wording is that "Networks are said to show the small world effect if the value of $\it{l}$ scales logarithmic or slower with the network size for a fixed mean degree.". \cite{ComplexNetwork2003}. We have defined $\it{l} $ to be the mean geodesic distance between vertex pairs in a network.
+The small world effect was first demonstrated by Stanley Milgram in the 1960s during his famous letter passing experiment\cite{SmallWorldProblemSmilgram1960}. The experiment was about passing letters from person to person to reach a designated target with only small steps. For the published case, the chain was around six \cite{Experiment1969}, meaning there were only six passes neccessary for the letter to reach its destination. This shows us that for most pair of vertices in a network can reach each other with a short path. A more precise wording is that "Networks are said to show the small world effect if the value of $\it{l}$ scales logarithmic or slower with the network size for a fixed mean degree."\cite{ComplexNetwork2003}. We have defined $\it{l} $ to be the mean geodesic distance between vertex pairs in a network.
 
 The small world problem can be summarized as: "what is the probability that any two people, selected arbitrarily from a large population, such as that of the United States, will know each other?". \cite{smallworldExperiment1969}. This in itself is not that interesting, the \cite{SmallworldExperiment1969} asked even tho  person $\it{a}$ and $\it{z}$ does not know each other, do they have a set of individuals \{ $\it {b_1, b_2, ... b_n} $\} who are mutual friend or even a "chain" of such individual($\it {a-b-c-...-y.z}$).
 
-For the information diffusion problem, this kind of effect would result in that the  diffusion through a network would need around 6 steps to have traveled through the entire network. Meaning that most node can reach each other through a relatively small step.
+For the data diffusion problem, this kind of effect would result in that the diffusion through a network would need around 6 steps to have traveled through the entire network. Meaning that most node can reach each other through a relatively small step.
 
 \subsection{transitivity/clustering}
-Transistivity, also sometimes called clustering is the properties that shows that there is a high number of triangles in the network. A triangle in a network is if node A is connected to node B and node C, and node B and C is also connected to each other, thus creating a triangle. In social network, we say that a friend of your friend is likely to be your friend too\cite{ComplexNetwork2003}. The transistivity is often used to show $\it{network density}$.
+In graphs and networks, there would often have a special connection pattern called $triangles$. Triangles is where three vertecis: $v_a,v_b,v_c$ ia all connected to each other as shown in Figure:\ref{fig:triangleStruc}. We can look at such a connection as person A is friends with B and C. There are a chance that B and C is friends with each other too. Transitivity is used to determen how many such components is pressent in the graph.  
 
-For information diffusion and seed selection, this would mean that picking nodes that are geographically close/neighbor to each other, would have a smaller impact/spread then picking two not neighboring vertices. By picking two nodes that are connected to each other, they would likely share a common neighbor thus having a limited reach.  
+\begin{figure}
+	\includegraphics{triangleStruc}
+	\caption{Examples of triandles in networks} 
+	\label{fig:triangleStruc}
+\end{figure}
+
+
+For data diffusion and seed selection, this would mean that picking nodes that are neighbor to each other, would have a smaller spread then picking two not neighboring vertices. By picking two nodes that are connected to each other, they would likely share common neighbors and thus having a smaller reach.  
 
 \subsection{Degree distribution}
-Degree distribution is the histogram of degrees of vertex. For random graphs, the distribution would most likely be a poiison distribution or binomial. For real world network, the distribution would often have a highly right skewed distribution as sowh in Figure \ref{fig:exampleHistogram}. Resulting in that the distribution has a long right tail of values. The probability $P_k$ is the probability that the new vertex $\it{v}$ have the degree k. The shape have often as the figure \ref{fig:exampleHistogram}
+As mentioned earlier, each node have a degree. The degree distribution shows how the different degrees in the network is distributed. From the degree distribution we can see how many nodes have specific degree. Different networks have different shaped degree distribution.
+
+For random graphs, the distribution would most likely be a poiison distribution or binomial. For social graph, the degree distribution is often in the shape of Figure \ref{fig:exampleHistogram}. For the information diffusion, this distributon shows us how many high degree nodes there are in the network, those node would likely be high prioritized node and have a large impact. One of the algorithm uses the distribution to select the seed nodes. We will discuss this in later sections.  
 
 
 \begin{figure}
@@ -57,13 +65,11 @@ Degree distribution is the histogram of degrees of vertex. For random graphs, th
 	\label{fig:exampleHistogram}
 \end{figure}
 
-The degree distribution shows us how the degree to the graph is distributed. For social graph, the degree distribution is often in the shape of [INSERT FOIGURE of degree distribution histogram]. For the information diffusion, this distributon shows us how many high degree nodes there are in the network, those node would likely be high prioritized node and have a large impact. 
 
 \subsection{Degree correlations}
-As \ref{fig:histogram} show, the network have a degree distribution with few high degree nodes and multiple low degree nodes. One interesting properties is the degree correlations. Degree correlations is how the high degree and low degree nodes connects to each other. One question is if high degree nodes tends to connect to other high degree nodes, or do they prefer to connect to low degree nodes. It turns out that both incidents is found in networks\cite{complexNetwork}. Most social networks are assortative, meaning vertices have a selective linking, where high degree vertex tends to connects to other high degree vertex, while technological network and biological network are most likely disassortative\cite{AssortativeMixing2002}. 
+As \ref{fig:histogram} show, the network have a degree distribution with few high degree nodes and many low degree nodes. One interesting properties is the degree correlations. Degree correlations is how the high degree and low degree nodes connects to each other. One question is if high degree nodes tends to connect to other high degree nodes, or do they prefer to connect to low degree nodes. It turns out that both incidents is found in networks\cite{complexNetwork}. Most social networks are assortative, meaning vertices have a selective linking, where high degree vertex tends to connects to other high degree vertex, while technological network and biological network are most likely disassortative\cite{AssortativeMixing2002}. 
 
 For data diffusion, this kind of behavior would result in wasting a seed by picking majority of high degree node for starting seed, since most of them would be connected to each other. One solution is by mixing the selection, choose some percentage to be high degree, and some with lower degree.
-
 
 \subsection{Network resilience}
 Most network model, there is the need to remove nodes from the network. Removal of a node can have no effect on the network, or it can be devastating. Network resilience looks at how the network can ressist to such a removal. There are two different removal scheme, the random removal where nodes are randomly picked and removed, or the targeted removal where specific nodes are removed depending on the criteria. 
@@ -75,15 +81,14 @@ There are other studies that proposed a different interpretation about the data 
 In an example of information diffusion, a targeted removal would result in massive change to the diffusion path. By removing high degree node would result in remove influential nodes and limit the spread of the data. Removing important node connection two different community would result in isolation and no path towards other community.
 
 \subsection{community structure}
-One properties that is often observed in a social network, is the community structure. The community structure is where a group of vertices having high density of edges with each other, while having low density of edges to other "community". We can see an example of the community structure clearly displayed from \cite{RaceSchool2001}. Where we can see the playground was divided into different community.
+One properties that is often observed in a social network, is the community structure. The community structure is where a group of vertices having high density of edges with each other, while having low density of edges to other "community". We can see an example of the community structure clearly displayed from \cite{RaceSchool2001}. Where we can see the playground was divided into different groups.
 
 This type of community structure would have a large impact on how the algorithm would select a seed for information diffusion. If all the seed would be selected in one community, the probability of spreading over to other community would be smaller, them having a seed be in the other community.
 
 \section{Breadth First search}
+Breadth first search is an tree traversal algorithm. BFS start at the root node $\it{v_r}$. The algorithm then stores all $v_r$s children node in an $\it{queue}$. The algorithm then takes the first node from the queue, $\it{v_1}$ and stores all the children node to $\it{v_1}$ in the back of the queue, this process continuous until the queue is empty and all the nodes have been iterated over. 
 
-Breadth first search is an tree traversal algorithm. BFS start at the root node $\it{v_r}$, or any arbitrary node in a n tree, and stores all its child node in an $\it{queue}$. The algorithm then takes the first node from the queue, $\it{v_1}$ and stores all the child node to $\it{v_1}$ in the back of the queue, this process continuous until the queue is empty and all the nodes have been iterated over. 
-
-Breadth first search is common graph itteration algorithm. The bredth first search is often limited by the irregular memory access. As mentioned, Independent cascate model is one special case of the Breadth first search.
+Breadth first search is common graph itteration algorithm. The bredth first search is often limited by the irregular memory access where the algorithm have too find the data stored in different spcae in the memory. As mentioned earlier, Independent cascade model is one special case of the Breadth first search.
 
 \begin{algorithm}
 \caption{Breadth First Search}
@@ -110,29 +115,58 @@ Breadth first search is common graph itteration algorithm. The bredth first sear
 
 
 \section{Data diffusion}
-Data diffusion is looking at how information is propagated through a network or a graph. An example would be how a new Internet meme, a new trend or how a new disease is spread through a community. The process consist of a set of starter nodes that are "infected", during each time-step, there are a chance that the "infected" node would "infect" its neighbor. To start such a simulation, we would need to first pick out a set of initial "starter node". These {\it k} seed nodes is a set of node that in the initial time-step is infected. They will pass on the information/infection during each time-step and the information/infection will propagate through the network.
-
+Data diffusion is looking at how information is propagated through a network or a graph. An example would be how a new Internet meme, a new product or how a new disease is spread through a community. The process consist of a set of starter nodes, which we will call seed nodes, that are "infected". During each time-step, there are a percentage $p_g$ that the "infected" nodes would "infect" its neighbors. We would need to first pick out a set of initial starter node. These {\it k} seed nodes is a set of k node that in the initial time-step is infected. They will pass on the information/infection during each time-step and the information/infection will propagate through the network. 
+ 
 \section{Basic Diffusion Models}
-When we talk about information propagation, we can look at how disease or technological innovations is spread through a social network. We can simulate those kind of behavior with different diffusion models. There are two basic diffusion models used to simulate the propagation of information through a network\cite{MaximizeSpread2003}, the {$linear$ $threshold$ $model$ and the $ independent$ $cascade$ $model$\cite{MaximizeSpread2003}.
+When we talk about data diffusion, we can look at how disease or technological innovations is spread through a social network. We can simulate those kind of behavior with different diffusion models. There are two basic diffusion models used to simulate the propagation of information through a network\cite{MaximizeSpread2003}, the {$linear$ $threshold$ $model$(LTM) and the $ independent$ $cascade$ $model$(ICM)\cite{MaximizeSpread2003}.
 
-This process can be simulated by looking at a social network and how information propagates through the network. We look at each node in the graph as a person, they can be either active, or inactive. The activation of a node depends on which diffusion model we choose. A active node is "infected", while the inactive is the "healthy" ones. The activation of each nodes is dependent on which model we pick.
+This process is similar to how a new product is promoted via facebook. Each node is a person, that person can buy the new product(activated), or ignore the new product(inactive). Each person will see their friend promote the new product and potentially buy the product. There are several differnt criteria for each person to buy the product(activates). They can have a percentage chance to be affected by the advertisement(ICM), or they will only be interested if a percentage of his or hers friends have promoted it(LTM). Some people might have a bigger friend circle then other(high degree), while other have bigger impact on a person(large $p_x$). Some might be harder to promote too(weighted edges), while some user have no friend(singletons). THe different model we will focus on, is the independent cascade model and the linear threshold model.
 
 \section{Linear threshold model}
 The linear threshold model uses a threshold $\theta_v$ between the interval [0,1], which represent the faction of $\it{v}'s$ neighbors that need to be active to activate node $\it{v}$. The Linear Threshold Model activates the current node {\it v} when the weight ${\it b_{v,w}} > \theta$ from its neighbor $\it{w}$ outweighs the $\theta_v$. This is more in line with the situation were each person have a chance to adopt to a new trend if exposed to the trend enough time by his close friends. An example would be a product promoted on social network like twitter and Facebook. The user will adopt the new trend if he is exposed to it from enough friends or idols. As show in Figure \ref{fig:linearThresh}, the threshold for vertex $\it{v}$ to be activated is $\theta_v$, a percentage of the total neighbour, in this instance, three.
 
 \begin{figure}[!ht]
-	\includegraphics{linearThreshold}
-	\caption{Linear Threshold model} 
-	\label{fig:linearThresh}
+	\begin{subfigure}
+		\includegraphics{linearThreshold}
+		\caption{Step 1 } 
+		\label{fig:linearThresh}
+	\end{subfigure}
+	\begin{subfigure}
+		\includegraphics{linearThreshold2}
+		\caption{step 2 } 
+		\label{fig:linearThresh2}
+	\end{subfigure}
+	\begin{subfigure}
+		\includegraphics{linearThreshold3}
+		\caption{step 3} 
+		\label{fig:linearThresh3}
+	\end{subfigure}
+	\caption{Linear Threshold mode}
 \end{figure}
 
 \subsection{Independent cascade model}
 The independent cascade model changes states with a probability $\it{p_{v, w}}$, where $\it{ v }$ is current node, and $\it{w}$ is it's neighbor. During each propagation, the node $\it{v}$ have a  $\it{p_{v, w}}$ chance to change state if the neighbor $\it{w}$ changed state. If during time-step $\it{t}$ a node $\it{v}$ changed state, its neighbor $\it{w}$ would have a $\it{p_{v, w}}$ chance to change state in the next time step. An example here would be spread of a disease. The current node$\it{v}$ have a chance($\theta_v$) to activate its neighbor. As shown in Figure \ref{fig:ICM}, there is an probability of $p_v$ to infect the neighbors to vertex v, in this figure, the probability is the same, bit that is not necessary true. the probability can be independent, each vertex can have different probability to activate neighbor, or we can have a global probability.
 
 \begin{figure}[!ht]
-	\includegraphics{ICM}
-	\caption{Independent cascade model} 
-	\label{fig:ICM}
+	\begin{subfigure}
+		\includegraphics{ICM}
+		\caption{step 1 } 
+		\label{fig:ICM}
+	\end{subfigure}
+
+	\begin{subfigure}
+		\includegraphics{ICM2}
+		\caption{step 2} 
+		\label{fig:ICM2}
+	\end{subfigure}
+
+	\begin{subfigure}
+		\includegraphics{ICM3}
+		\caption{step 3} 
+		\label{fig:ICM3}
+	\end{subfigure}
+
+	\caption{Independent cascade model}
 \end{figure}
 
 We can see the similarity between the breadth first search and information diffusion. Breath first search, as mentioned before, starts at the root node and add the root nodes children in a queue, then tales the first child node in the queue and adds all its children to the queue. Each new child node is added to the back of the queue, while finished node is placed in a $\it{finished\_queue}$. The sequences of nodes tested is the same as during an information diffusion, where the diffusion neighbor is placed in the $ \it{boarde\_queue} $ and having a probability to be infected. If the node is infected, then that nodes neighbor would be added to the $boarder\_queue$, while if the node is not infected, the neighbor to the node would be safe. The information diffusion can therefore be looked at as an breadth first search, with an probability to add the child to the queue. 
@@ -194,7 +228,7 @@ $1 − \delta$
 \end{algorithmic}
 \end{algorithm}
 
-\subseciton{The degree algorithm}
+\subsection{The degree algorithm}
 Another popular algorithm is the degree algorithm\cite{MaximizeSpread2015}. Unlike the greedy algorithm, the degree sort all the node according to their degree distribution. The algorithm picks the top $\it{k}$ nodes according to the degree distribution. This approach does not take the degree correlation into account, by picking only high degree node, there would be multiple overlapping activated node.
 
 \begin{algorithm}

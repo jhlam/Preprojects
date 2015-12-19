@@ -4,11 +4,21 @@ The top-level auxiliary file: template_report.aux
 A level-1 auxiliary file: front.aux
 A level-1 auxiliary file: assignment.aux
 A level-1 auxiliary file: introduction.aux
+Case mismatch error between cite keys Maximizespread2003 and MaximizeSpread2003
+---line 10 of file introduction.aux
+ : \citation{Maximizespread2003
+ :                             }
+I'm skipping whatever remains of this command
 A level-1 auxiliary file: background.aux
 Case mismatch error between cite keys SmallworldExperiment1969 and smallworldExperiment1969
----line 11 of file background.aux
+---line 24 of file background.aux
  : \citation{SmallworldExperiment1969
  :                                   }
+I'm skipping whatever remains of this command
+Case mismatch error between cite keys algoToMath and AlgoToMath
+---line 53 of file background.aux
+ : \citation{algoToMath
+ :                     }
 I'm skipping whatever remains of this command
 A level-1 auxiliary file: related_work.aux
 A level-1 auxiliary file: method.aux
@@ -27,46 +37,56 @@ Warning--I didn't find a database entry for "CacheObli1999"
 Warning--I didn't find a database entry for "COmultiplic2009"
 Warning--I didn't find a database entry for "COmuliplic2009"
 Warning--I didn't find a database entry for "Pycx"
+Warning--I didn't find a database entry for "MaximizedSpread2003"
 Warning--empty journal in HybridBFS2015
+Too many commas in name 1 of "Stephen Eubank, Hasan Guclu, V. S. Anil Kumar, Madhav V. Marath, Aravind Srinivasan, Zoltán Toroczkai, Nan Wang5" for entry DiseasOutbreak
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Stephen Eubank, Hasan Guclu, V. S. Anil Kumar, Madhav V. Marath, Aravind Srinivasan, Zoltán Toroczkai, Nan Wang5" for entry DiseasOutbreak
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Stephen Eubank, Hasan Guclu, V. S. Anil Kumar, Madhav V. Marath, Aravind Srinivasan, Zoltán Toroczkai, Nan Wang5" for entry DiseasOutbreak
+while executing---line 944 of file unsrt.bst
+Too many commas in name 1 of "Stephen Eubank, Hasan Guclu, V. S. Anil Kumar, Madhav V. Marath, Aravind Srinivasan, Zoltán Toroczkai, Nan Wang5" for entry DiseasOutbreak
+while executing---line 944 of file unsrt.bst
+Warning--empty journal in DiseasOutbreak
 Warning--empty journal in MaximizeSpread2003
 Warning--empty journal in MaximizeSpread2015
+Warning--empty journal in AlgoToMath
 Warning--empty publisher in ComplexNetwork2003
-Warning--empty journal in smallworldExperiment1969
 Warning--empty journal in SmallWorldProblemSmilgram1960
 Warning--empty journal in Experiment1969
-Warning--empty journal in algoToMath
+Warning--empty journal in smallworldExperiment1969
 Warning--empty journal in Rmat2004
 Warning--empty journal in ParallelBFS2011
-You've used 10 entries,
+You've used 11 entries,
             1791 wiz_defined-function locations,
-            516 strings with 4966 characters,
-and the built_in function-call counts, 1321 in all, are:
-= -- 101
-> -- 40
+            522 strings with 5207 characters,
+and the built_in function-call counts, 1449 in all, are:
+= -- 111
+> -- 44
 < -- 0
-+ -- 20
-- -- 10
-* -- 34
-:= -- 240
-add.period$ -- 30
-call.type$ -- 10
-change.case$ -- 9
++ -- 22
+- -- 11
+* -- 37
+:= -- 263
+add.period$ -- 33
+call.type$ -- 11
+change.case$ -- 10
 chr.to.int$ -- 0
-cite$ -- 20
-duplicate$ -- 82
-empty$ -- 146
-format.name$ -- 10
-if$ -- 278
+cite$ -- 22
+duplicate$ -- 90
+empty$ -- 160
+format.name$ -- 11
+if$ -- 305
 int.to.chr$ -- 0
-int.to.str$ -- 10
-missing$ -- 11
-newline$ -- 53
-num.names$ -- 10
-pop$ -- 53
+int.to.str$ -- 11
+missing$ -- 12
+newline$ -- 58
+num.names$ -- 11
+pop$ -- 58
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 28
+skip$ -- 31
 stack$ -- 0
 substring$ -- 0
 swap$ -- 1
@@ -74,8 +94,8 @@ text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 10
-while$ -- 10
-width$ -- 12
-write$ -- 92
-(There was 1 error message)
+warning$ -- 11
+while$ -- 11
+width$ -- 13
+write$ -- 101
+(There were 7 error messages)
