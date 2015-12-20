@@ -9,9 +9,9 @@ import numpy as ny
 
 p_i = 0.05 # infection probability
 results = []
-#n=128
+n=128
 #n=514
-n = 1024			#numbers of nodes in the network
+#n = 1024			#numbers of nodes in the network
 #avg step before finish: small =20 result =15
 #avg step before finish: medium = 179 	=	125
 #avg step before finish: LARGE = 271	= 190
@@ -21,7 +21,7 @@ round_num = 0
 S = []
 round_results=[]
 step=0
-end_step=190
+end_step=15
 
 avg_step=0
 count=0
@@ -30,9 +30,9 @@ def setRound_num(num):
 	round_num= num
 
 def spread(g,n):
-	global p_i, S
+	global p_i, S, end_step
 	mean_coverage =0
-	
+	temp_step=0
 	temp_boarder=[]
 	temp_infected=[]
 		#p_i=0.05
@@ -59,7 +59,7 @@ def spread(g,n):
 	#			temp_boarder.append(i)
 	#			temp_infected.append(i)
 	
-	while (len(temp_boarder)!=0):
+	while (len(temp_boarder)!=0 and temp_step != end_step):
 		current_vertex = temp_boarder.pop(0)
 		temp_infected.append(current_vertex)
 		mean_coverage+=1
@@ -69,6 +69,7 @@ def spread(g,n):
 				if(rd.random() < p_i):
 					#check if the testing node is infected or not and The coin flip to se if infected
 					temp_boarder.append(i)
+		temp_step+=1
 #		del temp_boarder[:]
 #		del temp_infected[:]		
 #		print(len(temp_boarder))	
@@ -217,7 +218,7 @@ def update():
 		
 		if(n==128):
 			text_file = open("step_small_greedy_result_multi_run.txt", "w")
-		elif(n==514):
+		elif(n==512):
 			text_file = open("step_medium_greedy_result_multi_run.txt", "w")
 		else:
 			text_file = open("step_large_greedy_result_multi_run.txt", "w")
@@ -238,7 +239,26 @@ def update():
 
 		text_file.close()
 
-		sys.exit("simulation complete")
+		
+		if(n==1024):
+			sys.exit("simulation complete")
+		else:
+			if(n==128):
+				print("end step: %d" %end_step)
+				n=512
+				end_step=125
+			else:
+				print("end step: %d"%end_step)
+				n=1024
+				end_step=190
+			k=1
+			round_num = 0
+			del S[:]
+			del round_results[:]
+			step =0
+			del results[:]
+			initialize()
+		
 	if (len(boarder)==0 or step == end_step):
 		round_results.append(coverage)
 		

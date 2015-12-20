@@ -9,9 +9,9 @@ import sys
 
 p_i = 0.05					# infection probability
 results = []
-#n=128
+n=128
 #n=512
-n = 1024		#numbers of nodes in the network
+#n = 1024		#numbers of nodes in the network
 k = 1
 k_end= 20
 round_num = 0
@@ -19,7 +19,7 @@ init_seed =[]
 S=[]
 round_results=[]
 step=0
-end_step=190
+end_step=15
 def setRound_num(num):
 	global round_num
 	round_num=num
@@ -171,7 +171,24 @@ def update():
 
 		text_file.close()
 
-		sys.exit("simulation complete")
+		if(n==1024):
+			sys.exit("simulation complete")
+		else:
+			if(n==128):
+				print("end step: %d" %end_step)
+				n=512
+				end_step=125
+			else:
+				print("end step: %d"%end_step)
+				n=1024
+				end_step=190
+			k=1
+			round_num = 0
+			del S[:]
+			del round_results[:]
+			step =0
+			del results[:]
+			initialize()
 	
 	if (len(boarder)==0 or step==end_step):
 		round_results.append(coverage)

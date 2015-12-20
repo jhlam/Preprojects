@@ -9,8 +9,8 @@ import numpy as ny
 
 p_i = 0.05 # infection probability
 results = []
-#n=128
-n = 512			#numbers of nodes in the network
+n=128
+#n = 512			#numbers of nodes in the network
 #n=1024
 k	= 1 
 k_end 	= 20
@@ -18,7 +18,7 @@ round_num = 0
 S = []
 round_results=[]
 step =0
-end_step=125
+end_step=15
 
 def setRound_num(num):
 	global round_num
@@ -158,6 +158,7 @@ def update():
 			text_file = open("step_medium_degree_result_multi_run.txt", "w")
 		else:
 			text_file = open("step_large_degree_result_multi_run.txt", "w")	
+			
 		text_file.write("total node was: %s\n" %nx.number_of_nodes(g))
 		text_file.write("total edge was: %s\n" %nx.number_of_edges(g))
 
@@ -173,11 +174,25 @@ def update():
 			text_file.write("%s ," % i )
 
 		text_file.close()
+		
 		if(n==1024):
 			sys.exit("simulation complete")
 		else:
-			n=1024
-			end_step=190
+			if(n==128):
+				print("end step: %d" %end_step)
+				n=512
+				end_step=125
+			else:
+				print("end step: %d"%end_step)
+				n=1024
+				end_step=190
+			k=1
+			round_num = 0
+			del S[:]
+			del round_results[:]
+			step =0
+			del results[:]
+			initialize()
 	if (len(boarder)==0 or step == end_step):
 		round_results.append(coverage)
 		#print(round_results)
