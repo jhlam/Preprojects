@@ -153,6 +153,7 @@ def update():
 		histogram= nx.degree_histogram(g)
 	
 		if(n==128):
+			print("writeing")
 			text_file = open("step_small_degree_result_multi_run.txt", "w")
 		elif(n==512):
 			text_file = open("step_medium_degree_result_multi_run.txt", "w")
@@ -186,13 +187,16 @@ def update():
 				print("end step: %d"%end_step)
 				n=1024
 				end_step=190
+				
 			k=1
 			round_num = 0
 			del S[:]
 			del round_results[:]
 			step =0
 			del results[:]
+			
 			initialize()
+			
 	if (len(boarder)==0 or step == end_step):
 		round_results.append(coverage)
 		#print(round_results)
@@ -223,7 +227,7 @@ def update():
 	 				boarder.append(i)
 	 	infected.append(current_vertex)
 			
-	 	coverage = ((len(infected)+len(boarder))/len(g.nodes()))
+	 	coverage = ((len(infected))/len(g.nodes()))
 
 	g, nextg = nextg, g
 

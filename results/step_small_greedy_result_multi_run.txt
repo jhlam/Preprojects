@@ -1,4 +1,5 @@
-total node was: 75total edge was: 3070.0133333333333
+total node was: 75total edge was: 307
+0.0133333333333
 0.0357333333333
 0.0557333333333
 0.0944
