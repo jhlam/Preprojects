@@ -11,17 +11,17 @@ p_i = 0.05 # infection probability
 results = []
 #n=128
 #n=514
-#n = 1024			#numbers of nodes in the network
-#avg step before finish: small =20
-#avg step before finish: medium = 179
-#avg step before finish: LARGE = 271
+n = 1024			#numbers of nodes in the network
+#avg step before finish: small =20 result =15
+#avg step before finish: medium = 179 	=	125
+#avg step before finish: LARGE = 271	= 190
 k	= 1 
 k_end 	= 20
 round_num = 0
 S = []
 round_results=[]
 step=0
-end_step=14
+end_step=190
 
 avg_step=0
 count=0
@@ -239,7 +239,7 @@ def update():
 		text_file.close()
 
 		sys.exit("simulation complete")
-	if (len(boarder)==0 ):
+	if (len(boarder)==0 or step == end_step):
 		round_results.append(coverage)
 		
 		avg_step+=step
@@ -258,7 +258,7 @@ def update():
 			setRound_num(0)
 	#np.savetxt('Output.txt', results, delimiter=",")   # X is an array
 		step=0
-		print("steps: %d" %(avg_step/count))
+		#print("steps: %d" %(avg_step/count))
  		initialize()
 	else:
 		current_vertex = boarder.pop(0)
