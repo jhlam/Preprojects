@@ -1,10 +1,15 @@
 \chapter{Related works}
-related work, there are multiple people working on this kind of problem. One of the more well known is Kemnp, where he tries to solve how to maximize the spread. 
+There are many studies studied the Maximization of influence in graph\cite{MaximizeSpread2003}.  Kempe et al proposed the greedy algorithm that this report have used. There are different studies that have looked at this problem, among those are \cite{InfluenceMax}, where the scalability of the greedy algorithm was discussed. From \cite{InfluenceMax} and our experiments, the greedy algorithm does not scale well with larger graphs. 
+
+Some have even proposed how such a viral marketing schem would be benefitial for companies.
+
+Other solution include\cite{HybridBFS2015}, that proposede the hybrid FPGA-CPU architecture. Where a FPGA-CPU hybrid BFS architecture was designed. They also showed how to viewe BFS as matric-vector multiplication on Boolean semiring. 
+
+As we can see, there are many different research around this subjects, even tho there aren't many that looks at how to accelerate seed selection and the Independent cascade model in hardware.
 
 
-Other solution include the hybrid FPGA-CPU architecture, which reduces the computation time for a BFS over a small world graph by XX\%\cite{HybridBFS2015} 
+The optimimzation to graph traversal is a heavily researched field. There are multiple different studies that have proposed different hardware solution for optimizing BFS \cite{ScalabelGraphEx}-\cite{DirectOptimizeBFS}. Different strategies of paralizing BFS have been proposed here\cite{ParallelBFS2011}. 
 
-As we can see, there are many different research around this subjects, even tho there aren't many that looks at how to accelerate seed selection and the Independent cascade model in hardware, which we will look more at in the end of this report.
+\cite{ScalableGraphex} proposed a BFS fri advanced multicore processor that are schalabel , enhances memory locality and cache utilization with an innovative data layout.
 
-
-----------------am looking into the different related works from the hybrid BFS paper from Yaman.
+\cite{}

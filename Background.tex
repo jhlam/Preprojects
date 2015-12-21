@@ -118,26 +118,28 @@ Breadth first search is common graph itteration algorithm. The bredth first sear
 Data diffusion is looking at how information is propagated through a network or a graph. An example would be how a new Internet meme, a new product or how a new disease is spread through a community. The process consist of a set of starter nodes, which we will call seed nodes, that are "infected". During each time-step, there are a percentage $p_g$ that the "infected" nodes would "infect" its neighbors. We would need to first pick out a set of initial starter node. These {\it k} seed nodes is a set of k node that in the initial time-step is infected. They will pass on the information/infection during each time-step and the information/infection will propagate through the network. 
  
 \section{Basic Diffusion Models}
-When we talk about data diffusion, we can look at how disease or technological innovations is spread through a social network. We can simulate those kind of behavior with different diffusion models. There are two basic diffusion models used to simulate the propagation of information through a network\cite{MaximizeSpread2003}, the {$linear$ $threshold$ $model$(LTM) and the $ independent$ $cascade$ $model$(ICM)\cite{MaximizeSpread2003}.
+When we talk about data diffusion, we can look at how disease or technological innovations would spread through a social network. We can simulate those kind of behavior with different diffusion models. There are two basic diffusion models used to simulate the propagation of information through a network\cite{MaximizeSpread2003}, the {$linear$ $threshold$ $model$(LTM) and the $ independent$ $cascade$ $model$(ICM)\cite{MaximizeSpread2003}.
 
-This process is similar to how a new product is promoted via facebook. Each node is a person, that person can buy the new product(activated), or ignore the new product(inactive). Each person will see their friend promote the new product and potentially buy the product. There are several differnt criteria for each person to buy the product(activates). They can have a percentage chance to be affected by the advertisement(ICM), or they will only be interested if a percentage of his or hers friends have promoted it(LTM). Some people might have a bigger friend circle then other(high degree), while other have bigger impact on a person(large $p_x$). Some might be harder to promote too(weighted edges), while some user have no friend(singletons). THe different model we will focus on, is the independent cascade model and the linear threshold model.
+This process is similar to how a new product is promoted via social media. Each node is a person that can either buy the new product(activated), or ignore it(inactive). Each person will then see their friend promote the new product and potentially buy the promoted product. There are several differnt criteria for each person to buy the product(activates). They can either have a percentage chance to be affected by the advertisement(ICM), or they will only be interested if a percentage of his or hers friends have promoted it(LTM). Some people might have a bigger friend circle then other(high degree), while other have bigger impact on a person(large $p_x$). Some might be harder to promote too(weighted edges), while some user have no friend(singletons). THe different model we will focus on, is the independent cascade model and the linear threshold model.
 
 \section{Linear threshold model}
-The linear threshold model uses a threshold $\theta_v$ between the interval [0,1], which represent the faction of $\it{v}'s$ neighbors that need to be active to activate node $\it{v}$. The Linear Threshold Model activates the current node {\it v} when the weight ${\it b_{v,w}} > \theta$ from its neighbor $\it{w}$ outweighs the $\theta_v$. This is more in line with the situation were each person have a chance to adopt to a new trend if exposed to the trend enough time by his close friends. An example would be a product promoted on social network like twitter and Facebook. The user will adopt the new trend if he is exposed to it from enough friends or idols. As show in Figure \ref{fig:linearThresh}, the threshold for vertex $\it{v}$ to be activated is $\theta_v$, a percentage of the total neighbour, in this instance, three.
+The linear threshold model uses a threshold $\theta_v$ between the interval [0,1], which represent the fraction of $\it{v}'s$ neighbors that need to be active to activate node $\it{v}$, this is known as the weight of v, $b_v$. In this case, lets assume that the weight of all the nodes in this model is 0.5, meaning over half of its neighbour must be activated for the node to be activated. As we can see in Figure \ref{fig:linearThresh}, current node {\it v} will get activated when $b_v <= \theta_v$.In figure \ref{fig:;omearThresh2} we can see that $v$ is now activated. The next timestep, Figure \ref{fig:linearThresh3}, node $w$ is checking if it will too, be activated. We can see here that$b_w !<= \theta_v$, so node $w$ will not be activated.  
+
+We can look at the linear threshold model as a cosmetic company trying to promote their new product via social media. Each users of the product would display the new cosmetic product through social media. Each users would then be exposed to the product through their friends update. Each user would adopt the new product after seeing a percentage of their friends using the product. 
 
 \begin{figure}[!ht]
-	\begin{subfigure}
-		\includegraphics{linearThreshold}
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{linearThreshold}
 		\caption{Step 1 } 
 		\label{fig:linearThresh}
 	\end{subfigure}
-	\begin{subfigure}
-		\includegraphics{linearThreshold2}
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{linearThreshold2}
 		\caption{step 2 } 
 		\label{fig:linearThresh2}
 	\end{subfigure}
-	\begin{subfigure}
-		\includegraphics{linearThreshold3}
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{linearThreshold3}
 		\caption{step 3} 
 		\label{fig:linearThresh3}
 	\end{subfigure}
@@ -145,37 +147,38 @@ The linear threshold model uses a threshold $\theta_v$ between the interval [0,1
 \end{figure}
 
 \subsection{Independent cascade model}
-The independent cascade model changes states with a probability $\it{p_{v, w}}$, where $\it{ v }$ is current node, and $\it{w}$ is it's neighbor. During each propagation, the node $\it{v}$ have a  $\it{p_{v, w}}$ chance to change state if the neighbor $\it{w}$ changed state. If during time-step $\it{t}$ a node $\it{v}$ changed state, its neighbor $\it{w}$ would have a $\it{p_{v, w}}$ chance to change state in the next time step. An example here would be spread of a disease. The current node$\it{v}$ have a chance($\theta_v$) to activate its neighbor. As shown in Figure \ref{fig:ICM}, there is an probability of $p_v$ to infect the neighbors to vertex v, in this figure, the probability is the same, bit that is not necessary true. the probability can be independent, each vertex can have different probability to activate neighbor, or we can have a global probability.
+The independent cascade model(ICM) have a local or global probability for determening of activation, $p_v$. In figure \ref{fig:ICM_step}, we have private probability. The probability $p_v != p_w$. In \ref{fig:ICM}, the node v is activated, during the next timestep, node v have activated three neighbours. In the next timestep \ref{fig:ICM3} node w was able to activate teh blue node. For a ICM with global probability, each node would then have the same probability to activate its neighbour. As we can see from Figure \ref{fig:ICM_step}, each neighbour to v is activated individually. As in \ref{fig:ICM2}, only three nodes were activated. In ICM, each node can only try to activate the neighbour once. In figure \ref{fig:ICM2}, the node that was not activated by v, got activated in \ref{fig:ICM3} by the node w.
+
 
 \begin{figure}[!ht]
-	\begin{subfigure}
-		\includegraphics{ICM}
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{ICM}
 		\caption{step 1 } 
 		\label{fig:ICM}
 	\end{subfigure}
-
-	\begin{subfigure}
-		\includegraphics{ICM2}
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{ICM2}
 		\caption{step 2} 
 		\label{fig:ICM2}
 	\end{subfigure}
-
-	\begin{subfigure}
-		\includegraphics{ICM3}
+	\begin{subfigure}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{ICM3}
 		\caption{step 3} 
 		\label{fig:ICM3}
 	\end{subfigure}
-
 	\caption{Independent cascade model}
+	\label{fig:ICM_step}
 \end{figure}
 
-We can see the similarity between the breadth first search and information diffusion. Breath first search, as mentioned before, starts at the root node and add the root nodes children in a queue, then tales the first child node in the queue and adds all its children to the queue. Each new child node is added to the back of the queue, while finished node is placed in a $\it{finished\_queue}$. The sequences of nodes tested is the same as during an information diffusion, where the diffusion neighbor is placed in the $ \it{boarde\_queue} $ and having a probability to be infected. If the node is infected, then that nodes neighbor would be added to the $boarder\_queue$, while if the node is not infected, the neighbor to the node would be safe. The information diffusion can therefore be looked at as an breadth first search, with an probability to add the child to the queue. 
+We can compare the ICM with the same exampel we have been using, the cosmetic company promopting a product. Each new user have a chance(p$p_v$) to promote the product to a new user. The new user would then continous promoting the new product to his/hers friends. 
+
+As mentnioned earlier, the ICM is a special case of the breadth first search. BFS itterates through the graph by appending the children node not examined into the queue. Then examines a new node from the queue and repeating the process untill all nodes have been examined. The main difference between the ICM and BFS, is that in ICM, there is a chance that the childe node is not added into the queue. During each step, a random "coin toss" is tested to determen if the child node would be added into the queue. Other then that, both algorithms itterates through the network via edges.
 
 \section{Matrix notations}
-By using a linear algebraic approach to solve graph algorithms often gives us a variety of benefit include easier implementation, higher performance and syntactic simplicity\cite{MathToAlgo}. There are multiple reasons to do graph algorithms as linear algebra. This can show potentially improvement, potentially optimization and be more visually clear how the algorithm is. Another reason is that matrix-vector multiplication is a clear illustration and unlike pointer chasin, easy to optimize.  
+Nodes and edges are not the only way to present a graph, graphs and networks can be represented as sparse adjacency matrix\cite{MathTolAgo}. We can see that such an idea have been proposed in earlier literature\cite{McAndrew1963}. By representing graphs as sparse matrix, we can often discover different ways to optimize the algorithm, we can have a different structure to store data. The adjacency matrix in particular, is a interesting way to represent the graph. A graph $G =(V,E)$, G have N vertices and M edges, this corespond to a N$\times$N adjacency matric called A. If A(i,j)=1, then there is an edge from $v_i$ to $v_j$. Otherwise its 0. In Figure:\ref{fig:AdjaToMatrix}, we can see how a undirected craph can be represented as an adjacency matrix. To generate a undirected graph as a adjacency matrix, the matrix must be mirrored diagonally, meaning if A(i,j)=1, then A(j,i)=1, if this is not true, then the matrix would be representing a directed graph.
 
 \subsection{Sparse Matrix}
-One way to reprecent a graph in matrix format, is by adjacency matrix, We can represent a social graph with few connection in the form of a sparse adjacency matrix. A spsarse matrix is a matrix with only few non-zero element. In an adjacency matrix, a cell containing 1 means a connection is presence, while a 0 is lack no connection. So, as we can see in the Figure \ref{fig:AdjacencyM}, as we can see at coordinate $[1,3] = 1$. This tells us that there is a edge between vertex 1 and vertex 3. The adjacency matrix is commonly used to represent an graph such as Figure \ref{fig:AdjacencyM} and Figure \ref{fig:matrix}.
+A sparce matrix is a matrix containing few nonzero. Social graph with few edges would often be represented as a sparce matrix. Since sparse matrix only have few non-zero elements, by storing only the non-zero elements, we can have savings in memory.
 
 \begin{figure}
 	\begin{subfigure}{0.5\textwidth}
@@ -190,30 +193,34 @@ One way to reprecent a graph in matrix format, is by adjacency matrix, We can re
 	\label{fig:matrix}
 	\end{subfigure}
  	\caption{Sparse matrix to graph}
+ 	\label{AdjaToMatrix}
 \end{figure}
 
 \subsection{Breadth First Search as a matrix multiplication.}
-By looking at the adjacency matrix, we can see that the matrix is a graph represented in a matrix format. The BFS can be achieved by looking at the BFS operations as a matrix multiplication \cite{algoToMath}. If we look at the graph as a connectivity matrix, we can apply matrix multiplication to generate the breadth first search. 
+From \cite{AlgoToMath}, we can see that BFS can be recast as algebraic operations. BFS can be performed by applying matrix-vector multiplication over boolean semirings\cite{HybridBFS2015}. The graph is represented as a adjacency matrix A, then for the root node, a vector x(root)=1 is multiplied with the matrix A. $A \times x_0 = y_0$. $y_0$ is the result after the first matrix-vector multiplicationand int he next itteration, $x_1 = y_0$. We can see from the Figure\ref{fig:bfsMatrix}
 
-We can also look at how an breadth first search can be executed by applying  sparse matrix multiplication. We can see that the adjacency matrix is an sparse matrix. We can use sparse matrix multiplication to do graph algorithm, one example is the BFS. 
+\begin{figure}
+	
+	\includegraphics[width=\textwidth]{BFS_algot pu}
+	\cation{BFS on boolean semiring}
+	\label{fig:bfsMatrix}
+\end{figure}
+
 
 
 \subsection{Semiring}
-A $semiring$ is a set of elements with two binary operations. The two operations are often known as "addition" and "multiplication". By this definition, [SYMBOL FOR BOOLEAN] and [SYMBOL FOR INTEGER]. are both semirings.  One way to perform graph algorithm, is apply matrix multiplication over such semirings. One of the common notation in writing the semiring, is $a+b$ and $a \ast b$. This can be confusion, so often there will be some special semiring operator.
+A $semiring$ is a set of elements with two binary operations. The two operations are often known as "addition"(+) and "multiplication"($\times$).  As we shown in previous secitons, the algorithm performes matrix multiplication uses the two operations, multiplications and addition. In \cite{HYbridBFS2015}, the AND and OR operator was choosen instead of the normal addition and multiplication. 
 
 
-
-\section{BFS to data diffusion}
-We can draw an distinctive line between the breadth first search and data diffusion. The breadth first search adds all the child node from the parent node to a queue, then change the current node to the first node in the queue and repeats until the entire graph is iterated over, or the queue is empty. This is in theory the same as data diffusion, where information is passed to the connected vertex. The new "infected node" can then pass on the information along to the other nodes that are connected to the new node and so on. This is in practice, the same as breadth first search, minus the searching part. 
-
-We can in then draw the conclusion that Independent cascade model, is a modified version of the breadth first search, where each child note have a specific percent to be infected. The iteration is the same as a breadth first approach, but the result of the addition of node is dependent on a random "coin-toss".
+\subsection{BFS to data diffusion}
+As mentioned before, ICM is a special case of the breadth first search. By modifying the algorithm proposed earlier, we can in theory performe ICM with matrix-vecotr multiplication. We will discuss more how such an algorithm is in later chaper. 
 
 
 \section{Seed selection algorithm}
-The seed selection algorithm, is the algorithm used to select the initial $k$ seed nodes to be choosen at the start. We can compare it to a new technological product or a cosmetic company trying to promote a new product. By selecting a few influential persons to give a free sample. the new trend would most likey spread and catch on. The seed selection algorithm would be the algorithm to select the few influentnial individuals. There are multiple different scheme to choose from, in this section, we will focus on four different, greedy algorithm, degree algorithm, random algorithm and the indipendent greedy algorithm.
+The seed selection algorithm, is the algorithm used to select the initial $k$ seed nodes to be choosen at the start of teh information diffusion. We can compare it to a new gadget or a cosmetic company trying to promote a new product. By selecting a few influential persons to give a free sample. the new trend would most likey spread through a $viral marketing$\cite{ViralMarketing}. The seed selection algorithm would be the algorithm to select the few influentnial individuals to recive this free sample. There are multiple different scheme to choose from, in this section, we will focus on four different algorithms, greedy algorithm, degree algorithm, random algorithm and the indipendent greedy algorithm.
 
 \subsection{the greedy algorithm}
-The  greedy algorithm was proposed by Kempe \cite{MaximizeSpread2015}. The algorithm is a greedy algorithm where it finds the starter set of nodes $\it{S}$ by iterating through all the vertex in $\it{V}$ and calculate the total amount of spread. The spread is saved and the $\it{k}$ most influential nodes would be choose.
+The greedy algorithm\cite{MaximizeSpread2015} proposed by Kempe et al, is known to be the best algorithm according to the result from \cite{MaximizeSpread2015}. The algorithm computes the maximum coverage each node would result in, then chooses the set of $k$ nodes that would have the largest coverage.  
 
  \begin{algorithm}
 \caption{Greedy Algorithm}
@@ -262,6 +269,23 @@ $1 − \delta$
 
 \subsection{random algorithm}
 The last one is the random algorithm. The random algorithm just pick a random seed node. This approach is the simplest to implement and easiest. The downside is that this is random and there are no strategical choosing of seed node. 
+
+\section{RMat}
+One problem during graph analyzation and calculation is finding suitable graphs to analyses. Generate graphs with desired properties is not easy to do. One solution proposed by Chakrabartiy $\it{et al}$ is to use the "recursive matrix" or R-mat model. The R-mat model generates graph with only a few parameters, the generated graph will naturally have the small world properties and follows the laws of normal graphs, and have a quick generation speed\cite{Rmat2004}. The R-mat models goal is to generate graphs that matches the degree distribution, exhibits a " community " structure and have a small diameter and matches other criteria.\cite{Rmat2004}. The algorithm to generate such a recursive matrix is as follow: The idea is to partition the adjacency matrix into four equally sized part branded A,B,C,D, like shown in Figure\ref{fig:flipDiagonal}. The adjacency matrix starts by having all element set to 0. Each new edge is "dropped" onto the adjacency matrix. Which section the edge would be placed in, is chosen randomly. Each section have a probability of $\it{a, b, c, d}$, and $a + b + c + d = 1$. After a section is chosen, the partition that was chosen is partitioned again. This continuous until the chosen section is a 1x1 square and the edge is dropped there. From the algorithm, we can see that the R-mat generator is capable to generate graphs with total numbers of node $ \it{V} = 2^x$. Since the algorithm partitioned the matrix into four part. This is approach would only generate a directed graph. To generate undirected graph, $b = c$ and the adjacency matrix must make a "copy flip" on the diagonal elements, like Figure \ref{fig:flipDiagonal}. 
+
+
+\begin{figure}
+\includegraphics{Rmat}
+\caption{The R-mat model}
+\label{fig:Rmat}
+\end{figure}
+
+\begin{figure}
+\includegraphics{flip_matrix}
+\caption{How the adjacency matrix is flipped on the diagonal}
+\label{fig:flipDiagonal}
+
+\end{figure}
 
 
 
