@@ -11,12 +11,12 @@ Case mismatch error between cite keys Maximizespread2003 and MaximizeSpread2003
 I'm skipping whatever remains of this command
 A level-1 auxiliary file: background.aux
 Case mismatch error between cite keys SmallworldExperiment1969 and smallworldExperiment1969
----line 24 of file background.aux
+---line 25 of file background.aux
  : \citation{SmallworldExperiment1969
  :                                   }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys HYbridBFS2015 and HybridBFS2015
----line 76 of file background.aux
+---line 77 of file background.aux
  : \citation{HYbridBFS2015
  :                        }
 I'm skipping whatever remains of this command
@@ -33,12 +33,16 @@ I was expecting a `,' or a `}'---line 233 of file my_references.bib
  : year = "2001"
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 283 of file my_references.bib
+ : 
+ : title ="FPGA of Acceleration of Stochastic Simulation",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "smallWorldExperiment"
 Warning--I didn't find a database entry for "complexNetwork"
 Warning--I didn't find a database entry for "AssortativeMixing2002"
 Warning--I didn't find a database entry for "RaceSchool2001"
 Warning--I didn't find a database entry for "MathTolAgo"
-Warning--I didn't find a database entry for "ScalabelGraphEx"
 Warning--I didn't find a database entry for "Pycx"
 Warning--I didn't find a database entry for "MaximizedSpread2003"
 Warning--empty journal in HybridBFS2015
@@ -73,7 +77,7 @@ Warning--empty journal in DirectOptimizeBFS
 Warning--empty journal in ParallelBFS2011
 You've used 20 entries,
             1791 wiz_defined-function locations,
-            566 strings with 6708 characters,
+            564 strings with 6678 characters,
 and the built_in function-call counts, 3032 in all, are:
 = -- 234
 > -- 124
@@ -112,4 +116,4 @@ warning$ -- 18
 while$ -- 23
 width$ -- 22
 write$ -- 187
-(There were 10 error messages)
+(There were 11 error messages)

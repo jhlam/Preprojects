@@ -78,6 +78,13 @@ Behrouz Derakhshan.
   helsinki may.
 \newblock 2015.
 
+\bibitem{ScalableGraphEx}
+Virat Agarwal, Fabrizio Petrini, Davide Pasetto, and David~A. Bader.
+\newblock Scalable graph exploration on multicore processors.
+\newblock In {\em Proceedings of the 2010 ACM/IEEE International Conference for
+  High Performance Computing, Networking, Storage and Analysis}, Washington,
+  DC, USA, 2010. IEEE Computer Society.
+
 \bibitem{DirectOptimizeBFS}
 Krste~Asanović Scott~Beamer and David Patterson.
 \newblock Direction-optimizing breadth-first search.
@@ -87,13 +94,6 @@ Krste~Asanović Scott~Beamer and David Patterson.
 Kamesh~Madduri Aydib~`Buluc.
 \newblock Parallel breadth-first search on distributed memory systems.
 \newblock 2011.
-
-\bibitem{ScalableGraphEx}
-Virat Agarwal, Fabrizio Petrini, Davide Pasetto, and David~A. Bader.
-\newblock Scalable graph exploration on multicore processors.
-\newblock In {\em Proceedings of the 2010 ACM/IEEE International Conference for
-  High Performance Computing, Networking, Storage and Analysis}, Washington,
-  DC, USA, 2010. IEEE Computer Society.
 
 \bibitem{HLSready2015}
 Gordon Inggs, Shane Fleming, DavidB. Thomas, and Wayne Luk.
