@@ -7,4 +7,7 @@ For this report, we created the simulation by storing arrays and "pointer chasin
 
 The cache oblivious sparse matrix-vector multiplication is one aspect we have yet to touch upon. It would be interesting to further investigate how much of an improvement this would potentially give compare to a standard sparse matrix multiplication.
 
-------------------------still lacking a lot of information, would add more detail of how each point mentioned can be expanded.
+
+One solution that i would like to explore, is the FPGA-CPU heterogeneous platform proposed in \cite{HybridBFS2015}. There we saw how to perform BFS on Boolean semirings. One modification to the algorithm, is after each matrix-vector multiplication, we compute each new activate cells in $y_n$ have a percentage to be deactivated. After deactivation, depending on how we implement the next step, if we only calculate newly activated cells, then each node would just activate their neighbor once, the other solution is to remove the edge between the old node and the new node. This preventing the node from activating a node the second time.
+
+Another interesting aspect that would be interesting to explore is the high level synthesis. One such HLS is the vivado high-level synthesis, where normal C code can be directly targeted into Xilinx all programmable devices. We can see from \cite{HLS2011}, that the HLS can achieve 11-31\% FPGA recourse usage reduction. 
