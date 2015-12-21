@@ -201,7 +201,7 @@ From \cite{AlgoToMath}, we can see that BFS can be recast as algebraic operation
 
 \begin{figure}
 	
-	\includegraphics[width=\textwidth]{BFS_algo}
+	\includegraphics[width=\textwidth]{BFS_algot pu}
 	\cation{BFS on boolean semiring}
 	\label{fig:bfsMatrix}
 \end{figure}
@@ -209,21 +209,18 @@ From \cite{AlgoToMath}, we can see that BFS can be recast as algebraic operation
 
 
 \subsection{Semiring}
-A $semiring$ is a set of elements with two binary operations. The two operations are often known as "addition" and "multiplication". By this definition, [SYMBOL FOR BOOLEAN] and [SYMBOL FOR INTEGER]. are both semirings.  One way to perform graph algorithm, is apply matrix multiplication over such semirings. One of the common notation in writing the semiring, is $a+b$ and $a \ast b$. This can be confusion, so often there will be some special semiring operator.
+A $semiring$ is a set of elements with two binary operations. The two operations are often known as "addition"(+) and "multiplication"($\times$).  As we shown in previous secitons, the algorithm performes matrix multiplication uses the two operations, multiplications and addition. In \cite{HYbridBFS2015}, the AND and OR operator was choosen instead of the normal addition and multiplication. 
 
 
-
-\section{BFS to data diffusion}
-We can draw an distinctive line between the breadth first search and data diffusion. The breadth first search adds all the child node from the parent node to a queue, then change the current node to the first node in the queue and repeats until the entire graph is iterated over, or the queue is empty. This is in theory the same as data diffusion, where information is passed to the connected vertex. The new "infected node" can then pass on the information along to the other nodes that are connected to the new node and so on. This is in practice, the same as breadth first search, minus the searching part. 
-
-We can in then draw the conclusion that Independent cascade model, is a modified version of the breadth first search, where each child note have a specific percent to be infected. The iteration is the same as a breadth first approach, but the result of the addition of node is dependent on a random "coin-toss".
+\subsection{BFS to data diffusion}
+As mentioned before, ICM is a special case of the breadth first search. By modifying the algorithm proposed earlier, we can in theory performe ICM with matrix-vecotr multiplication. We will discuss more how such an algorithm is in later chaper. 
 
 
 \section{Seed selection algorithm}
-The seed selection algorithm, is the algorithm used to select the initial $k$ seed nodes to be choosen at the start. We can compare it to a new technological product or a cosmetic company trying to promote a new product. By selecting a few influential persons to give a free sample. the new trend would most likey spread and catch on. The seed selection algorithm would be the algorithm to select the few influentnial individuals. There are multiple different scheme to choose from, in this section, we will focus on four different, greedy algorithm, degree algorithm, random algorithm and the indipendent greedy algorithm.
+The seed selection algorithm, is the algorithm used to select the initial $k$ seed nodes to be choosen at the start of teh information diffusion. We can compare it to a new gadget or a cosmetic company trying to promote a new product. By selecting a few influential persons to give a free sample. the new trend would most likey spread through a $viral marketing$\cite{ViralMarketing}. The seed selection algorithm would be the algorithm to select the few influentnial individuals to recive this free sample. There are multiple different scheme to choose from, in this section, we will focus on four different algorithms, greedy algorithm, degree algorithm, random algorithm and the indipendent greedy algorithm.
 
 \subsection{the greedy algorithm}
-The  greedy algorithm was proposed by Kempe \cite{MaximizeSpread2015}. The algorithm is a greedy algorithm where it finds the starter set of nodes $\it{S}$ by iterating through all the vertex in $\it{V}$ and calculate the total amount of spread. The spread is saved and the $\it{k}$ most influential nodes would be choose.
+The greedy algorithm\cite{MaximizeSpread2015} proposed by Kempe et al, is known to be the best algorithm according to the result from \cite{MaximizeSpread2015}. The algorithm computes the maximum coverage each node would result in, then chooses the set of $k$ nodes that would have the largest coverage.  
 
  \begin{algorithm}
 \caption{Greedy Algorithm}
@@ -272,6 +269,23 @@ $1 − \delta$
 
 \subsection{random algorithm}
 The last one is the random algorithm. The random algorithm just pick a random seed node. This approach is the simplest to implement and easiest. The downside is that this is random and there are no strategical choosing of seed node. 
+
+\section{RMat}
+One problem during graph analyzation and calculation is finding suitable graphs to analyses. Generate graphs with desired properties is not easy to do. One solution proposed by Chakrabartiy $\it{et al}$ is to use the "recursive matrix" or R-mat model. The R-mat model generates graph with only a few parameters, the generated graph will naturally have the small world properties and follows the laws of normal graphs, and have a quick generation speed\cite{Rmat2004}. The R-mat models goal is to generate graphs that matches the degree distribution, exhibits a " community " structure and have a small diameter and matches other criteria.\cite{Rmat2004}. The algorithm to generate such a recursive matrix is as follow: The idea is to partition the adjacency matrix into four equally sized part branded A,B,C,D, like shown in Figure\ref{fig:flipDiagonal}. The adjacency matrix starts by having all element set to 0. Each new edge is "dropped" onto the adjacency matrix. Which section the edge would be placed in, is chosen randomly. Each section have a probability of $\it{a, b, c, d}$, and $a + b + c + d = 1$. After a section is chosen, the partition that was chosen is partitioned again. This continuous until the chosen section is a 1x1 square and the edge is dropped there. From the algorithm, we can see that the R-mat generator is capable to generate graphs with total numbers of node $ \it{V} = 2^x$. Since the algorithm partitioned the matrix into four part. This is approach would only generate a directed graph. To generate undirected graph, $b = c$ and the adjacency matrix must make a "copy flip" on the diagonal elements, like Figure \ref{fig:flipDiagonal}. 
+
+
+\begin{figure}
+\includegraphics{Rmat}
+\caption{The R-mat model}
+\label{fig:Rmat}
+\end{figure}
+
+\begin{figure}
+\includegraphics{flip_matrix}
+\caption{How the adjacency matrix is flipped on the diagonal}
+\label{fig:flipDiagonal}
+
+\end{figure}
 
 
 
