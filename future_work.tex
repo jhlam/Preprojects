@@ -1,13 +1,13 @@
 \chapter{Future work}
 One interesting aspect that does not have huge previous work on is a hardware approach to speed up the seed selection and the information diffusion. We have seen different algorithms to select the most appropriate seed, the problem is that for larger graph, the seed selection algorithm is very taxing for the system. For this report, the graphs generated is still small, yet the largest of the used graph proved to be quite slow for the system. It would be interesting to see how an CPU-FPGA heterogeneous platform like \cite{HybridBFS2015} would improve the information diffusion. 
 
-Another interesting branch to explore would be to see how a paralyzed independent cascade model would measure against the non-parallel version. There are studies exploring the paralyzed BFS\cite{ParallelBFS2011}
+Another interesting branch to explore would be to see how a paralyzed independent cascade model would measure against the non-parallel version. There are studies exploring the paralyzed BFS \cite{ParallelBFS2011}
 
-For this report, we created the simulation by storing arrays and "pointer chasing", as mentioned in \ref{background}, by applying sparse matrix-vector multiplication, we could have explored other potentially beneficial optimization. 
+For this report, we created the simulation by storing arrays and "pointer chasing", as mentioned in Chapter \ref{background}, by applying sparse matrix-vector multiplication, we could have explored other potentially beneficial optimization. 
 
 The cache oblivious sparse matrix-vector multiplication is one aspect we have yet to touch upon. It would be interesting to further investigate how much of an improvement this would potentially give compare to a standard sparse matrix multiplication.
 
 
 One solution that i would like to explore, is the FPGA-CPU heterogeneous platform proposed in \cite{HybridBFS2015}. There we saw how to perform BFS on Boolean semirings. One modification to the algorithm, is after each matrix-vector multiplication, we compute each new activate cells in $y_n$ have a percentage to be deactivated. After deactivation, depending on how we implement the next step, if we only calculate newly activated cells, then each node would just activate their neighbor once, the other solution is to remove the edge between the old node and the new node. This preventing the node from activating a node the second time.
 
-Another interesting aspect that would be interesting to explore is the high level synthesis. One such HLS is the vivado high-level synthesis, where normal C code can be directly targeted into Xilinx all programmable devices. We can see from \cite{HLS2011}, that the HLS can achieve 11-31\% FPGA recourse usage reduction. 
+Another interesting aspect that would be interesting to explore is the high level synthesis. One such HLS is the Vivado high-level synthesis, where normal C code can be directly targeted into Xilinx all programmable devices. We can see from \cite{HLS2011}, that the HLS can achieve 11-31\% FPGA recourse usage reduction. 

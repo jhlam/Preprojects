@@ -1,21 +1,26 @@
 \begin{thebibliography}{10}
 
+\bibitem{Rmat2004}
+Deepayan Chakrabarti, Yiping Zhan, and Christos Faloutsos.
+\newblock R-mat: A recursive model for graph mining.
+\newblock 4:442--446, 2004.
+
 \bibitem{HybridBFS2015}
-Magnus~Jahre Yaman~Umuroglu, Donn~Morrison.
-\newblock Hybrid breadth-first search on a single-chip fpga-cpuheterogeneous
+Y.~Umuroglu, D.~Morrison, and M.~Jahre.
+\newblock Hybrid breadth-first search on a single-chip fpga-cpu heterogeneous
   platform.
-\newblock 2015.
+\newblock pages 1--8, Sept 2015.
 
 \bibitem{DiseasOutbreak}
-V.~S. Anil Kumar Madhav V. Marath Aravind Srinivasan Zoltán Toroczkai
-  Nan~Wang5 Stephen~Eubank, Hasan~Guclu.
+Stephen Eubank, Hasan Guclu, VS~Anil Kumar, Madhav~V Marathe, Aravind
+  Srinivasan, Zoltan Toroczkai, and Nan Wang.
 \newblock Modelling disease outbreaks in realistic urban social networks.
-\newblock 2003.
+\newblock {\em Nature}, 429(6988):180--184, 2004.
 
 \bibitem{MaximizeSpread2003}
 \'Eva~Tardos David~Kampe, Jon~Klein.
 \newblock Maximizing the spread of influence through a social network.
-\newblock 2003.
+\newblock pages 137--146, 2003.
 
 \bibitem{MaximizeSpread2015}
 \'Eva~Tardos David~Kampe, Jon~Klein.
@@ -23,59 +28,60 @@ V.~S. Anil Kumar Madhav V. Marath Aravind Srinivasan Zoltán Toroczkai
 \newblock 2003.
 
 \bibitem{AlgoToMath}
-John~Gilbert Jeremy~Kepner.
-\newblock Graph algorithms in the language of linear algebra.
-\newblock 2011.
+Jeremy Kepner and John Gilbert.
+\newblock {\em Graph algorithms in the language of linear algebra}, volume~22.
+\newblock SIAM, 2011.
 
 \bibitem{ComplexNetwork2003}
 M.~E.~J. Newman.
-\newblock {\em The structure and function of complex networks}.
+\newblock {\em The Structure and Function of Complex Networks}, volume~45.
 \newblock 2003.
+
+\bibitem{smallWorldExperiment1969}
+Stanley~Milgram Jeffrey~Travers.
+\newblock An experimental study of the small world problem.
+\newblock {\em Sociometry}, 32(4):425--443, 1969.
 
 \bibitem{SmallWorldProblemSmilgram1960}
 Stanley Milgram.
-\newblock The small-world problem.
-\newblock 1967.
+\newblock The small world problem.
+\newblock {\em Psychology today}, 2(1):60--67, 1967.
 
 \bibitem{Experiment1969}
-Stanley~Milgram Fjeffrey~Travers.
+Jeffrey Travers and Stanley Milgram.
 \newblock An experimental study of the small world problem.
-\newblock 1969.
+\newblock {\em Sociometry}, pages 425--443, 1969.
 
-\bibitem{smallworldExperiment1969}
-Stanley~Milgram Jeffrey~Travers.
-\newblock An experimental study of the small world problem.
-\newblock 1969.
+\bibitem{RaceInSchool}
+James Moody.
+\newblock Race, school integration, and friendship segregation in america1.
+\newblock {\em American journal of Sociology}, 107(3):679--716, 2001.
 
 \bibitem{McAndrew1963}
-M.~H. McAndrew.
+MH~McAndrew.
 \newblock On the product of directed graphs.
-\newblock 1963.
+\newblock {\em Proceedings of the American Mathematical Society},
+  14(4):600--606, 1963.
 
 \bibitem{ViralMarketing}
-Matt~Richardson Pedro~Domingos.
+Pedro Domingos and Matt Richardson.
 \newblock Mining the network value of customers.
-
-\bibitem{Rmat2004}
-Christos~Faloutsosx Deepayan~Chakrabartiy, Yiping~Zhanz.
-\newblock R-mat: A recursive model for graph mining.
-\newblock 2004.
+\newblock pages 57--66, 2001.
 
 \bibitem{CacheOblivious1999}
-Harald Prokop Sridhar Ramacc~handran Matteo~Frigo, Charles E.~Leiserson.
+Matteo Frigo, Charles~E Leiserson, Harald Prokop, and Sridhar Ramachandran.
 \newblock Cache-oblivious algorithms.
-\newblock 1999.
+\newblock pages 285--297, 1999.
 
 \bibitem{COmultiplic2009}
-ROB H.~BISSELING A.~N.~YZELMAN.
-\newblock Cache-oblivious sparse matrix–vector multiplication by using sparse
+AN~Yzelman and Rob~H Bisseling.
+\newblock Cache-oblivious sparse matrix-vector multiplication by using sparse
   matrix partitioning methods.
-\newblock 2009.
+\newblock {\em SIAM Journal on Scientific Computing}, 31(4):3128--3154, 2009.
 
 \bibitem{InfluenceMax}
-Behrouz Derakhshan.
-\newblock Influence maximization in large scale graphs behrouz derakhshan
-  helsinki may.
+Behrouz Derakhshan et~al.
+\newblock Influence maximization in large scale graphs.
 \newblock 2015.
 
 \bibitem{ScalableGraphEx}
@@ -86,14 +92,14 @@ Virat Agarwal, Fabrizio Petrini, Davide Pasetto, and David~A. Bader.
   DC, USA, 2010. IEEE Computer Society.
 
 \bibitem{DirectOptimizeBFS}
-Krste~Asanović Scott~Beamer and David Patterson.
+Scott Beamer, Krste Asanovi{\'c}, and David Patterson.
 \newblock Direction-optimizing breadth-first search.
-\newblock 2003.
+\newblock {\em Scientific Programming}, 21(3-4):137--148, 2013.
 
 \bibitem{ParallelBFS2011}
-Kamesh~Madduri Aydib~`Buluc.
+Aydin Bulu{\c{c}} and Kamesh Madduri.
 \newblock Parallel breadth-first search on distributed memory systems.
-\newblock 2011.
+\newblock page~65, 2011.
 
 \bibitem{HLSready2015}
 Gordon Inggs, Shane Fleming, DavidB. Thomas, and Wayne Luk.
@@ -104,9 +110,10 @@ Gordon Inggs, Shane Fleming, DavidB. Thomas, and Wayne Luk.
   2015.
 
 \bibitem{HLS2011}
-J.~Cong, Bin Liu, S.~Neuendorffer, J.~Noguera, K.~Vissers, and Zhiru Zhang.
+Jason Cong, Bin Liu, Stephen Neuendorffer, Juanjo Noguera, Kees Vissers, and
+  Zhiru Zhang.
 \newblock High-level synthesis for fpgas: From prototyping to deployment.
 \newblock {\em Computer-Aided Design of Integrated Circuits and Systems, IEEE
-  Transactions on}, 2011.
+  Transactions on}, 30(4):473--491, 2011.
 
 \end{thebibliography}

@@ -1,4 +1,4 @@
-\chapter{Result}
+\chapter{Result}\label{result}
 The result from the multiple runs we have gotten is as shown in the different figures. Figure \ref{fig:smallResult} shows the spread and coverage from the simulation of the small graph. As we can see, the four different algorithm had little difference. The y-akses shows us the average coverage after 50 runs, and the x-akses gives us how many seed node was selected. We can see from figure \ref{fig:smallResult}, figure \ref{fig:mediumResult} and figure \ref{largeResult} that the resulted coverage was around 0.3-0.45. The smaller graph would result in a smaller spread, while larger graph results in large spread. Figure \ref{fig:smallResult} have a more linear increase as the seed nodes increased. Figure \ref{fig:mediumResult} and Figure \ref{fig:large_result} on the other hand, had an massive increase in coverage after the addition of the second seed node, then the increase slowed down drastically. 
 
 The network that we ran our simulation on, resulted in a degree distribution as Figure \ref{fig:smallDegree}, Figure \ref{fig:mediumDegree}, and Figure \ref{fig:largeDegree}. The degree distribution is similar to the \ref{fig:exampleHistogram}. We can see that there are one vertex with high degree, while the majority of the nodes have a small degree. 
@@ -8,29 +8,6 @@ We can see that the greedy algorithm performed better then the other algorithm f
 
 
 Our result as a table:
-
-\begin{figure}[h]
-\begin{subfigure}{0.3\textwidth}
-	\includegraphics[width=\textwidth]{DDsmall}
-	\caption{Degree distribution of the small graph.}
-	\label{fig:smallDegree}
-\end{subfigure}
-~
-\begin{subfigure}{0.3\textwidth}
-	\includegraphics[width=\textwidth]{DDMedium}
-	\caption{Degree distribution of the medium graph.}
-	\label{fig:mediumDegree}
-\end{subfigure}
-~
-\begin{subfigure}{0.3\textwidth}
-	\includegraphics[width=\textwidth]{DDlarge}
-	\caption{Degree distribution of the large graph.}
-	\label{fig:largeDegree}
-\end{subfigure}
-~
-\caption{The degree distribution of the graph that was used for the simulation}
-\label{fig:histogram}
-\end{figure}
 
 \begin{figure}[t]
 	\includegraphics[width=0.7\textwidth]{small_result}

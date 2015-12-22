@@ -1,15 +1,15 @@
 \chapter{Method}
-For this report, we wish too create some simulation of the independent cascade model and compare different seed selection algorithms to compare the result we got with previous work on similar subject\cite{MaximizeSpread2015}. We created a python simulation to simulate the data diffusion and the seed selection. We utilized the Pycx libraries to create the GUI, and applied the R-mat generator to create the different network. Our diffusion simulation finds $\it{k}$ seed node, and for each k, runs the simulation 50 times. Each run runs until there are no more vertex to be activated. Since each node can only try to activate their neighbor once, regardless of the result, that node can't try to activate the same neighbors again. For our simulation, when no more nodes can be tested, the simulation stops. 
+For this report, we wish too create some simulation of the independent cascade model and compare different seed selection algorithms to compare the result we got with previous work on similar subject \cite{MaximizeSpread2015}. We created a python simulation to simulate the data diffusion and the seed selection. We utilized the Pycx libraries to create the GUI, and applied the R-mat generator to create the different network. Our diffusion simulation finds $\it{k}$ seed node, and for each k, runs the simulation 50 times. Each run runs until there are no more vertex to be activated. Since each node can only try to activate their neighbor once, regardless of the result, that node can't try to activate the same neighbors again. For our simulation, when no more nodes can be tested, the simulation stops. 
 
 \section{PyCx}
-Pycx an libraries that help python to generate an GUI\cite{Pycx}. The pycx have a clear structure, initialize, observe and update. The initialize part, the graph is generated, the starter seed is found and the position to the graph is generated. The observe part is where python generate graphic for our simulation. for each step, the observe is called to generate a new frame. the update section i called every step, for our program, the diffusion is calculated as each step we can see how the data is diffused. The simulation allow the information and data to be displayed 
+Pycx an libraries that help python to generate an GUI \cite{Pycx}. The pycx have a clear structure, initialize, observe and update. The initialize part, the graph is generated, the starter seed is found and the position to the graph is generated. The observe part is where python generate graphic for our simulation. for each step, the observe is called to generate a new frame. the update section i called every step, for our program, the diffusion is calculated as each step we can see how the data is diffused. The simulation allow the information and data to be displayed 
 
 
 \section{R-mat}
 For our generator, we choose to  use the benchmark proposed at Graph500, :$A=0.57$,$B=0.19$,$C=0.19$,$D = 1-A-B-C = 0.05$. For a undirected graph, the matrix was mirrored diagonally. 3 graphs of different size were generated, the smaller one was with 128 nodes with approximately 400 edges, the medium sized graph was 512 node with approximately 3000 edges, and the largest was generated with 1024 nodes and 10000 edges. The resulted graphs is proposed in next section. 
 
 \section{Adjacency matrices to graphs}
-For this report, three different sized adjacency matrix was created. One of the restriction to the R-mat generator is that the size of the adjacency matrix have to be $2^n$. This resulted in that our adjacency matrix was originally of the size, $128 \times 128, 512 \times 512 and 1024 \times 1024$. The resulted graphs had multiple singletons and unconnected nodes, for the sake of the simulation, those nodes were discarded and resulted in a graph with 75 nodes and 307 edges, 287 nodes with 2415 edges and 617 nodes and 8374 edges. This was not surprising consider that for a larger graph, those singletons would most likely result in the outskirt and small community. The degree distribution of the graphs is shown in Figure\ref{fig:DD}
+For this report, three different sized adjacency matrix was created. One of the restriction to the R-mat generator is that the size of the adjacency matrix have to be $2^n$. This resulted in that our adjacency matrix was originally of the size, $128 \times 128$, $512 \times 512$ and $1024 \times 1024$. The resulted graphs had multiple singletons and unconnected nodes, for the sake of the simulation, those nodes were discarded and resulted in a graph with 75 nodes and 307 edges, 287 nodes with 2415 edges and 617 nodes and 8374 edges. This was not surprising consider that for a larger graph, those singletons would most likely result in the outskirt and small community. The degree distribution of the graphs is shown in Figure \ref{fig:DD}
 
 \begin{figure}[!ht]
 	\begin{subfigure}{0.3\textwidth}
@@ -27,7 +27,7 @@ For this report, three different sized adjacency matrix was created. One of the 
 		\caption{Degree distribution of large graph} 
 		\label{fig:linearThresh3}
 	\end{subfigure}
-	\caption{Linear Threshold mode}
+	\caption{Degree distribution of the graph}
 	\label{fig:DD}
 \end{figure}
 
@@ -55,6 +55,7 @@ For the second simulation, we choose to find the average "Step" the greedy algor
 		\caption{The large graph} 
 		\label{fig:graphL}
 	\end{subfigure}
+
 	\caption{The different graphs we ran our simulation through}
 	\label{fig:graph}
 \end{figure}

@@ -4,21 +4,21 @@ The top-level auxiliary file: template_report.aux
 A level-1 auxiliary file: front.aux
 A level-1 auxiliary file: assignment.aux
 A level-1 auxiliary file: introduction.aux
-Case mismatch error between cite keys Maximizespread2003 and MaximizeSpread2003
----line 10 of file introduction.aux
- : \citation{Maximizespread2003
- :                             }
-I'm skipping whatever remains of this command
 A level-1 auxiliary file: background.aux
-Case mismatch error between cite keys SmallworldExperiment1969 and smallworldExperiment1969
+Case mismatch error between cite keys smallworldExperiment1969 and smallWorldExperiment1969
 ---line 25 of file background.aux
+ : \citation{smallworldExperiment1969
+ :                                   }
+I'm skipping whatever remains of this command
+Case mismatch error between cite keys SmallworldExperiment1969 and smallWorldExperiment1969
+---line 26 of file background.aux
  : \citation{SmallworldExperiment1969
  :                                   }
 I'm skipping whatever remains of this command
-Case mismatch error between cite keys HYbridBFS2015 and HybridBFS2015
----line 77 of file background.aux
- : \citation{HYbridBFS2015
- :                        }
+Case mismatch error between cite keys complexNetwork2003 and ComplexNetwork2003
+---line 38 of file background.aux
+ : \citation{complexNetwork2003
+ :                             }
 I'm skipping whatever remains of this command
 A level-1 auxiliary file: related_work.aux
 A level-1 auxiliary file: method.aux
@@ -28,92 +28,60 @@ A level-1 auxiliary file: future_work.aux
 A level-1 auxiliary file: conclusion.aux
 The style file: unsrt.bst
 Database file #1: my_references.bib
-I was expecting a `,' or a `}'---line 233 of file my_references.bib
- : 
- : year = "2001"
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 283 of file my_references.bib
- : 
- : title ="FPGA of Acceleration of Stochastic Simulation",
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "smallWorldExperiment"
+Warning--I'm ignoring MaximizeSpread2003's extra "author" field
+--line 37 of file my_references.bib
 Warning--I didn't find a database entry for "complexNetwork"
 Warning--I didn't find a database entry for "AssortativeMixing2002"
-Warning--I didn't find a database entry for "RaceSchool2001"
-Warning--I didn't find a database entry for "MathTolAgo"
 Warning--I didn't find a database entry for "Pycx"
-Warning--I didn't find a database entry for "MaximizedSpread2003"
+Warning--empty journal in Rmat2004
 Warning--empty journal in HybridBFS2015
-Too many commas in name 1 of "Stephen Eubank, Hasan Guclu, V. S. Anil Kumar, Madhav V. Marath, Aravind Srinivasan, Zoltán Toroczkai, Nan Wang5" for entry DiseasOutbreak
-while executing---line 944 of file unsrt.bst
-Too many commas in name 1 of "Stephen Eubank, Hasan Guclu, V. S. Anil Kumar, Madhav V. Marath, Aravind Srinivasan, Zoltán Toroczkai, Nan Wang5" for entry DiseasOutbreak
-while executing---line 944 of file unsrt.bst
-Too many commas in name 1 of "Stephen Eubank, Hasan Guclu, V. S. Anil Kumar, Madhav V. Marath, Aravind Srinivasan, Zoltán Toroczkai, Nan Wang5" for entry DiseasOutbreak
-while executing---line 944 of file unsrt.bst
-Too many commas in name 1 of "Stephen Eubank, Hasan Guclu, V. S. Anil Kumar, Madhav V. Marath, Aravind Srinivasan, Zoltán Toroczkai, Nan Wang5" for entry DiseasOutbreak
-while executing---line 944 of file unsrt.bst
-Warning--empty journal in DiseasOutbreak
 Warning--empty journal in MaximizeSpread2003
 Warning--empty journal in MaximizeSpread2015
-Warning--empty journal in AlgoToMath
+Warning--can't use both volume and number fields in ComplexNetwork2003
 Warning--empty publisher in ComplexNetwork2003
-Warning--empty journal in SmallWorldProblemSmilgram1960
-Warning--empty journal in Experiment1969
-Warning--empty journal in smallworldExperiment1969
-Warning--empty journal in McAndrew1963
 Warning--empty journal in ViralMarketing
-Warning--empty year in ViralMarketing
-Warning--empty journal in Rmat2004
-Too many commas in name 1 of "Matteo Frigo, Charles E. Leiserson, Harald Prokop, Sridhar Ramacc handran" for entry CacheOblivious1999
-while executing---line 944 of file unsrt.bst
 Warning--empty journal in CacheOblivious1999
-Warning--empty journal in COmultiplic2009
 Warning--empty journal in InfluenceMax
-Name 1 in "Scott Beamer, Krste Asanović, and David Patterson" has a comma at the end for entry DirectOptimizeBFS
-while executing---line 944 of file unsrt.bst
-Warning--empty journal in DirectOptimizeBFS
 Warning--empty journal in ParallelBFS2011
-You've used 20 entries,
+You've used 21 entries,
             1791 wiz_defined-function locations,
-            564 strings with 6678 characters,
-and the built_in function-call counts, 3032 in all, are:
-= -- 234
-> -- 124
-< -- 1
-+ -- 53
-- -- 33
-* -- 111
-:= -- 535
-add.period$ -- 61
-call.type$ -- 20
+            618 strings with 7800 characters,
+and the built_in function-call counts, 5211 in all, are:
+= -- 482
+> -- 198
+< -- 9
++ -- 75
+- -- 54
+* -- 339
+:= -- 794
+add.period$ -- 65
+call.type$ -- 21
 change.case$ -- 19
 chr.to.int$ -- 0
-cite$ -- 38
-duplicate$ -- 178
-empty$ -- 318
-format.name$ -- 33
-if$ -- 654
+cite$ -- 31
+duplicate$ -- 247
+empty$ -- 497
+format.name$ -- 54
+if$ -- 1177
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 21
-newline$ -- 102
-num.names$ -- 22
-pop$ -- 104
+int.to.str$ -- 21
+missing$ -- 23
+newline$ -- 108
+num.names$ -- 23
+pop$ -- 74
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 65
+skip$ -- 130
 stack$ -- 0
-substring$ -- 23
-swap$ -- 11
-text.length$ -- 1
+substring$ -- 380
+swap$ -- 67
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 18
-while$ -- 23
-width$ -- 22
-write$ -- 187
-(There were 11 error messages)
+warning$ -- 10
+while$ -- 56
+width$ -- 23
+write$ -- 224
+(There were 3 error messages)
