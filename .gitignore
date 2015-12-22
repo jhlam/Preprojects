@@ -6,6 +6,7 @@
 !*.txt
 !*.tex
 !*.bib
+!*.pdf
 
 #Images
 !*.png
