@@ -1,9 +1,12 @@
-#git files
-*.aux
-*.log
-*.lot
-*.toc
-*.gz
-*.lof
-*.bbl
-*.blg
+#Ignore everything
+*.*
+!.gitignore
+
+#not report related fils.
+!*.txt
+!*.tex
+!*.bib
+
+#Images
+!*.png
+!*.jpg
