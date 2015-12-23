@@ -201,10 +201,12 @@ A $semiring$ is a set of elements with two binary operations. The two operations
 As mentioned before, ICM is a special case of the breadth first search. By modifying the algorithm proposed earlier, we can in theory perform ICM with matrix-vector multiplication.  
 
 \section{Seed selection algorithm}
-The seed selection algorithm, is the algorithm used to select the initial $k$ seed nodes to be chosen at the start of the information diffusion. We can compare it to a new gadget or a cosmetic company trying to promote a new product. By selecting a few influential persons to give a free sample, the new trend would most likely  spread through $viral$ $marketing$ \cite{ViralMarketing}. The seed selection algorithm would be the algorithm to select the few influential individuals to receive this free sample. There are multiple different scheme to choose from, in this section, we will focus on four different algorithms, greedy algorithm, degree algorithm, random algorithm and the independent greedy algorithm.
+The seed selection algorithm, is the algorithm used to select the initial $k$ seed nodes to be chosen at the start of the information diffusion. Each selected nodes is in the initial timestep activated. During each timestep, the seed nodes will propagate the activation along the network depend on what diffusion model is used. We can compare it to a new gadget or a cosmetic company trying to promote a new product. By selecting a few influential persons to give a free sample, the new trend would most likely  spread through $viral$ $marketing$ \cite{ViralMarketing}. The seed selection algorithm would be the algorithm to select the few influential individuals to receive this free sample. There are multiple different scheme to choose from, in this section, we will focus on four different algorithms, greedy algorithm, degree algorithm, random algorithm and the independent greedy algorithm.
 
 \subsection{The greedy algorithm}
-The greedy algorithm \cite{greedyInfluenc2005} proposed by Kempe et al, is known to be the best algorithm according to the result from  \cite{greedyInfluenc2005}. The algorithm computes the maximum coverage each node would result in, then chooses the set of $k$ nodes that would have the largest coverage.  
+The greedy algorithm \cite{greedyInfluenc2005} proposed by Kempe et al, is known to be the best algorithm according to the result from  \cite{greedyInfluenc2005}. The greedy algotihm starts by itterate over the entire network and finds one node that have the largest coverage and stores that node in the set $A$. The algorith then activates that node from A, and computes the coverage of each node in the network with the previous choosen node. After the algorithm finds the second node, that node is stored in A with the previous node and we have now choosen two seed node. The algorithm continues until we have choosen $k$ seed nodes, where each have been tested to have maximum coverage in relation with the previous choosen nodes. To compute the maximum coverage, the algorithm have to test every combination of nodes together, this results in heavy computation and the algorithm would therefore not scale well.
+
+We can look at the greedy algorithm as a special case of BFS with a transistion probability. Each node in the network will be choosen as the seed node for the
 
  \begin{algorithm}
 \caption{Greedy Algorithm}
@@ -220,7 +222,7 @@ $1 − \delta$
 \end{algorithm}
 
 \subsection{The degree algorithm}
-Another popular algorithm is the degree algorithm \cite{greedyInfluenc2005}. Unlike the greedy algorithm, the degree sort all the node according to their degree distribution. The algorithm picks the top $\it{k}$ nodes according to the degree distribution. This approach benefits over the greedy algorithm by not having as much computation time as the greedy algorithm. The disadvantage is that this algorithm does not take the degree correlation into acount. As mentioned in section \ref{degreeCorr}, High degree nodes would often have common node as neighbor. This would result in multiple overlapping activated node choosen.
+Another popular algorithm is the degree algorithm \cite{greedyInfluenc2005}. Unlike the greedy algorithm, does not compute the coverage of node, the algorithm picks the top $\it{k}$ nodes according to the degree distribution instead. The node chooses the top $k$ nodes with the highest degree and stores them as the seed nodes. This approach benefits over the greedy algorithm by not having as much computation time as the greedy algorithm since only one itteration is needed to compute the degree to node. The disadvantage is that this algorithm does not take the degree correlation into acount. As mentioned in section \ref{degreeCorr}, high degree nodes would often have common node as neighbor. This would result in multiple overlapping activated node choosen.
 
 \begin{algorithm}
 \caption{Degree Algorithm}
@@ -274,7 +276,7 @@ One problem during graph analyzation and calculation is finding suitable graphs 
 
 
 \section{Cache oblivious model} 
-As mentioned in section \ref{BFS as Matrix}, we can performe breadth first search as sparse matrix multiplication. There are different optimization of the sparse matrix-vecotr  multiplications. One of which is the cache oblivious sparse matrix-vector multiplications.
+As mentioned in section \ref{BFS as Matrix}, we can performe breadth first search as sparse matrix multiplication. There are different optimization of the sparse matrix-vector multiplications. One of which is the cache oblivious sparse matrix-vector multiplications. We will look at what a cache oblivious algorithm is and what a ideal cache model is. 
 
 \subsection{Ideal cache model} \label{idealcacheModel}
 The ideal cache model \cite{CacheOblivious1999} is shown in Figure \ref{fig:idealCacheModel}, consists of a machine with two-level memory hierarchy, a ideal cache of Z words, and an large main memory. The cache is partitioned into cache line of length L, and is fully assosiative. The ideal cache model exploits temporal locality by using a optimal off line strategy where the evicted cache line is the one that would be used lates into the future \cite{CacheOblivious1999}. The ideal cache model is used by Frigo et al to analyse cache oblivious models \cite{CacheOblivious1999}.
@@ -287,14 +289,5 @@ The ideal cache model \cite{CacheOblivious1999} is shown in Figure \ref{fig:idea
 \end{figure}
 
 \subsection{Cache oblivious}
-A cache aware algotihm is an algorithm conains parameters to optimize hardware parameters usage, such as cache size and cache line. Traditionally, optimization of algorithm is achived by utilizing such parameter for specific architectures \cite{cacheaware}. An algorithm that does not have such a parameter, is known as cache oblivious. An optimal cache oblivious algorithms is designes to be able to performe well for different architecture \cite{COmultiplica2009}, when they are designde for two-level optimization, then it's also optimal for multilpe levels \cite{CacheOblivious1999} and the optimal replacement strategy mentioned in section \ref{idealCacheModel} can be simulated efficiently by least recently used replacemnt strategy \cite{CacheOblivious1999}. 
+A cache aware algotihm is an algorithm conains parameters to optimize hardware parameters usage, such as cache size and cache line. Traditionally, optimization of algorithm is achived by utilizing such parameter for specific architectures \cite{cacheaware}. An algorithm that does not have such a parameter, is known as cache oblivious. An optimal cache oblivious algorithms is designes to be able to performe well for different architecture \cite{COmultiplica2009}, when they are designde for two-level optimization, then it's also optimal for multilpe levels \cite{CacheOblivious1999} and the optimal replacement strategy mentioned in section \ref{idealCacheModel} can be simulated efficiently by least recently used replacemnt strategy \cite{CacheOblivious1999}. One potentiall improvement on the independent cascade model is to implement BFS as cache oblivious sparse matrix-vector multiplication.
 
-\subsection{Cache oblivious spase matrix-vector multiplication}
-
-
-A cache oblivious model ignores the cache size and line and designs the algorithm to be cross platform and optimized. An algorithm is $\it{cache}$ $\it{aware}$ if it contains parameter that can be tuned to optimize the cache complexity for the cache size \cite{CacheOblivious1999}.
-
-
- 
- Such algorithm have the disadvantage where a adaptation is needed for a new architecture \cite{COmultiplic2009}. The cache oblivious model is designed 
- for two level of memory, and assumes that such an optimization is optimized for multiple levels as well. There are multiple algorithm designed that shows that such a model actually improves the algorithm. One of such is an cache oblivious sparse matrix multiplication. Sparse matrix multiplication is notoriously inefficient use of the cache system, it forces the user to jump through data in main memory \cite{COmultiplic2009}. The sparse matrix approach proposed  \cite{COmultiplic2009} focus on reordering the matrix and row in an cache oblivious manner. There are results that shows that a cache oblivious approach have given improvement to computation time for some matrices during sparse matrix multiplication, but for cache-friendly structure, this is shown to be a minor improvement and even small loss. 3
