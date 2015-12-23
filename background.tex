@@ -181,7 +181,7 @@ A sparse matrix is a matrix containing few nonzero. Social graph with few edges 
  	\label{AdjaToMatrix}
 \end{figure}
 
-\subsection{Breadth First Search as a matrix multiplication.}
+\subsection{Breadth First Search as a matrix multiplication.} \label{BFS as Matrix}
 From  \cite{AlgoToMath}, we can see that BFS can be recast as algebraic operations. BFS can be performed by applying matrix-vector multiplication over Boolean semirings \cite{HybridBFS2015}. The graph is represented as a adjacency matrix A, then for the root node, a vector x(root)=1 is multiplied with the matrix A. $A \times x_0 = y_0$. $y_0$ is the result after the first matrix-vector multiplication and in the next iteration, $x_1 = y_0$. We can see from the Figure\ref{fig:bfsMatrix}
 
 \begin{figure}
@@ -274,7 +274,27 @@ One problem during graph analyzation and calculation is finding suitable graphs 
 
 
 \section{Cache oblivious model} 
-A cache oblivious model 
+As mentioned in section \ref{BFS as Matrix}, we can performe breadth first search as sparse matrix multiplication. There are different optimization of the sparse matrix-vecotr  multiplications. One of which is the cache oblivious sparse matrix-vector multiplications.
+
+\subsection{Ideal cache model} \label{idealcacheModel}
+The ideal cache model \cite{CacheOblivious1999} is shown in Figure \ref{fig:idealCacheModel}, consists of a machine with two-level memory hierarchy, a ideal cache of Z words, and an large main memory. The cache is partitioned into cache line of length L, and is fully assosiative. The ideal cache model exploits temporal locality by using a optimal off line strategy where the evicted cache line is the one that would be used lates into the future \cite{CacheOblivious1999}. The ideal cache model is used by Frigo et al to analyse cache oblivious models \cite{CacheOblivious1999}.
+
+\begin{figure}
+\includegraphics{ideal_cache_model}
+\caption{The ideal-cache model \cite{CacheOblivious1999}}
+\label{fig:idealCacheModel}
+
+\end{figure}
+
+\subsection{Cache oblivious}
+A cache aware algotihm is an algorithm conains parameters to optimize hardware parameters usage, such as cache size and cache line. Traditionally, optimization of algorithm is achived by utilizing such parameter for specific architectures \cite{cacheaware}. An algorithm that does not have such a parameter, is known as cache oblivious. An optimal cache oblivious algorithms is designes to be able to performe well for different architecture \cite{COmultiplica2009}, when they are designde for two-level optimization, then it's also optimal for multilpe levels \cite{CacheOblivious1999} and the optimal replacement strategy mentioned in section \ref{idealCacheModel} can be simulated efficiently by least recently used replacemnt strategy \cite{CacheOblivious1999}. 
+
+\subsection{Cache oblivious spase matrix-vector multiplication}
 
 
-A cache oblivious model ignores the cache size and line and designs the algorithm to be cross platform and optimized. An algorithm is $\it{cache}$ $\it{aware}$ if it contains parameter that can be tuned to optimize the cache complexity for the cache size \cite{CacheOblivious1999}. Such algorithm have the disadvantage where a adaptation is needed for a new architecture \cite{COmultiplic2009}. The cache oblivious model is designed for two level of memory, and assumes that such an optimization is optimized for multiple levels as well. There are multiple algorithm designed that shows that such a model actually improves the algorithm. One of such is an cache oblivious sparse matrix multiplication. Sparse matrix multiplication is notoriously inefficient use of the cache system, it forces the user to jump through data in main memory \cite{COmultiplic2009}. The sparse matrix approach proposed  \cite{COmultiplic2009} focus on reordering the matrix and row in an cache oblivious manner. There are results that shows that a cache oblivious approach have given improvement to computation time for some matrices during sparse matrix multiplication, but for cache-friendly structure, this is shown to be a minor improvement and even small loss. 3
+A cache oblivious model ignores the cache size and line and designs the algorithm to be cross platform and optimized. An algorithm is $\it{cache}$ $\it{aware}$ if it contains parameter that can be tuned to optimize the cache complexity for the cache size \cite{CacheOblivious1999}.
+
+
+ 
+ Such algorithm have the disadvantage where a adaptation is needed for a new architecture \cite{COmultiplic2009}. The cache oblivious model is designed 
+ for two level of memory, and assumes that such an optimization is optimized for multiple levels as well. There are multiple algorithm designed that shows that such a model actually improves the algorithm. One of such is an cache oblivious sparse matrix multiplication. Sparse matrix multiplication is notoriously inefficient use of the cache system, it forces the user to jump through data in main memory \cite{COmultiplic2009}. The sparse matrix approach proposed  \cite{COmultiplic2009} focus on reordering the matrix and row in an cache oblivious manner. There are results that shows that a cache oblivious approach have given improvement to computation time for some matrices during sparse matrix multiplication, but for cache-friendly structure, this is shown to be a minor improvement and even small loss. 3
